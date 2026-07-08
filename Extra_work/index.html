@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        implement a palindrome checker in javascript
+
+        <script>
+            function isPalindrome(str) {
+                // Remove non-alphanumeric characters and convert to lowercase
+                str = str.replace(/[^0-9a-zA-Z]/g, '').toLowerCase();
+                // Reverse the string
+                let reversed = str.split('').reverse().join('');
+                // Check if the original and reversed strings are equal
+                return str === reversed;
+            }
+        </script>
+</body>
+</html>
