@@ -1,0 +1,123 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #f5f5f5;
+  font-family: Arial, sans-serif;
+}
+
+.card {
+  width: 300px;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  margin: 50px auto;
+}
+
+.card-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.card-title {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.card-description {
+  font-size: 15px;
+  color: #666;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.card-price {
+  color: #0a8f3d;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.form {
+  width: 400px;
+  background: #fff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form input,
+.form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+.form button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background: #007bff;
+  color: white;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.form button:hover {
+  background: #0056b3;
+}
+
+.front{
+  width: 100%;
+  display: flex;
+  height: 90px;
+  justify-content: center;
+  background-color: #007bff;
+  align-items: center;
+  color: white;
+}
+
+.hero{
+  width: 100%;
+  height: 70px;
+  background-color: #666;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 20px;
+  gap: 20px;
+  color: #ccc;
+  text-decoration: none;
+}
+
+.hero li{
+  color: #e6e6e6;
+  list-style: none;
+  text-decoration: none;
+}
