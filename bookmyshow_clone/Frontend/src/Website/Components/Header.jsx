@@ -24,6 +24,46 @@ const Header = () => {
 
             </header>
 
+             <div className='ful'>
+                <ul>
+                    <li>
+                        <a href="">Movies</a>
+                    </li>
+                    <li>
+                        <a href="">Stream</a>
+                    </li>
+                    <li>
+                        <a href="">Events</a>
+                    </li>
+                    <li>
+                        <a href="">Plays</a>
+                    </li>
+                    <li>
+                        <a href="">Sports</a>
+                    </li>
+                    <li>
+                        <a href="">Activities</a>
+                    </li>
+
+                    <div className='sul'>
+                        <li>
+
+                            <a href="">List your show</a>
+                        </li>
+                        <li>
+                            <a href="">Corporate</a>
+                        </li>
+                        <li>
+                            <a href="">Offers</a>
+                        </li>
+                        <li>
+                            <a href="">Gift cards</a>
+                        </li>
+
+                    </div>
+                </ul>
+            </div>
+
         </div>
     )
 }

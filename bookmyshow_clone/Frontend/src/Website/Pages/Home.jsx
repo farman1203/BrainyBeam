@@ -3,46 +3,7 @@ import React from 'react'
 const Home = () => {
     return (
         <div className='home'>
-            <div className='ful'>
-                <ul>
-                    <li>
-                        <a href="">Movies</a>
-                    </li>
-                    <li>
-                        <a href="">Stream</a>
-                    </li>
-                    <li>
-                        <a href="">Events</a>
-                    </li>
-                    <li>
-                        <a href="">Plays</a>
-                    </li>
-                    <li>
-                        <a href="">Sports</a>
-                    </li>
-                    <li>
-                        <a href="">Activities</a>
-                    </li>
-
-                    <div className='sul'>
-                        <li>
-
-                            <a href="">List your show</a>
-                        </li>
-                        <li>
-                            <a href="">Corporate</a>
-                        </li>
-                        <li>
-                            <a href="">Offers</a>
-                        </li>
-                        <li>
-                            <a href="">Gift cards</a>
-                        </li>
-
-                    </div>
-                </ul>
-            </div>
-
+        
             {/* crousel */}
             <div className="container">
                 <div id="demo" className="carousel slide" data-bs-ride="carousel">
@@ -127,34 +88,70 @@ const Home = () => {
                 </div>
 
                 <div>
-                    <img className='p-3 ' style={{width:'100%'}} src="https://assets-in.bmscdn.com/discovery-catalog/collections/tr:w-1440,h-120/stream-leadin-web-collection-202210241242.png" alt="" />
+                    <img className='p-3 ' style={{ width: '100%' }} src="https://assets-in.bmscdn.com/discovery-catalog/collections/tr:w-1440,h-120/stream-leadin-web-collection-202210241242.png" alt="" />
                 </div>
 
-            <div>
-                    <div className='flex'>
+                <div>
+                    <div className='flex mt-5'>
                         <p>The Best of live Event</p>
                     </div>
 
                     <div className='row'>
                         <div className="col-2 m-3 p-0 hvr">
-                            <img style={{width:'100%'}} src="https://assets-in.bmscdn.com/discovery-catalog/collections/tr:w-800,h-800:l-text,ie-NjUrIEV2ZW50cw%3D%3D,co-FFFFFF,ff-Roboto,fs-64,lx-48,ly-320,tg-b,pa-8_0_0_0,l-end:w-300/comedy-shows-collection-202211140440.png" alt="" />
+                            <img style={{ width: '100%' }} src="https://assets-in.bmscdn.com/discovery-catalog/collections/tr:w-800,h-800:l-text,ie-NjUrIEV2ZW50cw%3D%3D,co-FFFFFF,ff-Roboto,fs-64,lx-48,ly-320,tg-b,pa-8_0_0_0,l-end:w-300/comedy-shows-collection-202211140440.png" alt="" />
                         </div>
                         <div className="col-2 m-3 p-0 hvr">
-                            <img style={{width:'100%'}} src="https://assets-in.bmscdn.com/discovery-catalog/collections/tr:w-800,h-800:l-text,ie-MTAgRXZlbnRz,co-FFFFFF,ff-Roboto,fs-64,lx-48,ly-320,tg-b,pa-8_0_0_0,l-end:w-300/amusement-parks-banner-desktop-collection-202503251132.png" alt="" />
+                            <img style={{ width: '100%' }} src="https://assets-in.bmscdn.com/discovery-catalog/collections/tr:w-800,h-800:l-text,ie-MTAgRXZlbnRz,co-FFFFFF,ff-Roboto,fs-64,lx-48,ly-320,tg-b,pa-8_0_0_0,l-end:w-300/amusement-parks-banner-desktop-collection-202503251132.png" alt="" />
                         </div>
                         <div className="col-2 m-3 p-0 hvr">
-                            <img style={{width:'100%'}} src="https://assets-in.bmscdn.com/discovery-catalog/collections/tr:w-800,h-800:l-text,ie-MTArIEV2ZW50cw%3D%3D,co-FFFFFF,ff-Roboto,fs-64,lx-48,ly-320,tg-b,pa-8_0_0_0,l-end:w-300/theatre-shows-collection-202211140440.png" alt="" />
+                            <img style={{ width: '100%' }} src="https://assets-in.bmscdn.com/discovery-catalog/collections/tr:w-800,h-800:l-text,ie-MTArIEV2ZW50cw%3D%3D,co-FFFFFF,ff-Roboto,fs-64,lx-48,ly-320,tg-b,pa-8_0_0_0,l-end:w-300/theatre-shows-collection-202211140440.png" alt="" />
                         </div>
                         <div className="col-2 m-3 p-0 hvr">
-                            <img style={{width:'100%'}} src="https://assets-in.bmscdn.com/discovery-catalog/collections/tr:w-800,h-800:l-text,ie-MyBFdmVudHM%3D,co-FFFFFF,ff-Roboto,fs-64,lx-48,ly-320,tg-b,pa-8_0_0_0,l-end:w-300/kids-banner-desktop-collection-202503251132.png" alt="" />
+                            <img style={{ width: '100%' }} src="https://assets-in.bmscdn.com/discovery-catalog/collections/tr:w-800,h-800:l-text,ie-MyBFdmVudHM%3D,co-FFFFFF,ff-Roboto,fs-64,lx-48,ly-320,tg-b,pa-8_0_0_0,l-end:w-300/kids-banner-desktop-collection-202503251132.png" alt="" />
                         </div>
                         <div className="col-2 m-3 p-0 hvr">
-                            <img style={{width:'100%'}} src="https://assets-in.bmscdn.com/discovery-catalog/collections/tr:w-800,h-800:l-text,ie-MjUrIEV2ZW50cw%3D%3D,co-FFFFFF,ff-Roboto,fs-64,lx-48,ly-320,tg-b,pa-8_0_0_0,l-end:w-300/music-shows-collection-202211140440.png" alt="" />
+                            <img style={{ width: '100%' }} src="https://assets-in.bmscdn.com/discovery-catalog/collections/tr:w-800,h-800:l-text,ie-MjUrIEV2ZW50cw%3D%3D,co-FFFFFF,ff-Roboto,fs-64,lx-48,ly-320,tg-b,pa-8_0_0_0,l-end:w-300/music-shows-collection-202211140440.png" alt="" />
                         </div>
-                        
-                        
                     </div>
                 </div>
+
+
+                <div className='mt-5'>
+                    <img style={{ width: '100%' }} src="https://assets-in.bmscdn.com/discovery-catalog/collections/tr:w-1440,h-120/premiere-banner-web-collection-202208191200.png" alt />
+                </div>
+                <div className='top'>
+                    <h3>Premieres</h3>
+                    <p>Brand new realease every friday</p>
+                </div>
+
+                <div className='premier '>
+                    <div className='col-2'>
+                        <img src="https://assets-in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC,e-usm-2-2-0.5-0.008:l-image,i-discovery-catalog@@icons@@bms_premiere_v1.png,t-false,lfo-bottom_left,l-end/et00480914-luezcqbrmx-portrait.jpg" alt="" />
+                        <h4>Obsession</h4>
+                        <p>English</p>
+                    </div>
+                    <div className='col-2'>
+                        <img src="https://assets-in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC,e-usm-2-2-0.5-0.008:l-image,i-discovery-catalog@@icons@@bms_premiere_v1.png,t-false,lfo-bottom_left,l-end/et00013821-aenbdsjmra-portrait.jpg" alt="" />
+                        <h4>Snitch</h4>
+                        <p>English</p>
+                    </div>
+                    <div className='col-2'>
+                        <img src="https://assets-in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC,e-usm-2-2-0.5-0.008:l-image,i-discovery-catalog@@icons@@bms_premiere_v1.png,t-false,lfo-bottom_left,l-end/et00480914-luezcqbrmx-portrait.jpg" alt="" />
+                        <h5>Obsession(preview)</h5>
+                        <p>English</p>
+                    </div>
+                    <div className='col-2'>
+                        <img src="https://assets-in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC,e-usm-2-2-0.5-0.008:l-image,i-discovery-catalog@@icons@@bms_premiere_v1.png,t-false,lfo-bottom_left,l-end/et00500740-pubklvrklf-portrait.jpg" alt="" />
+                        <h4>Boss(2025)</h4>
+                        <p>English</p>
+                    </div>
+                    <div className='col-2'>
+                        <img src="https://assets-in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC,e-usm-2-2-0.5-0.008:l-image,i-discovery-catalog@@icons@@bms_premiere_v1.png,t-false,lfo-bottom_left,l-end/et00505845-yuhcqmwcle-portrait.jpg" alt="" />
+                        <h4>undertone</h4>
+                        <p>English</p>
+                    </div>
+                </div>
+
 
 
 
