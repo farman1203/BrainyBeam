@@ -1,8 +1,10 @@
 const express = require("express")
 const movieModel = require("./models/movie.post")
+const cors = require("cors")
 
 const app = express();
 app.use(express.json())
+app.use(cors())
 
 app.post('/movies', async (req, res) => {
     const data = req.body;
