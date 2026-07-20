@@ -1,18 +1,14 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const Login = () => {
 
   const navigate = useNavigate();
 
-  const [isLogin, setIsLogin] = useState(true);
-
   const [formData, setFormData] = useState({
-    name: "",
     email: "",
     password: "",
-    confirmPassword: "",
   });
 
   const handleChange = (e) => {
@@ -21,49 +17,6 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (!isLogin) {
-      // SIGN UP
-
-      if (formData.password !== formData.confirmPassword) {
-        alert("Password not matched");
-        return;
-      }
-
-      const users = JSON.parse(localStorage.getItem("users")) || [];
-
-      const exist = users.find(
-        (item) => item.email === formData.email
-      );
-
-      if (exist) {
-        alert("Email already exists");
-        return;
-      }
-
-      users.push({
-        name: formData.name,
-        email: formData.email,
-        password: formData.password,
-      });
-
-      localStorage.setItem("users", JSON.stringify(users));
-
-      alert("Account Created Successfully");
-
-      setIsLogin(true);
-
-      setFormData({
-        name: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-      });
-
-      return;
-    }
-
-    // LOGIN
 
     const users = JSON.parse(localStorage.getItem("users")) || [];
 
@@ -74,42 +27,32 @@ const Login = () => {
     );
 
     if (!user) {
-      toast.info("Invalid Email or Password",{theme: "colored",});
+      toast.error("Invalid Email or Password", { theme: "colored", });
       return;
     }
 
     localStorage.setItem("isLoggedIn", "true");
     localStorage.setItem("currentUser", JSON.stringify(user));
 
-    toast.success("Login Success", { theme: "colored", });
+    toast.success("Login Successful", { theme: "colored", });
 
     navigate("/");
   };
-
 
   return (
     <div className="auth-container">
 
       <div className="auth-card">
 
-        <h2>{isLogin ? "Sign In" : "Sign Up"}</h2>
+        <h2>Sign In</h2>
 
         <form onSubmit={handleSubmit}>
-
-          {!isLogin && (
-            <input
-              type="text"
-              name="name"
-              placeholder="Full Name"
-              value={formData.name}
-              onChange={handleChange}
-            />
-          )}
 
           <input
             type="email"
             name="email"
             placeholder="Email"
+            required
             value={formData.email}
             onChange={handleChange}
           />
@@ -118,36 +61,20 @@ const Login = () => {
             type="password"
             name="password"
             placeholder="Password"
+            required
             value={formData.password}
             onChange={handleChange}
           />
 
-          {!isLogin && (
-            <input
-              type="password"
-              name="confirmPassword"
-              placeholder="Confirm Password"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-            />
-          )}
-
           <button className="main-btn">
-            {isLogin ? "Sign In" : "Sign Up"}
+            Sign In
           </button>
 
         </form>
 
         <p className="switch">
-
-          {isLogin
-            ? "Don't have an account?"
-            : "Already have an account?"}
-
-          <span onClick={() => setIsLogin(!isLogin)}>
-            {isLogin ? " Sign Up" : " Sign In"}
-          </span>
-
+          Don't have an account?
+          <span><Link to="/signup" > Sign Up</Link></span>
         </p>
 
       </div>

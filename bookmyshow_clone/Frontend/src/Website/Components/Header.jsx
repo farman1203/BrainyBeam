@@ -4,6 +4,7 @@ import { ChevronDown } from 'lucide-react';
 import { Menu } from 'lucide-react'
 import { NavLink, Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 
 
@@ -11,12 +12,14 @@ const Header = () => {
 
     const isLoggedIn = localStorage.getItem("isLoggedIn");
     const navigate = useNavigate();
+    const user = JSON.parse(localStorage.getItem("currentUser"));
+
 
     const logout = () => {
 
         localStorage.removeItem("isLoggedIn");
         localStorage.removeItem("currentUser");
-        alert('Logout Successfully')
+        toast.success('Logout Successfully', { theme: 'colored' })
         navigate("/login");
     }
 
@@ -30,16 +33,20 @@ const Header = () => {
                     {/* <span style={{ marginLeft: '10px' }}>Search for Movies,Events,Plays,Sports and Activities</span> */}
 
                 </div>
-                <div style={{ margin: '25px' }}>
+                <div className='p-3' style={{ margin: '25px' }}>
                     <p>Ahmedabad <ChevronDown size={16} /></p>
                 </div>
+
                 <div className="signb">
-
                     {isLoggedIn ? (
-
-                        <button onClick={logout}>
-                            Logout
-                        </button>
+                        <>
+                            <span>
+                                {user?.name}
+                            </span>
+                            <button onClick={logout}>
+                                Logout
+                            </button>
+                        </>
 
                     ) : (
 

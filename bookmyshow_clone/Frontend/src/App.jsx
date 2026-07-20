@@ -4,21 +4,23 @@ import Home from './Website/Pages/Home'
 import Movies from './Website/Pages/Movies'
 import { BrowserRouter, Route, Router, Routes } from 'react-router-dom'
 import Login from './Website/Pages/Login'
-  import { ToastContainer, toast } from 'react-toastify';
-// import Movie_details from './Website/Pages/Movie_details'
+import { ToastContainer, toast } from 'react-toastify';
+import Footer from './Website/Components/Footer'
+import Sign_up from './Website/Pages/Sign_up'
 
 const App = () => {
   return (
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<><Header /><Home /></>}></Route>
-          <Route path='/movie' element={<><Header /><Movies /></>}></Route>
-          <Route path='/login' element={<><Header /><Login /></>}></Route>
-          {/* <Route path='/movie/movie_details' element={<><Header /><Movie_details /></>}></Route> */}
+          <Route path='/' element={<><Header /><Home /><Footer /></>}></Route>
+          <Route path='/movie' element={<><Header /><Movies /><Footer /></>}></Route>
+          <Route path='/login' element={<><Header /><Login /><Footer /></>}></Route>
+          <Route path='/signup' element={<><Header /><Sign_up /><Footer /></>}></Route>
         </Routes>
       </BrowserRouter>
-     <ToastContainer />
+      
+      <ToastContainer />
     </div>
   )
 }

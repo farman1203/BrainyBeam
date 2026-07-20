@@ -82,9 +82,6 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 0 60px;
-  position: sticky;
-  top: 0;
-  z-index: 999;
   box-shadow: 0 3px 15px rgba(0, 0, 0, .08);
 }
 
@@ -114,8 +111,6 @@ header img {
   background: white;
 }
 
-
-
 .signb {
   display: flex;
   align-items: center;
@@ -141,7 +136,7 @@ header img {
 
 .ful {
   width: 100%;
-  background: white;
+  background: #f5f5f5;
   box-shadow: 0 2px 10px rgba(0, 0, 0, .05);
 }
 
@@ -370,7 +365,7 @@ header img {
 /* login page css */
 .auth-container {
   width: 100%;
-  height: 100vh;
+  margin: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -378,17 +373,12 @@ header img {
 }
 
 .auth-card {
-  width: 380px;
+  width: 400px;
   background: #fff;
-  padding: 30px;
+  padding: 25px;
   border-radius: 15px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, .1);
   text-align: center;
-}
-
-.logo {
-  width: 160px;
-  margin-bottom: 25px;
 }
 
 .auth-card h2 {
@@ -448,37 +438,134 @@ header img {
   cursor: pointer;
 }
 
-@media(max-width:480px) {
 
-  .auth-card {
-    width: 100%;
-    padding: 25px;
+
+/* footer css */
+.footer {
+  background-color: #1c1c1c;
+  color: #fff;
+  margin-top: 50px;
+}
+
+.footer-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 50px 0;
+}
+
+.footer-row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.footer-col {
+  flex: 1;
+  min-width: 220px;
+}
+
+.footer-logo {
+  color: #f84464;
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.footer-title {
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+.footer-text {
+  color: #b5b5b5;
+  line-height: 1.7;
+}
+
+.footer-list {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-list li {
+  margin-bottom: 10px;
+}
+
+.footer-list a {
+  text-decoration: none;
+  color: #b5b5b5;
+  transition: 0.3s;
+}
+
+.footer-list a:hover {
+  color: #f84464;
+}
+
+.footer-bottom {
+  border-top: 1px solid #444;
+  padding: 20px;
+  text-align: center;
+  color: #b5b5b5;
+  font-size: 14px;
+}
+
+@media (max-width: 992px) {
+  .footer-row {
+    gap: 20px;
   }
 
-  .logo {
-    width: 130px;
+  .footer-col {
+    min-width: 45%;
   }
 }
 
-@media(max-width:992px) {
-
-  header {
-    padding: 15px 25px;
-  }
-
-  .search {
-    margin: 0 20px;
-  }
-
-}
-
-@media(max-width:768px) {
-
-  header {
+@media (max-width: 768px) {
+  .footer-row {
     flex-direction: column;
+  }
+
+  .footer-col {
+    min-width: 100%;
+  }
+
+  .footer-logo {
+    font-size: 28px;
+  }
+
+  .footer-title {
+    font-size: 18px;
+  }
+}
+
+
+@media (max-width:768px) {
+
+  .col-1,
+  .col-2,
+  .col-3,
+  .col-4,
+  .col-5,
+  .col-6,
+  .col-7,
+  .col-8,
+  .col-9,
+  .col-10,
+  .col-11,
+  .col-12 {
+    width: 100%;
+  }
+
+  header {
     height: auto;
+    flex-direction: column;
     padding: 15px;
     gap: 15px;
+  }
+
+  header img {
+    height: 60px;
   }
 
   .search {
@@ -490,29 +577,94 @@ header img {
     max-width: 100%;
   }
 
+  .signb {
+    width: 100%;
+    justify-content: center;
+  }
+
   .ful ul {
+    width: 95%;
     flex-wrap: wrap;
     justify-content: center;
+    gap: 10px;
+  }
+
+  .ful li {
+    margin: 0;
   }
 
   .sul {
     margin-left: 0;
+    gap: 15px;
+  }
+
+  .movie-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+
+  .content {
+    width: 100%;
+  }
+
+  .movies {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .banner {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .premier {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .premier .col-2,
+  .premier .col-3,
+  .premier .col-4 {
+    width: 100%;
+  }
+
+
+  .hero h2 {
+    font-size: 28px;
   }
 
 }
 
-@media(max-width:480px) {
+@media (max-width:360px) {
 
-  header img {
-    height: 55px;
+  .movies {
+    grid-template-columns: 1fr;
+  }
+
+  .hero h2 {
+    font-size: 20px;
+  }
+
+  .content h1 {
+    font-size: 20px;
   }
 
   .set {
-    height: 42px;
-    font-size: 14px;
+    font-size: 13px;
   }
 
-  .signb button {
+  .premier {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .premier .col-2,
+  .premier .col-3,
+  .premier .col-4 {
     width: 100%;
   }
 }

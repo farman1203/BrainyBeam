@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import { toast } from 'react-toastify';
 
 
 const Movies = () => {
@@ -13,6 +14,9 @@ const Movies = () => {
         timing: "",
         seat: 1,
     });
+
+    const seatprice = 250;
+    const totalprice = count * seatprice;
 
     const handleChange = (e) => {
         setBooking({ ...booking, [e.target.name]: e.target.value, });
@@ -27,7 +31,7 @@ const Movies = () => {
                 booking
             );
 
-            alert("Ticket Booked Successfully");
+            toast.success("Ticket Booked Successfully", { theme: 'colored' });
             console.log(res.data);
 
         } catch (err) {
@@ -132,7 +136,7 @@ const Movies = () => {
 
                     <div className="banner">
                         <h2 style={{ fontSize: 'x-large' }}>Coming Soon</h2>
-                        <a href="/">Explore Upcoming Movies →</a>
+                        <a href="#">Explore Upcoming Movies →</a>
                     </div>
 
                     <div className="movies">
@@ -166,7 +170,7 @@ const Movies = () => {
                         <div className="modal-dialog modal-dialog-centered">
                             <div className="modal-content shadow-lg border-0 rounded-4">
 
-                                {/* Header */}
+
                                 <div className="modal-header bg-primary text-white rounded-top-4">
                                     <h4 className="modal-title" id="bookingModalLabel">
                                         Book Your Ticket
@@ -178,11 +182,11 @@ const Movies = () => {
                                     ></button>
                                 </div>
 
-                                {/* Body */}
+
                                 <div className="modal-body p-4">
                                     <form onSubmit={handleSubmit}>
 
-                                        {/* Name */}
+
                                         <div className="mb-3">
                                             <label className="form-label fw-semibold">
                                                 Full Name
@@ -198,7 +202,7 @@ const Movies = () => {
                                             />
                                         </div>
 
-                                        {/* Theatre */}
+
                                         <div className="mb-3">
                                             <label className="form-label fw-semibold">
                                                 Select Theatre
@@ -210,14 +214,16 @@ const Movies = () => {
                                                 value={booking.theatre}
                                                 onChange={handleChange}
                                             >
-                                                <option>Choose Theatre</option>
+                                                <option>--Choose Theatre--</option>
                                                 <option>PVR Ahmedabad</option>
                                                 <option>INOX</option>
                                                 <option>Rajhans Cinema</option>
+                                                <option>INOX Nadiad</option>
+                                                <option>PVR Palladium Mall</option>
                                             </select>
                                         </div>
 
-                                        {/* Timing */}
+
                                         <div className="mb-3">
                                             <label className="form-label fw-semibold"
                                             >
@@ -230,7 +236,7 @@ const Movies = () => {
                                                 value={booking.timing}
                                                 onChange={handleChange}
                                             >
-                                                <option>Select Time</option>
+                                                <option>--Select Time--</option>
                                                 <option>09:00 AM</option>
                                                 <option>12:00 PM</option>
                                                 <option>03:00 PM</option>
@@ -239,7 +245,7 @@ const Movies = () => {
                                             </select>
                                         </div>
 
-                                        {/* Seat Counter */}
+
                                         <div className="mb-4">
                                             <label className="form-label fw-semibold">
                                                 Number of Seats
@@ -254,7 +260,7 @@ const Movies = () => {
                                                     onClick={() => {
                                                         if (count > 1) {
                                                             setCount(count - 1);
-                                                            setBooking({ ...booking, seat: count - 1 });
+                                                            setBooking({ ...booking, seat: newCount });
                                                         }
                                                     }}
                                                 >
@@ -270,7 +276,7 @@ const Movies = () => {
                                                     style={{ width: "45px", height: "45px" }}
                                                     onClick={() => {
                                                         setCount(count + 1);
-                                                        setBooking({ ...booking, seat: count + 1 });
+                                                        setBooking({ ...booking, seat: newCount });
                                                     }}
                                                 >
                                                     +
@@ -282,7 +288,7 @@ const Movies = () => {
                                         {/* Price */}
                                         <div className="alert alert-info d-flex justify-content-between">
                                             <span>Total Price</span>
-                                            <strong>₹250</strong>
+                                            <strong>₹{totalprice}</strong>
                                         </div>
 
                                         {/* Button */}
