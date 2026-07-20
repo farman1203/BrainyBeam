@@ -1,9 +1,39 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
+
 
 const Movies = () => {
 
     const [data, setData] = useState([]);
+    const [count, setCount] = useState(1);
+    const [booking, setBooking] = useState({
+        name: "",
+        theatre: "",
+        timing: "",
+        seat: 1,
+    });
+
+    const handleChange = (e) => {
+        setBooking({ ...booking, [e.target.name]: e.target.value, });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const res = await axios.post(
+                "http://localhost:3000/book-ticket",
+                booking
+            );
+
+            alert("Ticket Booked Successfully");
+            console.log(res.data);
+
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
     useEffect(() => {
         axios.get('http://localhost:3000/movies')
@@ -25,7 +55,7 @@ const Movies = () => {
                         {/* <button type="button" data-bs-target="#demo" data-bs-slide-to={2} /> */}
                     </div>
 
-                    <div className="carousel-inner">
+                    <div className="carousel-inner rounded-3">
                         <div className="carousel-item active">
                             <img src="https://assets-in-gm.bmscdn.com/promotions/cms/creatives/1778912523150_sardarweb.jpg" alt="Los Angeles" className="d-block w-100" />
                         </div>
@@ -44,9 +74,8 @@ const Movies = () => {
             </div>
 
 
-
             <div className="movie-container">
-                {/* Sidebar */}
+
                 <aside className="sidebar">
                     <h2>Filters</h2>
 
@@ -87,7 +116,6 @@ const Movies = () => {
                     </button>
                 </aside>
 
-                {/* Content */}
                 <main className="content">
                     <h1>Movies In Ahmedabad</h1>
 
@@ -113,16 +141,165 @@ const Movies = () => {
                                 <div className="movie">
                                     <img
                                         src={item.image}
-                                        
-                                        alt="Movie Poster"
-                                        />
+
+                                        alt={item.name}
+                                    />
                                     <h5>{item.name}</h5>
                                     <p>{item.language}</p>
+
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal">
+                                        Book Tickets
+                                    </button>
                                 </div>
-                        ))
+                            ))
                         }
 
                     </div>
+                    {/* Booking Modal */}
+                    <div
+                        className="modal fade"
+                        id="myModal"
+                        tabIndex="-1"
+                        aria-labelledby="bookingModalLabel"
+                        aria-hidden="true"
+                    >
+                        <div className="modal-dialog modal-dialog-centered">
+                            <div className="modal-content shadow-lg border-0 rounded-4">
+
+                                {/* Header */}
+                                <div className="modal-header bg-primary text-white rounded-top-4">
+                                    <h4 className="modal-title" id="bookingModalLabel">
+                                        Book Your Ticket
+                                    </h4>
+                                    <button
+                                        type="button"
+                                        className="btn-close btn-close-white"
+                                        data-bs-dismiss="modal"
+                                    ></button>
+                                </div>
+
+                                {/* Body */}
+                                <div className="modal-body p-4">
+                                    <form onSubmit={handleSubmit}>
+
+                                        {/* Name */}
+                                        <div className="mb-3">
+                                            <label className="form-label fw-semibold">
+                                                Full Name
+                                            </label>
+                                            <input
+                                                type="text"
+                                                name="name"
+                                                required
+                                                className="form-control rounded-3"
+                                                placeholder="Enter your full name"
+                                                value={booking.name}
+                                                onChange={handleChange}
+                                            />
+                                        </div>
+
+                                        {/* Theatre */}
+                                        <div className="mb-3">
+                                            <label className="form-label fw-semibold">
+                                                Select Theatre
+                                            </label>
+                                            <select
+                                                name="theatre"
+                                                required
+                                                className="form-select rounded-3"
+                                                value={booking.theatre}
+                                                onChange={handleChange}
+                                            >
+                                                <option>Choose Theatre</option>
+                                                <option>PVR Ahmedabad</option>
+                                                <option>INOX</option>
+                                                <option>Rajhans Cinema</option>
+                                            </select>
+                                        </div>
+
+                                        {/* Timing */}
+                                        <div className="mb-3">
+                                            <label className="form-label fw-semibold"
+                                            >
+                                                Show Timing
+                                            </label>
+                                            <select
+                                                name="timing"
+                                                required
+                                                className="form-select rounded-3"
+                                                value={booking.timing}
+                                                onChange={handleChange}
+                                            >
+                                                <option>Select Time</option>
+                                                <option>09:00 AM</option>
+                                                <option>12:00 PM</option>
+                                                <option>03:00 PM</option>
+                                                <option>06:00 PM</option>
+                                                <option>09:00 PM</option>
+                                            </select>
+                                        </div>
+
+                                        {/* Seat Counter */}
+                                        <div className="mb-4">
+                                            <label className="form-label fw-semibold">
+                                                Number of Seats
+                                            </label>
+
+                                            <div className="d-flex align-items-center gap-3">
+
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-outline-danger"
+                                                    style={{ width: "45px", height: "45px" }}
+                                                    onClick={() => {
+                                                        if (count > 1) {
+                                                            setCount(count - 1);
+                                                            setBooking({ ...booking, seat: count - 1 });
+                                                        }
+                                                    }}
+                                                >
+                                                    -
+                                                </button>
+
+                                                <h3 value={booking.seat}
+                                                    onChange={handleChange}>{count}</h3>
+
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-outline-success"
+                                                    style={{ width: "45px", height: "45px" }}
+                                                    onClick={() => {
+                                                        setCount(count + 1);
+                                                        setBooking({ ...booking, seat: count + 1 });
+                                                    }}
+                                                >
+                                                    +
+                                                </button>
+
+                                            </div>
+                                        </div>
+
+                                        {/* Price */}
+                                        <div className="alert alert-info d-flex justify-content-between">
+                                            <span>Total Price</span>
+                                            <strong>₹250</strong>
+                                        </div>
+
+                                        {/* Button */}
+                                        <button
+                                            type="submit"
+                                            className="btn btn-primary w-100 py-2 rounded-3 fw-bold"
+                                        >
+                                            Confirm Booking
+                                        </button>
+
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
                 </main>
             </div>
 
