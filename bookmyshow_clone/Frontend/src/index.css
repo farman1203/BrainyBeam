@@ -221,7 +221,6 @@ header img {
   margin: 30px auto;
   display: flex;
   gap: 40px;
-
 }
 
 .sidebar {
@@ -511,12 +510,12 @@ header img {
   font-size: 14px;
 }
 
-.pnf{
-display: flex;
-justify-content: center;
-align-items: center;
-flex-direction: column;
-padding: 20px;
+.pnf {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
 }
 
 @media (max-width: 992px) {

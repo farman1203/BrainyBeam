@@ -7,6 +7,7 @@ const Sign_up = () => {
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
+        id: "",
         name: "",
         email: "",
         password: "",
@@ -38,6 +39,7 @@ const Sign_up = () => {
         }
 
         users.push({
+            id : Date.now(),
             name: formData.name,
             email: formData.email,
             password: formData.password,

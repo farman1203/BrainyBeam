@@ -69,7 +69,7 @@ const Header = () => {
                         <NavLink to='*'>Stream</NavLink>
                     </li>
                     <li>
-                        <NavLink to="*">Events</NavLink>
+                        <NavLink to="/events">Events</NavLink>
                     </li>
                     <li>
                         <NavLink to="*">Plays</NavLink>

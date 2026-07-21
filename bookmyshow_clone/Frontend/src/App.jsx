@@ -8,6 +8,7 @@ import { Slide, ToastContainer, toast } from 'react-toastify';
 import Footer from './Website/Components/Footer'
 import Sign_up from './Website/Pages/Sign_up'
 import PageNotFound from './Website/Pages/PageNotFound'
+import Events from './Website/Pages/Events'
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route path='/movie' element={<><Header /><Movies /><Footer /></>}></Route>
           <Route path='/login' element={<><Header /><Login /><Footer /></>}></Route>
           <Route path='/signup' element={<><Header /><Sign_up /><Footer /></>}></Route>
+          <Route path='/events' element={<><Header /><Events /><Footer /></>}></Route>
           <Route path='*' element={<><Header /><PageNotFound /><Footer /></>}></Route>
         </Routes>
       </BrowserRouter>

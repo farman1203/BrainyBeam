@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
+import { ChevronDown } from 'lucide-react';
 
 
 const Movies = () => {
@@ -16,6 +17,8 @@ const Movies = () => {
         price: ""
     });
 
+    const navigate = useNavigate()
+
     const seatprice = 250;
     const totalprice = count * seatprice;
 
@@ -27,11 +30,19 @@ const Movies = () => {
         e.preventDefault();
 
         try {
+            const user = JSON.parse(localStorage.getItem('currentUser'))
+            if (!user) {
+                toast.info('please login first');
+                navigate("/login");
+                return;
+            }
+
             const bookingdata = { ...booking, seat: count, price: totalprice }
             const res = await axios.post("http://localhost:3000/book-ticket", bookingdata);
 
             toast.success("Ticket Booked Successfully", { theme: 'colored' });
             console.log(res.data);
+            closed
             setBooking({ ...booking, name: "", theatre: "", timing: "", seat: "" });
 
         } catch (err) {
@@ -83,37 +94,81 @@ const Movies = () => {
                 <aside className="sidebar">
                     <h2>Filters</h2>
 
-                    <div className="card1">
-                        <div className="card-header1">
-                            <h3>Languages</h3>
-                            <span>Clear</span>
+                    <div id="accordion">
+
+                        <div class="card">
+                            <div class="card-header">
+                                <a class="btn" className='card-header1' data-bs-toggle="collapse" href="#collapseOne">
+                                    <h5><ChevronDown />Languages</h5>
+                                    <span>Clear</span>
+                                </a>
+                            </div>
+                            <div id="collapseOne" class="collapse show" data-bs-parent="#accordion">
+                                <div class="card-body">
+                                    <div className="card1">
+                                        <div className="tags">
+                                            <button>English</button>
+                                            <button>Hindi</button>
+                                            <button>Gujarati</button>
+                                            <button>Tamil</button>
+                                            <button>Malayalam</button>
+                                            <button>Telugu</button>
+                                            <button>Kannada</button>
+                                            <button>Punjabi</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
-                        <div className="tags">
-                            <button>English</button>
-                            <button>Hindi</button>
-                            <button>Gujarati</button>
-                            <button>Tamil</button>
-                            <button>Malayalam</button>
-                            <button>Telugu</button>
-                            <button>Kannada</button>
-                            <button>Punjabi</button>
+                        <div class="card">
+                            <div class="card-header">
+                                <a class="collapsed btn" className='card-header1' data-bs-toggle="collapse" href="#collapseTwo">
+                                    <h5><ChevronDown />Genres</h5>
+                                    <span>Clear</span>
+                                </a>
+                            </div>
+                            <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
+                                <div class="card-body">
+                                    <div className="card1">
+                                        <div className="tags">
+                                            <button>Drama</button>
+                                            <button>Action</button>
+                                            <button>Adventure</button>
+                                            <button>Comedy</button>
+                                            <button>Fantasy</button>
+                                            <button>Political</button>
+                                            <button>Romantic</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <a class="collapsed btn" className='card-header1' data-bs-toggle="collapse" href="#collapseThree">
+                                    <h5><ChevronDown />Format</h5>
+                                    <span>Clear</span>
+                                </a>
+                            </div>
+                            <div id="collapseThree" class="collapse" data-bs-parent="#accordion">
+                                <div class="card-body">
+                                    <div className="card1">
+                                        <div className="tags">
+                                            <button>2D</button>
+                                            <button>EPIQ</button>
+                                            <button>DOL BY CINEMA 2D</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
-                    <div className="card1">
-                        <div className="card-header1">
-                            <h3>Genres</h3>
-                            <span>Clear</span>
-                        </div>
-                    </div>
 
-                    <div className="card1">
-                        <div className="card-header1">
-                            <h3>Format</h3>
-                            <span>Clear</span>
-                        </div>
-                    </div>
+
 
                     <button className="cinema-btn">
                         Browse by Cinemas
