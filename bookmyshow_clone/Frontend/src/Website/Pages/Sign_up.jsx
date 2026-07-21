@@ -22,7 +22,7 @@ const Sign_up = () => {
         e.preventDefault();
 
         if (formData.password !== formData.confirmPassword) {
-            toast.error("Password not matched", {theme: "colored",});
+            toast.error("Password not matched", { theme: "colored", });
             return;
         }
 
@@ -45,8 +45,8 @@ const Sign_up = () => {
 
         localStorage.setItem("users", JSON.stringify(users));
 
-        toast.success("Account Created Successfully", {theme: "colored",});
-
+        toast.success("Account Created Successfully", { theme: "colored", });
+        setFormData({ ...formData, name: "", email: "", password: "", confirmPassword: "" })
         navigate("/login");
     };
 

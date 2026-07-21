@@ -36,6 +36,7 @@ const Login = () => {
 
     toast.success("Login Successful", { theme: "colored", });
 
+    setFormData({ ...formData, email: "", password: "" })
     navigate("/");
   };
 

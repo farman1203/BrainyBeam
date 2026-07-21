@@ -4,9 +4,10 @@ import Home from './Website/Pages/Home'
 import Movies from './Website/Pages/Movies'
 import { BrowserRouter, Route, Router, Routes } from 'react-router-dom'
 import Login from './Website/Pages/Login'
-import { ToastContainer, toast } from 'react-toastify';
+import { Slide, ToastContainer, toast } from 'react-toastify';
 import Footer from './Website/Components/Footer'
 import Sign_up from './Website/Pages/Sign_up'
+import PageNotFound from './Website/Pages/PageNotFound'
 
 const App = () => {
   return (
@@ -17,10 +18,11 @@ const App = () => {
           <Route path='/movie' element={<><Header /><Movies /><Footer /></>}></Route>
           <Route path='/login' element={<><Header /><Login /><Footer /></>}></Route>
           <Route path='/signup' element={<><Header /><Sign_up /><Footer /></>}></Route>
+          <Route path='*' element={<><Header /><PageNotFound /><Footer /></>}></Route>
         </Routes>
       </BrowserRouter>
-      
-      <ToastContainer />
+
+      <ToastContainer transition={Slide} />
     </div>
   )
 }

@@ -4,7 +4,8 @@ const bookingSchema = new mongoose.Schema({
   name: String,
   theatre: String,
   timing: String,
-  seat: Number,
+  seat: String,
+  price:String,
 });
 
 module.exports = mongoose.model("Booking", bookingSchema);

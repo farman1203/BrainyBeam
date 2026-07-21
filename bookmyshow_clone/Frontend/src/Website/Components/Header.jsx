@@ -66,34 +66,34 @@ const Header = () => {
                         <NavLink to='/movie' >Movies</NavLink>
                     </li>
                     <li>
-                        <NavLink to=''>Stream</NavLink>
+                        <NavLink to='*'>Stream</NavLink>
                     </li>
                     <li>
-                        <NavLink to="">Events</NavLink>
+                        <NavLink to="*">Events</NavLink>
                     </li>
                     <li>
-                        <NavLink to="">Plays</NavLink>
+                        <NavLink to="*">Plays</NavLink>
                     </li>
                     <li>
-                        <NavLink to="">Sports</NavLink>
+                        <NavLink to="*">Sports</NavLink>
                     </li>
                     <li>
-                        <NavLink to="">Activities</NavLink>
+                        <NavLink to="*">Activities</NavLink>
                     </li>
 
                     <div className='sul'>
                         <li>
 
-                            <NavLink to="">List your show</NavLink>
+                            <NavLink to="*">List your show</NavLink>
                         </li>
                         <li>
-                            <NavLink to="">Corporate</NavLink>
+                            <NavLink to="*">Corporate</NavLink>
                         </li>
                         <li>
-                            <NavLink to="">Offers</NavLink>
+                            <NavLink to="*">Offers</NavLink>
                         </li>
                         <li>
-                            <NavLink to="">Gift cards</NavLink>
+                            <NavLink to="*">Gift cards</NavLink>
                         </li>
 
                     </div>

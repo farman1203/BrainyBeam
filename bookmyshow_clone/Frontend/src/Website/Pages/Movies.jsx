@@ -12,7 +12,8 @@ const Movies = () => {
         name: "",
         theatre: "",
         timing: "",
-        seat: 1,
+        seat: "",
+        price: ""
     });
 
     const seatprice = 250;
@@ -26,13 +27,12 @@ const Movies = () => {
         e.preventDefault();
 
         try {
-            const res = await axios.post(
-                "http://localhost:3000/book-ticket",
-                booking
-            );
+            const bookingdata = { ...booking, seat: count, price: totalprice }
+            const res = await axios.post("http://localhost:3000/book-ticket", bookingdata);
 
             toast.success("Ticket Booked Successfully", { theme: 'colored' });
             console.log(res.data);
+            setBooking({ ...booking, name: "", theatre: "", timing: "", seat: "" });
 
         } catch (err) {
             console.log(err);
@@ -145,7 +145,6 @@ const Movies = () => {
                                 <div className="movie">
                                     <img
                                         src={item.image}
-
                                         alt={item.name}
                                     />
                                     <h5>{item.name}</h5>
@@ -157,8 +156,8 @@ const Movies = () => {
                                 </div>
                             ))
                         }
-
                     </div>
+
                     {/* Booking Modal */}
                     <div
                         className="modal fade"
@@ -169,7 +168,6 @@ const Movies = () => {
                     >
                         <div className="modal-dialog modal-dialog-centered">
                             <div className="modal-content shadow-lg border-0 rounded-4">
-
 
                                 <div className="modal-header bg-primary text-white rounded-top-4">
                                     <h4 className="modal-title" id="bookingModalLabel">
@@ -182,11 +180,8 @@ const Movies = () => {
                                     ></button>
                                 </div>
 
-
                                 <div className="modal-body p-4">
                                     <form onSubmit={handleSubmit}>
-
-
                                         <div className="mb-3">
                                             <label className="form-label fw-semibold">
                                                 Full Name
@@ -201,7 +196,6 @@ const Movies = () => {
                                                 onChange={handleChange}
                                             />
                                         </div>
-
 
                                         <div className="mb-3">
                                             <label className="form-label fw-semibold">
@@ -222,7 +216,6 @@ const Movies = () => {
                                                 <option>PVR Palladium Mall</option>
                                             </select>
                                         </div>
-
 
                                         <div className="mb-3">
                                             <label className="form-label fw-semibold"
@@ -245,14 +238,12 @@ const Movies = () => {
                                             </select>
                                         </div>
 
-
                                         <div className="mb-4">
                                             <label className="form-label fw-semibold">
                                                 Number of Seats
                                             </label>
 
                                             <div className="d-flex align-items-center gap-3">
-
                                                 <button
                                                     type="button"
                                                     className="btn btn-outline-danger"
@@ -267,8 +258,7 @@ const Movies = () => {
                                                     -
                                                 </button>
 
-                                                <h3 value={booking.seat}
-                                                    onChange={handleChange}>{count}</h3>
+                                                <h3>{count}</h3>
 
                                                 <button
                                                     type="button"
@@ -285,27 +275,23 @@ const Movies = () => {
                                             </div>
                                         </div>
 
-                                        {/* Price */}
                                         <div className="alert alert-info d-flex justify-content-between">
                                             <span>Total Price</span>
                                             <strong>₹{totalprice}</strong>
                                         </div>
 
-                                        {/* Button */}
                                         <button
                                             type="submit"
                                             className="btn btn-primary w-100 py-2 rounded-3 fw-bold"
                                         >
                                             Confirm Booking
                                         </button>
-
                                     </form>
                                 </div>
-
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                 </main>
             </div>
 

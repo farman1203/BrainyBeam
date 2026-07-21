@@ -27,7 +27,7 @@ const Home = () => {
 
                     <div className="carousel-inner rounded-3">
                         <div className="carousel-item active ">
-                            <img src="https://assets-in-gm.bmscdn.com/promotions/cms/creatives/1778912523150_sardarweb.jpg" alt="Los Angeles" className="d-block rounded-3 w-100" />
+                            <img src="https://assets-in-gm.bmscdn.com/promotions/cms/creatives/1783002551142_webshowcasebannercomp.jpg" alt="Los Angeles" className="d-block rounded-3 w-100" />
                         </div>
                         <div className="carousel-item">
                             <img src="https://assets-in-gm.bmscdn.com/promotions/cms/creatives/1782988193693_thedramaweb.jpg" alt=" Chicago" className="d-block rounded-3 w-100" />
@@ -131,6 +131,25 @@ const Home = () => {
                     </div>
                 </div>
 
+
+                <div className='flex mt-5'>
+                    <p>Your Music Studio</p>
+                </div>
+                <div className='row'>
+                    {
+                        movie.slice(5, 10).map((item) => (
+                            <div className="col-2 m-3 p-0 hvr">
+                                <div className="card" style={{ width: '100%' }}>
+                                    <img className="card-img-top image-fluid" style={{ height: '380px', width: '100%' }} src={item.image} alt="Card image" />
+                                    <div className="card-body">
+                                        <h4 className="card-title">{item.name}</h4>
+                                        <p className="card-text">{item.action}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        ))
+                    }
+                </div>
 
 
 
