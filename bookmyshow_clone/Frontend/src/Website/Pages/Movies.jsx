@@ -9,8 +9,10 @@ const Movies = () => {
 
     const [data, setData] = useState([]);
     const [count, setCount] = useState(1);
+    const [selectmovie, setSelectmovie] = useState("")
     const [booking, setBooking] = useState({
         name: "",
+        moviename: "",
         theatre: "",
         timing: "",
         seat: "",
@@ -37,12 +39,11 @@ const Movies = () => {
                 return;
             }
 
-            const bookingdata = { ...booking, seat: count, price: totalprice }
+            const bookingdata = { ...booking, moviename: selectmovie, seat: count, price: totalprice }
             const res = await axios.post("http://localhost:3000/book-ticket", bookingdata);
 
             toast.success("Ticket Booked Successfully", { theme: 'colored' });
             console.log(res.data);
-            closed
             setBooking({ ...booking, name: "", theatre: "", timing: "", seat: "" });
 
         } catch (err) {
@@ -167,9 +168,6 @@ const Movies = () => {
 
                     </div>
 
-
-
-
                     <button className="cinema-btn">
                         Browse by Cinemas
                     </button>
@@ -205,7 +203,7 @@ const Movies = () => {
                                     <h5>{item.name}</h5>
                                     <p>{item.language}</p>
 
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal">
+                                    <button type="button" class="btn btn-danger" onClick={() => setSelectmovie(item.name)} data-bs-toggle="modal" data-bs-target="#myModal">
                                         Book Tickets
                                     </button>
                                 </div>

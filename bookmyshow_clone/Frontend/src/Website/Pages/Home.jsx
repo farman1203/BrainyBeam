@@ -14,7 +14,7 @@ const Home = () => {
     }, [])
 
     return (
-        <div className='home'>
+        <div>
 
             {/* crousel */}
             <div className="container">
@@ -49,7 +49,7 @@ const Home = () => {
                         <Link to='/movie'>See all</Link>
                     </div>
 
-                    <div className='row'>
+                    <div className='row res'>
                         {
                             movie.slice(0, 5).map((item) => (
                                 <div className="col-2 m-3 p-0 hvr">
@@ -75,7 +75,7 @@ const Home = () => {
                         <p>The Best of live Event</p>
                     </div>
 
-                    <div className='row'>
+                    <div className='row res'>
                         <div className="col-2 m-3 p-0 hvr">
                             <img style={{ width: '100%' }} src="https://assets-in.bmscdn.com/discovery-catalog/collections/tr:w-800,h-800:l-text,ie-NjUrIEV2ZW50cw%3D%3D,co-FFFFFF,ff-Roboto,fs-64,lx-48,ly-320,tg-b,pa-8_0_0_0,l-end:w-300/comedy-shows-collection-202211140440.png" alt="" />
                         </div>
@@ -93,7 +93,6 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-
 
                 <div className='mt-5'>
                     <img style={{ width: '100%' }} src="https://assets-in.bmscdn.com/discovery-catalog/collections/tr:w-1440,h-120/premiere-banner-web-collection-202208191200.png" alt />
@@ -131,11 +130,10 @@ const Home = () => {
                     </div>
                 </div>
 
-
                 <div className='flex mt-5'>
                     <p>Your Music Studio</p>
                 </div>
-                <div className='row'>
+                <div className='row res'>
                     {
                         movie.slice(5, 10).map((item) => (
                             <div className="col-2 m-3 p-0 hvr">
@@ -150,7 +148,6 @@ const Home = () => {
                         ))
                     }
                 </div>
-
 
 
 

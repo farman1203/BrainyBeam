@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const bookingSchema = new mongoose.Schema({
   name: String,
+  moviename:String,
   theatre: String,
   timing: String,
   seat: String,
