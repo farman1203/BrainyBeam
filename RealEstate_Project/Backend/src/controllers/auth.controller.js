@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs')
 
 
 async function registerUser(req, res) {
-    const { name, email, password, phone, role } = req.body;
+    const { name, email, password, phone } = req.body;
 
 
     const ifexistinguser = await userModel.findOne({ email })
@@ -19,7 +19,7 @@ async function registerUser(req, res) {
     const hash = await bcrypt.hash(password, 10)
 
     const user = await userModel.create({
-        name, email, password: hash, phone, role,
+        name, email, password: hash, phone, role: "buyer",
     })
 
     const token = jwt.sign(
@@ -31,26 +31,50 @@ async function registerUser(req, res) {
 
     res.cookie("token", token)
 
+    const newUser = await userModel.findById(user._id).select("-password");
+
     res.status(201).json({
-        message: "user created successfully",
-        user,
-    });
+        success: true,
+        message: "User Created Successfully",
+        user: newUser
+    })
+}
+
+const loginuser = async (req, res) => {
+    const { email, password } = req.body;
+
+    const userdata = await userModel.findOne({ email });
+
+    if (!userdata) {
+        return res.status(400).json({
+            message: "Invalid Credentials"
+        })
+    }
+
+    const ispasswordvalid = await bcrypt.compare(password, userdata.password)
+
+    if (!ispasswordvalid) {
+        return res.status(400).json({
+            message: "Invalid Credentials"
+        })
+    }
+
+    const token = jwt.sign({
+        id: userdata._id,
+        role: userdata.role
+    }, process.env.JWT_SECRET)
+
+    res.cookie("token", token)
+
+    const user = await userModel.findById(userdata._id).select("-password");
+
+    res.status(200).json({
+        success: true,
+        message: "Login Success",
+        token,
+        user
+    })
 }
 
 
-// const loginuser = (req,res)=>{
-//     const {email, password} = req.body;
-
-//     const userdata = await userModel.findOne({email});
-
-//     if(!userdata){
-//         return res.status(400).json({
-//             message : "Invalid Credentials"
-//         })
-//     }
-
-//     const 
-// }
-
-
-module.exports = { registerUser }
+module.exports = { registerUser, loginuser }
