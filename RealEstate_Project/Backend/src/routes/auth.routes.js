@@ -17,7 +17,6 @@ router.get('/profile', authMiddleware, (req, res) => {
     });
 })
 
-
 router.get('/admin', authMiddleware, authorize("admin"), (req, res) => {
     res.json({
         message: "welcome Admin"

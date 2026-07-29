@@ -12,25 +12,13 @@ import Login from './pages/auth/Login'
 import Register from './pages/auth/Register'
 
 import AdminDashboard from './pages/admin/Dashboard'
-import CreateAgent from './pages/admin/CreateAgent'
-import AgentList from './pages/admin/AgentList'
+
 
 import AgentDashboard from './pages/agent/Dashboard'
-import MyProperties from './pages/agent/MyProperties'
-import AddProperty from './pages/agent/AddProperty'
-import EditProperty from './pages/agent/EditProperty'
-import AgentPropertyDetails from './pages/agent/PropertyDetails'
-import Leads from './pages/agent/Leads'
-import SiteVisitSchedule from './pages/agent/SiteVisitSchedule'
-import AgentProfile from './pages/agent/Profile'
+
 
 import BuyerDashboard from './pages/buyer/Dashboard'
-import BrowseProperties from './pages/buyer/BrowseProperties'
-import BuyerPropertyDetails from './pages/buyer/PropertyDetails'
-import CompareProperties from './pages/buyer/CompareProperties'
-import SavedProperties from './pages/buyer/SavedProperties'
-import MyInquiries from './pages/buyer/MyInquiries'
-import BuyerProfile from './pages/buyer/Profile'
+
 
 import { currentUser } from './data/dummyData'
 import './App.css'
@@ -59,7 +47,7 @@ const buyerNav = [
   { label: 'Profile', to: '/buyer/profile', icon: UserCircle },
 ]
 
-// Simple landing route: redirects straight to login.
+
 function Landing() {
   return <Navigate to="/login" replace />
 }
@@ -79,34 +67,19 @@ export default function App() {
       <Route path="/admin" element={<DashboardLayout navItems={adminNav} user={currentUser.admin} />}>
         <Route index element={<Navigate to="dashboard" replace />} />
         <Route path="dashboard" element={<AdminDashboard />} />
-        {/* <Route path="agents/create" element={<CreateAgent />} />
-        <Route path="agents" element={<AgentList />} />
-        <Route path="profile" element={<AgentProfile />} /> */}
+
       </Route>
 
       {/* Agent Panel */}
       <Route path="/agent" element={<DashboardLayout navItems={agentNav} user={currentUser.agent} />}>
         <Route index element={<Navigate to="dashboard" replace />} />
         <Route path="dashboard" element={<AgentDashboard />} />
-        <Route path="properties" element={<MyProperties />} />
-        <Route path="properties/add" element={<AddProperty />} />
-        <Route path="properties/edit/:id" element={<EditProperty />} />
-        <Route path="properties/:id" element={<AgentPropertyDetails />} />
-        <Route path="leads" element={<Leads />} />
-        <Route path="site-visits" element={<SiteVisitSchedule />} />
-        <Route path="profile" element={<AgentProfile />} />
       </Route>
 
       {/* Buyer Panel */}
       <Route path="/buyer" element={<DashboardLayout navItems={buyerNav} user={currentUser.buyer} />}>
         <Route index element={<Navigate to="dashboard" replace />} />
         <Route path="dashboard" element={<BuyerDashboard />} />
-        <Route path="properties" element={<BrowseProperties />} />
-        <Route path="properties/:id" element={<BuyerPropertyDetails />} />
-        <Route path="compare" element={<CompareProperties />} />
-        <Route path="saved" element={<SavedProperties />} />
-        <Route path="inquiries" element={<MyInquiries />} />
-        <Route path="profile" element={<BuyerProfile />} />
       </Route>
 
       {/* Fallback */}

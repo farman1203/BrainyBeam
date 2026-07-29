@@ -3,13 +3,6 @@ import { NavLink } from 'react-router-dom'
 import { X } from 'lucide-react'
 import './Sidebar.css'
 
-/**
- * Sidebar navigation used inside Admin / Agent / Buyer layouts.
- * Props:
- *  - items: [{ label, to, icon }]
- *  - open: boolean (mobile drawer state)
- *  - onClose: callback to close mobile drawer
- */
 export default function Sidebar({ items, open, onClose }) {
   return (
     <>

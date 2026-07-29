@@ -1,10 +1,3 @@
-/* ---------------------------------------------------------
-   Shared, reusable layout classes used across many pages.
-   Component/page-specific styling still lives in each
-   component's own .css file; these are just the common
-   "page scaffolding" patterns (headers, stat grids, spacing)
-   that would otherwise be duplicated dozens of times.
-   --------------------------------------------------------- */
 
 .page-stack-6 {
   display: flex;

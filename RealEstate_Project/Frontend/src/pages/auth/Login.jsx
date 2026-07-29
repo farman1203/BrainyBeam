@@ -98,8 +98,7 @@ export default function Login() {
 
         <div className="login-row-between">
           <label className="login-remember-label">
-            <input type="checkbox" className="login-checkbox" />
-            Remember me
+            {/* <input type="checkbox" className="login-checkbox" /> */}
           </label>
 
           <a href="#" className="login-forgot-link">

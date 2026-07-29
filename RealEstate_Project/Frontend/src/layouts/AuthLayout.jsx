@@ -3,10 +3,7 @@ import { Outlet } from 'react-router-dom'
 import { Building2, ShieldCheck, Users, TrendingUp } from 'lucide-react'
 import './AuthLayout.css'
 
-/**
- * Split-screen layout for Login / Register pages.
- * Left: branding panel. Right: routed auth form (Outlet).
- */
+
 export default function AuthLayout() {
   return (
     <div className="auth-layout">

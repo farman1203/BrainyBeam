@@ -1,6 +1,4 @@
-/* ---------------------------------------------------------
-   Global CSS variables (replaces tailwind.config.js theme)
-   --------------------------------------------------------- */
+
 :root {
   /* Base colors */
   --color-ink: #161B1D;
@@ -56,5 +54,5 @@
   --max-w-sm: 24rem;
   --max-w-md: 28rem;
 
-  /* Breakpoints (for reference in comments): sm 640px, md 768px, lg 1024px, xl 1280px */
+
 }

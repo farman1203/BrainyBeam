@@ -3,12 +3,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Building2, Menu, X, Bell, ChevronDown, LogOut, User as UserIcon } from 'lucide-react'
 import './Navbar.css'
 
-/**
- * Top navbar shown inside authenticated layouts (Admin / Agent / Buyer).
- * Props:
- *  - user: { name, role, avatar }
- *  - onMenuClick: toggles the mobile sidebar
- */
 export default function Navbar({ user, onMenuClick }) {
   const [menuOpen, setMenuOpen] = useState(false)
   const navigate = useNavigate()
