@@ -1,0 +1,103 @@
+.agent-dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .agent-dashboard-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.agent-dashboard-leads-panel {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl2);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-card);
+}
+
+@media (min-width: 1024px) {
+  .agent-dashboard-leads-panel {
+    grid-column: span 2 / span 2;
+  }
+}
+
+.agent-dashboard-visits-panel {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl2);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-card);
+}
+
+.agent-dashboard-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.agent-dashboard-panel-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.agent-dashboard-view-all {
+  font-size: 0.875rem;
+  color: var(--color-brand-600);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.agent-dashboard-leads-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .agent-dashboard-leads-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.agent-dashboard-visits-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.agent-dashboard-visit-item {
+  font-size: 0.875rem;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 0.75rem;
+}
+
+.agent-dashboard-visit-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.agent-dashboard-visit-buyer {
+  font-weight: 500;
+  color: var(--color-ink);
+}
+
+.agent-dashboard-visit-property {
+  color: var(--color-muted);
+  font-size: 0.75rem;
+  margin-top: 0.125rem;
+}
+
+.agent-dashboard-visit-time {
+  font-size: 0.75rem;
+  color: var(--color-brand-600);
+  font-weight: 500;
+  margin-top: 0.25rem;
+}

@@ -1,0 +1,119 @@
+.browse-search-row {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.browse-filter-toggle-btn {
+  flex-shrink: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  background: none;
+  cursor: pointer;
+  color: var(--color-ink);
+}
+
+@media (min-width: 1024px) {
+  .browse-filter-toggle-btn {
+    display: none;
+  }
+}
+
+.browse-layout-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .browse-layout-grid {
+    grid-template-columns: 260px 1fr;
+  }
+}
+
+.browse-sidebar-desktop {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .browse-sidebar-desktop {
+    display: block;
+  }
+}
+
+.browse-mobile-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+}
+
+@media (min-width: 1024px) {
+  .browse-mobile-drawer {
+    display: none;
+  }
+}
+
+.browse-mobile-drawer-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(var(--color-ink-rgb), 0.4);
+}
+
+.browse-mobile-drawer-panel {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 20rem;
+  max-width: 85vw;
+  background-color: var(--color-paper);
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.browse-mobile-drawer-close-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.5rem;
+}
+
+.browse-mobile-drawer-close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-ink);
+}
+
+.property-grid-responsive {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .property-grid-responsive {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .property-grid-responsive {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.browse-reset-btn {
+  background-color: var(--color-brand-600);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-lg);
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}

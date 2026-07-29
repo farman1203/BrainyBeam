@@ -1,0 +1,207 @@
+/* ---------------------------------------------------------
+   Shared, reusable layout classes used across many pages.
+   Component/page-specific styling still lives in each
+   component's own .css file; these are just the common
+   "page scaffolding" patterns (headers, stat grids, spacing)
+   that would otherwise be duplicated dozens of times.
+   --------------------------------------------------------- */
+
+.page-stack-6 {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.page-stack-8 {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.page-header-row {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .page-header-row {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.page-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.page-subtitle {
+  color: var(--color-muted);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.btn-primary {
+  background-color: var(--color-brand-600);
+  color: #fff;
+  padding: 0.625rem 1rem;
+  border-radius: var(--radius-lg);
+  font-size: 0.875rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-brand-700);
+}
+
+.btn-secondary {
+  border: 1px solid var(--color-border);
+  color: var(--color-ink);
+  padding: 0.625rem 1.5rem;
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  font-size: 0.875rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  text-decoration: none;
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-paper);
+}
+
+.stats-grid-4 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .stats-grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1280px) {
+  .stats-grid-4 { grid-template-columns: repeat(4, 1fr); }
+}
+
+.stats-grid-3 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .stats-grid-3 { grid-template-columns: repeat(3, 1fr); }
+}
+
+.property-grid-responsive {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .property-grid-responsive { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1280px) {
+  .property-grid-responsive { grid-template-columns: repeat(3, 1fr); }
+}
+
+.form-field-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.form-field-input {
+  width: 100%;
+  margin-top: 0.375rem;
+  padding: 0.625rem 1rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color 0.15s ease;
+  background-color: var(--color-surface);
+  color: var(--color-ink);
+  font-family: inherit;
+}
+
+.form-field-input:focus {
+  border-color: var(--color-brand-500);
+}
+
+.form-field-input.resize-none {
+  resize: none;
+}
+
+.success-banner {
+  background-color: rgba(var(--color-success-rgb), 0.1);
+  color: var(--color-success);
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-lg);
+}
+
+.card-surface {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl2);
+  box-shadow: var(--shadow-card);
+}
+
+.section-heading {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.status-pill {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.625rem;
+  border-radius: var(--radius-full);
+  display: inline-block;
+}
+
+.status-pill--success {
+  background-color: rgba(var(--color-success-rgb), 0.1);
+  color: var(--color-success);
+}
+
+.status-pill--muted {
+  background-color: var(--color-border);
+  color: var(--color-muted);
+}
+
+.status-pill--gold {
+  background-color: rgba(var(--color-gold-500-rgb), 0.1);
+  color: var(--color-gold-600);
+}
+
+.status-pill--brand {
+  background-color: rgba(var(--color-brand-500-rgb), 0.1);
+  color: var(--color-brand-600);
+}

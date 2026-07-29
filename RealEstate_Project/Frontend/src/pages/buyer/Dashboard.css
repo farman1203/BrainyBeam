@@ -1,0 +1,20 @@
+.buyer-dashboard-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.buyer-dashboard-section-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--color-ink);
+  font-size: 1.125rem;
+}
+
+.buyer-dashboard-view-link {
+  font-size: 0.875rem;
+  color: var(--color-brand-600);
+  font-weight: 500;
+  text-decoration: none;
+}

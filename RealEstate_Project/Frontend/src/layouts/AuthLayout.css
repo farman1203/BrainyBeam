@@ -1,0 +1,138 @@
+.auth-layout {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 1024px) {
+  .auth-layout {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.auth-layout-branding {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--color-brand-700);
+  color: #fff;
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .auth-layout-branding {
+    display: flex;
+  }
+}
+
+.auth-layout-blob-1 {
+  position: absolute;
+  right: -6rem;
+  top: -6rem;
+  width: 24rem;
+  height: 24rem;
+  border-radius: var(--radius-full);
+  background-color: rgba(var(--color-brand-600-rgb), 0.4);
+  filter: blur(64px);
+}
+
+.auth-layout-blob-2 {
+  position: absolute;
+  left: -2.5rem;
+  bottom: 0;
+  width: 18rem;
+  height: 18rem;
+  border-radius: var(--radius-full);
+  background-color: rgba(var(--color-gold-500-rgb), 0.2);
+  filter: blur(64px);
+}
+
+.auth-layout-brand-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.auth-layout-brand-icon {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--radius-lg);
+  background-color: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-layout-brand-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.auth-layout-content {
+  position: relative;
+}
+
+.auth-layout-heading {
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+  max-width: 28rem;
+}
+
+.auth-layout-subtext {
+  color: rgba(var(--color-brand-100-rgb), 0.8);
+  margin-top: 1rem;
+  max-width: 24rem;
+}
+
+.auth-layout-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+.auth-layout-feature {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.auth-layout-feature-icon {
+  color: var(--color-gold-300);
+}
+
+.auth-layout-feature-label {
+  font-size: 0.75rem;
+  color: rgba(var(--color-brand-100-rgb), 0.8);
+}
+
+.auth-layout-copyright {
+  position: relative;
+  font-size: 0.75rem;
+  color: rgba(var(--color-brand-100-rgb), 0.6);
+}
+
+.auth-layout-form-side {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background-color: var(--color-paper);
+}
+
+@media (min-width: 640px) {
+  .auth-layout-form-side {
+    padding: 2.5rem;
+  }
+}
+
+.auth-layout-form-wrap {
+  width: 100%;
+  max-width: var(--max-w-sm);
+}
