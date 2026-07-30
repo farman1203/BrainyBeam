@@ -15,6 +15,10 @@ import AdminDashboard from './pages/admin/Dashboard'
 
 
 import AgentDashboard from './pages/agent/Dashboard'
+import MyProperties from './pages/agent/MyProperties'
+import AddProperty from './pages/agent/AddProperty'
+import EditProperty from './pages/agent/EditProperty'
+// import AgentPropertyDetails from './pages/agent/PropertyDetails'
 
 
 import BuyerDashboard from './pages/buyer/Dashboard'
@@ -64,20 +68,24 @@ export default function App() {
       </Route>
 
       {/* Admin Panel */}
-      <Route path="/admin" element={<DashboardLayout navItems={adminNav} user={currentUser.admin} />}>
+      <Route path="/admin" element={<DashboardLayout navItems={adminNav} />}>
         <Route index element={<Navigate to="dashboard" replace />} />
         <Route path="dashboard" element={<AdminDashboard />} />
 
       </Route>
 
       {/* Agent Panel */}
-      <Route path="/agent" element={<DashboardLayout navItems={agentNav} user={currentUser.agent} />}>
+      <Route path="/agent" element={<DashboardLayout navItems={agentNav} />}>
         <Route index element={<Navigate to="dashboard" replace />} />
         <Route path="dashboard" element={<AgentDashboard />} />
+        <Route path="properties" element={<MyProperties />} />
+        <Route path="properties/add" element={<AddProperty />} />
+        <Route path="properties/edit/:id" element={<EditProperty />} />
+        {/* <Route path="properties/:id" element={<AgentPropertyDetails />} /> */}
       </Route>
 
       {/* Buyer Panel */}
-      <Route path="/buyer" element={<DashboardLayout navItems={buyerNav} user={currentUser.buyer} />}>
+      <Route path="/buyer" element={<DashboardLayout navItems={buyerNav}  />}>
         <Route index element={<Navigate to="dashboard" replace />} />
         <Route path="dashboard" element={<BuyerDashboard />} />
       </Route>
@@ -96,6 +104,6 @@ export default function App() {
           </div>
         }
       />
-    </Routes>
+    </Routes >
   )
 }

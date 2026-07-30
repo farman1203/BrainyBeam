@@ -5,12 +5,7 @@ import Sidebar from '../components/common/Sidebar'
 import Footer from '../components/common/Footer'
 import './DashboardLayout.css'
 
-/**
- * Shared shell for Admin / Agent / Buyer panels: Navbar + Sidebar + content + Footer.
- * Props:
- *  - navItems: sidebar links specific to the role
- *  - user: current user object (name, role, avatar)
- */
+
 export default function DashboardLayout({ navItems, user }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 

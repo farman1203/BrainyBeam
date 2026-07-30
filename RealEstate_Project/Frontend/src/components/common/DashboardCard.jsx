@@ -1,14 +1,7 @@
 import React from 'react'
 import './DashboardCard.css'
 
-/**
- * A single stat card used on dashboards (Admin / Agent / Buyer).
- * Props:
- *  - label: string
- *  - value: string | number
- *  - icon: lucide-react icon component
- *  - tone: 'brand' | 'gold' | 'success' | 'danger'
- */
+
 const toneClass = {
   brand: 'dashboard-card-icon-wrap--brand',
   gold: 'dashboard-card-icon-wrap--gold',

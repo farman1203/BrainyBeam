@@ -46,6 +46,45 @@ const addProperty = async (req, res) => {
     }
 };
 
+//getallproperty
+const getAllProperties = async (req, res) => {
+    try {
+        const properties = await Property.find()
+        agent: req.user._id
+        res.status(200).json({
+            success: true,
+            properties,
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
+        });
+    }
+};
+
+//get property by id
+const getPropertyById = async (req, res) => {
+    try {
+        const property = await Property.findById(req.params.id)
+        agent: req.user._id
+        if (!property) {
+            return res.status(404).json({
+                success: false,
+                message: "Property Not Found",
+            });
+        }
+        res.status(200).json({
+            success: true,
+            property,
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
+        });
+    }
+};
 
 // Update Property
 const updateProperty = async (req, res) => {
@@ -91,7 +130,6 @@ const updateProperty = async (req, res) => {
             success: false,
             message: error.message,
         });
-
     }
 };
 
@@ -108,18 +146,13 @@ const deleteProperty = async (req, res) => {
             });
         }
 
-
-        property.isDeleted = true;
-
-        await property.save();
-
+        await property.deleteOne();
         res.status(200).json({
             success: true,
             message: "Property Deleted Successfully",
         });
 
     } catch (error) {
-
         res.status(500).json({
             success: false,
             message: error.message,
@@ -128,4 +161,4 @@ const deleteProperty = async (req, res) => {
     }
 };
 
-module.exports = { addProperty, updateProperty, deleteProperty, };
+module.exports = { addProperty, updateProperty, deleteProperty, getAllProperties, getPropertyById };

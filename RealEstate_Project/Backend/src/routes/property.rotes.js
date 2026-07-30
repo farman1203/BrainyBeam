@@ -8,6 +8,12 @@ const roleMiddleware = require("../middleware/role.middleware");
 // Add Property
 router.post("/", authMiddleware, roleMiddleware("agent"), propertyController.addProperty);
 
+//get property
+router.get("/", authMiddleware, propertyController.getAllProperties);
+
+//get property by id
+router.get("/:id", authMiddleware, propertyController.getPropertyById);
+
 // Update Property
 router.put("/:id", authMiddleware, roleMiddleware("agent", "admin"), propertyController.updateProperty);
 

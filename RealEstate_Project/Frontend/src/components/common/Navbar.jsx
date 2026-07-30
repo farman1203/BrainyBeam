@@ -1,11 +1,23 @@
-import React, { useState } from 'react'
+import React, { use, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Building2, Menu, X, Bell, ChevronDown, LogOut, User as UserIcon } from 'lucide-react'
 import './Navbar.css'
+import { useAuth } from "../../context/AuthContext";
 
-export default function Navbar({ user, onMenuClick }) {
+export default function Navbar({ onMenuClick }) {
   const [menuOpen, setMenuOpen] = useState(false)
   const navigate = useNavigate()
+
+  const { user, logout } = useAuth();
+
+  if (!user) {
+  return null;
+}
+
+  const handleLogout = async () => {
+    await logout();
+    navigate("/login");
+  };
 
   return (
     <header className="navbar">
@@ -36,16 +48,18 @@ export default function Navbar({ user, onMenuClick }) {
           onClick={() => setMenuOpen((o) => !o)}
           className="navbar-user-btn"
         >
-          <img src={user.avatar} alt={user.name} className="navbar-user-avatar" />
-          <span className="navbar-user-name">{user.name}</span>
+          <div className="navbar-user-avatar">
+            {user?.name?.charAt(0).toUpperCase()}
+          </div>
+          <span className="navbar-user-name">{user?.name}</span>
           <ChevronDown size={15} className="navbar-user-chevron" />
         </button>
 
         {menuOpen && (
           <div className="navbar-user-menu">
             <div className="navbar-user-menu-header">
-              <p className="navbar-user-menu-name">{user.name}</p>
-              <p className="navbar-user-menu-role">{user.role}</p>
+              <p className="navbar-user-menu-name">{user?.name}</p>
+              <p className="navbar-user-menu-role">{user?.role}</p>
             </div>
             <Link
               to="profile"
@@ -55,10 +69,10 @@ export default function Navbar({ user, onMenuClick }) {
               <UserIcon size={15} /> My Profile
             </Link>
             <button
-              onClick={() => navigate('/login')}
+              onClick={handleLogout}
               className="navbar-user-menu-logout"
             >
-              <LogOut size={15} /> Log Out
+              <LogOut size={15} /> Logout
             </button>
           </div>
         )}

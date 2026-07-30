@@ -10,6 +10,7 @@ router.post("/register", authController.registerUser)
 
 router.post("/login", authController.loginuser)
 
+router.post("/logout", authController.logoutUser);
 
 router.get('/profile', authMiddleware, (req, res) => {
     res.status(200).json({

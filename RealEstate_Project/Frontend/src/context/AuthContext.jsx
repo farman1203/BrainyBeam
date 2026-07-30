@@ -52,6 +52,7 @@ export const AuthProvider = ({ children }) => {
         } catch (error) { }
         setUser(null);
     };
+
     useEffect(() => {
         getUser();
     }, []);
