@@ -12,19 +12,20 @@ import Login from './pages/auth/Login'
 import Register from './pages/auth/Register'
 
 import AdminDashboard from './pages/admin/Dashboard'
+import CreateAgent from './pages/admin/CreateAgent'
+import AgentList from './pages/admin/AgentList'
 
 
 import AgentDashboard from './pages/agent/Dashboard'
 import MyProperties from './pages/agent/MyProperties'
 import AddProperty from './pages/agent/AddProperty'
 import EditProperty from './pages/agent/EditProperty'
-// import AgentPropertyDetails from './pages/agent/PropertyDetails'
-
+import AgentPropertyDetails from './pages/agent/PropertyDetails'
 
 import BuyerDashboard from './pages/buyer/Dashboard'
 
 
-import { currentUser } from './data/dummyData'
+// import { currentUser } from './data/dummyData'
 import './App.css'
 
 const adminNav = [
@@ -71,8 +72,11 @@ export default function App() {
       <Route path="/admin" element={<DashboardLayout navItems={adminNav} />}>
         <Route index element={<Navigate to="dashboard" replace />} />
         <Route path="dashboard" element={<AdminDashboard />} />
-
+        <Route path="agents/create" element={<CreateAgent />} />
+        <Route path="agents" element={<AgentList />} />
+        {/* <Route path="profile" element={<AgentProfile />} /> */}
       </Route>
+
 
       {/* Agent Panel */}
       <Route path="/agent" element={<DashboardLayout navItems={agentNav} />}>
@@ -81,18 +85,18 @@ export default function App() {
         <Route path="properties" element={<MyProperties />} />
         <Route path="properties/add" element={<AddProperty />} />
         <Route path="properties/edit/:id" element={<EditProperty />} />
-        {/* <Route path="properties/:id" element={<AgentPropertyDetails />} /> */}
+        <Route path="properties/:id" element={<AgentPropertyDetails />} />
+
       </Route>
 
       {/* Buyer Panel */}
-      <Route path="/buyer" element={<DashboardLayout navItems={buyerNav}  />}>
+      <Route path="/buyer" element={<DashboardLayout navItems={buyerNav} />}>
         <Route index element={<Navigate to="dashboard" replace />} />
         <Route path="dashboard" element={<BuyerDashboard />} />
       </Route>
 
       {/* Fallback */}
-      <Route
-        path="*"
+      <Route path="*"
         element={
           <div className="not-found-page">
             <div className="not-found-icon">

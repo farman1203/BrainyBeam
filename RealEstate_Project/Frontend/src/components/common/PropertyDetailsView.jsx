@@ -1,32 +1,28 @@
 import React, { useState } from 'react'
 import { MapPin, BedDouble, Ruler, Home, Check, Phone, Mail, MapPinned } from 'lucide-react'
-import { formatPrice } from '../../data/dummyData'
 import './PropertyDetailsView.css'
+import { useAuth } from '../../context/AuthContext'
 
-/**
- * Shared property details layout used by both the Agent and Buyer "Property Details" pages.
- * Props:
- *  - property: property object
- *  - actions: optional React node rendered in the action area (e.g. Inquiry / Compare / Edit buttons)
- */
 export default function PropertyDetailsView({ property, actions }) {
   const [activeImage, setActiveImage] = useState(0)
-
+  const {user} = useAuth();
   return (
     <div className="pdv-stack">
       {/* Gallery */}
       <div>
         <div className="pdv-gallery-main">
-          <img src={property.gallery[activeImage]} alt={property.title} />
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl8B6qoFCgTR1NZRCi4aYL5AoCz4N1UsoC7plvBDT8mg&s=10"
+          />
         </div>
         <div className="pdv-thumb-row">
-          {property.gallery.map((img, i) => (
+          {property.images.map((img, i) => (
             <button
               key={img}
               onClick={() => setActiveImage(i)}
               className={`pdv-thumb-btn ${activeImage === i ? 'pdv-thumb-btn--active' : ''}`}
             >
-              <img src={img} alt="" />
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl8B6qoFCgTR1NZRCi4aYL5AoCz4N1UsoC7plvBDT8mg&s=10" alt="" />
             </button>
           ))}
         </div>
@@ -44,7 +40,7 @@ export default function PropertyDetailsView({ property, actions }) {
                   <MapPin size={15} /> {property.locality}, {property.city}
                 </p>
               </div>
-              <p className="pdv-price">{formatPrice(property.price)}</p>
+              <p className="pdv-price">₹ {property.price?.toLocaleString()}</p>
             </div>
 
             <div className="pdv-facts-row">
@@ -65,7 +61,7 @@ export default function PropertyDetailsView({ property, actions }) {
           <div className="pdv-panel">
             <h3 className="pdv-block-heading" style={{ marginBottom: '1rem' }}>Amenities</h3>
             <div className="pdv-amenities-grid">
-              {property.amenities.map((a) => (
+              {property.amenities?.map((a) => (
                 <span key={a} className="pdv-amenity">
                   <Check size={15} className="pdv-amenity-icon" /> {a}
                 </span>
@@ -79,7 +75,7 @@ export default function PropertyDetailsView({ property, actions }) {
             <div className="pdv-map-placeholder">
               <MapPinned size={28} className="pdv-map-icon" />
               <p className="pdv-map-text">Google Map placeholder</p>
-              <p className="pdv-map-coords">Lat: {property.lat} · Lng: {property.lng}</p>
+              <p className="pdv-map-coords">Lat: {property.location?.lat} Lng: {property.location?.lng}</p>
             </div>
           </div>
         </div>
@@ -90,16 +86,16 @@ export default function PropertyDetailsView({ property, actions }) {
             <h3 className="pdv-block-heading" style={{ marginBottom: '1rem' }}>Listed By</h3>
             <div className="pdv-agent-row">
               <div className="pdv-agent-avatar">
-                {property.agent.split(' ').map((n) => n[0]).join('')}
+                {property.agent?.name?.split(" ").map((n) => n[0]).join("")}
               </div>
               <div>
-                <p className="pdv-agent-name">{property.agent}</p>
+                <p className="pdv-agent-name">{property.user?.name}</p>
                 <p className="pdv-agent-role">Real Estate Agent</p>
               </div>
             </div>
             <div className="pdv-agent-contact">
-              <p><Phone size={14} /> +91 98765 43210</p>
-              <p><Mail size={14} /> agent@estatelane.com</p>
+              <p><Phone size={14} />{property.user?.phone}</p>
+              <p><Mail size={14} /> {property.user?.email}</p>
             </div>
           </div>
 

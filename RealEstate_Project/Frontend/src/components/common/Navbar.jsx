@@ -11,8 +11,8 @@ export default function Navbar({ onMenuClick }) {
   const { user, logout } = useAuth();
 
   if (!user) {
-  return null;
-}
+    return null;
+  }
 
   const handleLogout = async () => {
     await logout();
@@ -29,7 +29,7 @@ export default function Navbar({ onMenuClick }) {
         <Menu size={22} />
       </button>
 
-      <Link to="/" className="navbar-brand">
+      <Link className="navbar-brand">
         <div className="navbar-brand-icon">
           <Building2 size={17} />
         </div>

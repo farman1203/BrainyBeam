@@ -47,12 +47,7 @@ export default function PropertyForm({ initialData = {}, onSubmit, submitLabel =
   }
 
   const toggleAmenity = (amenity) => {
-    setForm((f) => ({
-      ...f,
-      amenities: f.amenities.includes(amenity)
-        ? f.amenities.filter((a) => a !== amenity)
-        : [...f.amenities, amenity],
-    }))
+    setForm((f) => ({ ...f, amenities: f.amenities.includes(amenity) ? f.amenities.filter((a) => a !== amenity) : [...f.amenities, amenity], }))
   }
 
   const handleSubmit = (e) => {
@@ -66,7 +61,7 @@ export default function PropertyForm({ initialData = {}, onSubmit, submitLabel =
     <div>
       {submitted && (
         <div className="success-banner property-form-banner">
-          Property saved successfully (demo only — no data persisted).
+          Property saved successfully.
         </div>
       )}
 
@@ -164,7 +159,7 @@ export default function PropertyForm({ initialData = {}, onSubmit, submitLabel =
           <div className="property-form-upload-box">
             <UploadCloud size={28} className="property-form-upload-icon" />
             <p className="property-form-upload-text">Drag & drop images here, or click to browse</p>
-            <p className="property-form-upload-subtext">(UI only — uploads are not processed)</p>
+            <input type="file" />
             <input type="file" multiple className="property-form-hidden-input" />
           </div>
         </div>

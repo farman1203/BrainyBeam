@@ -3,6 +3,7 @@ import PropertyForm from './PropertyForm'
 import './AddProperty.css'
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 export default function AddProperty() {
 
@@ -10,15 +11,15 @@ export default function AddProperty() {
 
   const handleSubmit = async (values) => {
     try {
-      const res = await axios.post("http://localhost:3000/api/property",values,
+      const res = await axios.post("http://localhost:3000/api/property", values,
         {
           withCredentials: true,
         }
       );
-      alert(res.data.message);
+      toast.success(res.data.message);
       navigate("/agent/properties");
     } catch (error) {
-      alert(error.response?.data?.message);
+      toast.error(error.response?.data?.message);
     }
   };
   return (
