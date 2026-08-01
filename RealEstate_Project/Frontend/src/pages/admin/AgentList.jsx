@@ -1,18 +1,38 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Plus, Mail, Phone } from 'lucide-react'
 import SearchBar from '../../components/common/SearchBar'
 import Pagination from '../../components/common/Pagination'
 import EmptyState from '../../components/common/EmptyState'
 import './AgentList.css'
+import axios from 'axios'
 
 export default function AgentList() {
   const [query, setQuery] = useState('')
+  const [agent, setAgent] = useState([])
   const [page, setPage] = useState(1)
   const pageSize = 5
 
-  const filtered = agents.filter((a) => a.name.toLowerCase().includes(query.toLowerCase()))
+  const filtered = agent.filter((a) => a.name.toLowerCase().includes(query.toLowerCase()))
   const paged = filtered.slice((page - 1) * pageSize, page * pageSize)
+
+  useEffect(() => {
+    getAgentlist()
+  }, [])
+
+  const getAgentlist = async () => {
+    try {
+      const res = await axios.get('http://localhost:3000/api/admin/agent',
+        {
+          withCredentials: true
+        }
+      );
+      setAgent(res.data.agents),
+        console.log(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <div className="page-stack-6">
@@ -50,8 +70,8 @@ export default function AgentList() {
                 </tr>
               </thead>
               <tbody>
-                {paged.map((a) => (
-                  <tr key={a.id}>
+                {agent.map((a) => (
+                  <tr key={a._id}>
                     <td>
                       <div className="agent-list-name-cell">
                         <img src={a.avatar} alt={a.name} className="agent-list-avatar" />

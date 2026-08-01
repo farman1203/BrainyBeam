@@ -62,10 +62,7 @@ export default function MyProperties() {
           <h1 className="page-title">My Properties</h1>
           <p className="page-subtitle">Manage listings you've published.</p>
         </div>
-        <Link
-          to="/agent/properties/add"
-          className="btn-primary"
-        >
+        <Link to="/agent/properties/add" className="btn-primary" >
           <Plus size={16} /> Add Property
         </Link>
       </div>

@@ -6,4 +6,6 @@ const adminController = require("../controllers/admin.controller");
 
 router.post("/create-agent", authMiddleware, roleMiddleware("admin"), adminController.createAgent);
 
+router.get("/agent", authMiddleware, roleMiddleware("admin"), adminController.getAllAgents);
+
 module.exports = router;

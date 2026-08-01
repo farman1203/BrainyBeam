@@ -38,4 +38,23 @@ const createAgent = async (req, res) => {
     }
 };
 
-module.exports = { createAgent };
+//getallagent
+const getAllAgents = async (req, res) => {
+    try {
+        const agents = await User.find({ role: "agent" })
+            .select("-password")
+            .sort({ createdAt: -1 });
+        res.status(200).json({
+            success: true,
+            count: agents.length,
+            agents,
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
+        });
+    }
+};
+
+module.exports = { createAgent, getAllAgents };
