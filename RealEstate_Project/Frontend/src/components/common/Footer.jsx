@@ -1,6 +1,6 @@
 import React from 'react'
 import { Building2 } from 'lucide-react'
-import './Footer.css'
+import '../common/style/Footer.css'
 
 export default function Footer() {
   return (

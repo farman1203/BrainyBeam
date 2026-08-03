@@ -1,5 +1,5 @@
 import React from 'react'
-import './LoadingSkeleton.css'
+import '../common/style/LoadingSkeleton.css'
 
 
 export default function LoadingSkeleton({ variant = 'card', count = 3 }) {

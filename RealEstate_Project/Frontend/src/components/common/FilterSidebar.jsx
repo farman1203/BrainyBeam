@@ -1,6 +1,6 @@
 import React from 'react'
 import { SlidersHorizontal, RotateCcw } from 'lucide-react'
-import './FilterSidebar.css'
+import '../common/style/FilterSidebar.css'
 
 export default function FilterSidebar({ filters, setFilters, onReset }) {
   const update = (key, value) => setFilters((prev) => ({ ...prev, [key]: value }))

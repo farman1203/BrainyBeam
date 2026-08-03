@@ -1,5 +1,5 @@
 import React from 'react'
-import './DashboardCard.css'
+import  '../common/style/DashboardCard.css'
 
 const toneClass = {
   brand: 'dashboard-card-icon-wrap--brand',

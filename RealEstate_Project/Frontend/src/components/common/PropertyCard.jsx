@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { MapPin, BedDouble, Ruler, Home, Heart, Scale } from 'lucide-react'
-import './PropertyCard.css'
+import '../common/style/PropertyCard.css'
 
 
 export default function PropertyCard({ property, detailsPath = '/buyer/properties', onSave, onCompare, saved = false }) {
@@ -11,7 +11,7 @@ export default function PropertyCard({ property, detailsPath = '/buyer/propertie
     <div className="property-card">
       <div className="property-card-image-wrap">
         <img
-          src={image}
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl8B6qoFCgTR1NZRCi4aYL5AoCz4N1UsoC7plvBDT8mg&s=10"
           alt={title}
           className="property-card-image"
         />
@@ -65,10 +65,10 @@ export default function PropertyCard({ property, detailsPath = '/buyer/propertie
         <div className="property-card-footer">
           <div>
             <p className="property-card-price"></p>
-            <p className="property-card-agent">Agent: {agent}</p>
+            <p className="property-card-agent">Agent: {name}</p>
           </div>
           <Link
-            to={`${detailsPath}/${name}`}
+            to={`${detailsPath}/${_id}`}
             className="property-card-details-link"
           >
             View Details

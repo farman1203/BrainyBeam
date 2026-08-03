@@ -31,7 +31,6 @@ export default function BrowseProperties() {
           withCredentials: true,
         }
       );
-
       setProperties(res.data.properties);
     } catch (error) {
       console.log(error);
@@ -40,17 +39,14 @@ export default function BrowseProperties() {
     }
   };
 
-
   return (
     <div className="page-stack-6">
-
       <div>
         <h1 className="page-title">Browse Properties</h1>
         <p className="page-subtitle">
           Total {properties.length} Properties
         </p>
       </div>
-
       {
         loading ? (
           <LoadingSkeleton count={6} />
@@ -62,7 +58,6 @@ export default function BrowseProperties() {
         ) : (
           <>
             <div className="property-grid-responsive">
-
               {
                 paged.map((property) => (
                   <PropertyCard
@@ -72,9 +67,7 @@ export default function BrowseProperties() {
                   />
                 ))
               }
-
             </div>
-
             <Pagination
               page={page}
               totalPages={Math.ceil(properties.length / pageSize)}
@@ -83,7 +76,6 @@ export default function BrowseProperties() {
           </>
         )
       }
-
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Inbox } from 'lucide-react'
-import './EmptyState.css'
+import '../common/style/EmptyState.css'
 
 
 export default function EmptyState({ icon: Icon = Inbox, title = 'Nothing here yet', message, action }) {

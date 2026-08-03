@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { MapPin, BedDouble, Ruler, Home, Check, Phone, Mail, MapPinned } from 'lucide-react'
-import './PropertyDetailsView.css'
+import '../common/style/PropertyDetailsView.css'
 import { useAuth } from '../../context/AuthContext'
 import axios from 'axios'
 
@@ -9,18 +9,6 @@ export default function PropertyDetailsView({ property, actions }) {
   const { user } = useAuth();
   const [agent, setAgent] = useState([])
 
-  // useEffect(() => {
-  //   getagent()
-  // }, [])
-
-  // try {
-  //   const getagent = async () => {
-  //     const res = await axios.get('https:localhost:3000/api/admin/agent')
-  //     console.log(res.data.property);
-  //   }
-  // } catch (error) {
-  //   console.log(error);
-  // }
 
   return (
     <div className="pdv-stack">
