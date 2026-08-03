@@ -1,4 +1,5 @@
 const User = require("../models/user.model");
+const Property = require("../models/property.model")
 const bcrypt = require("bcryptjs");
 
 const createAgent = async (req, res) => {
@@ -57,4 +58,41 @@ const getAllAgents = async (req, res) => {
     }
 };
 
-module.exports = { createAgent, getAllAgents };
+//getdashboard data
+const getDashboard = async (req, res) => {
+    try {
+        const totalAgents = await User.countDocuments({ role: "agent" });
+        const totalBuyers = await User.countDocuments({ role: "buyer" });
+        const totalProperties = await Property.countDocuments();
+
+        const agents = await User.find({ role: "agent" })
+            .select("-password")
+            .sort({ createdAt: -1 })
+            .limit(5);
+
+        const recentProperties = await Property.find()
+            .populate("agent", "name")
+            .sort({ createdAt: -1 })
+            .limit(5);
+
+        res.status(200).json({
+            success: true,
+            stats: {
+                totalAgents,
+                totalBuyers,
+                totalProperties,
+                totalLeads: 0,
+            },
+            agents,
+            recentProperties,
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
+        });
+    }
+};
+
+
+module.exports = { createAgent, getAllAgents, getDashboard };

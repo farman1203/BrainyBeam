@@ -38,17 +38,12 @@ export default function Navbar({ onMenuClick }) {
 
       <div className="navbar-spacer" />
 
-      <button className="navbar-notif-btn" aria-label="Notifications">
-        <Bell size={19} />
-        <span className="navbar-notif-dot" />
-      </button>
-
       <div className="navbar-user-wrap">
         <button
           onClick={() => setMenuOpen((o) => !o)}
           className="navbar-user-btn"
         >
-          <div className="navbar-user-avatar">
+          <div className="pdv-agent-avatar">
             {user?.name?.charAt(0).toUpperCase()}
           </div>
           <span className="navbar-user-name">{user?.name}</span>

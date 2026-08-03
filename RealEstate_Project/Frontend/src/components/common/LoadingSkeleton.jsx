@@ -1,12 +1,7 @@
 import React from 'react'
 import './LoadingSkeleton.css'
 
-/**
- * Generic loading skeleton blocks.
- * Props:
- *  - variant: 'card' | 'row' | 'text'
- *  - count: number of skeleton blocks to render
- */
+
 export default function LoadingSkeleton({ variant = 'card', count = 3 }) {
   const items = Array.from({ length: count })
 

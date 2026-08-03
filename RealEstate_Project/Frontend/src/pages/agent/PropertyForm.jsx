@@ -9,14 +9,12 @@ export default function PropertyForm({ initialData = {}, onSubmit, submitLabel =
     "villa",
     "plot",
   ];
-
   const cities = [
     "Ahmedabad",
     "Surat",
     "Rajkot",
     "Vadodara",
   ];
-
   const amenitiesList = [
     "Parking",
     "Lift",

@@ -22,7 +22,9 @@ import AddProperty from './pages/agent/AddProperty'
 import EditProperty from './pages/agent/EditProperty'
 import AgentPropertyDetails from './pages/agent/PropertyDetails'
 
+
 import BuyerDashboard from './pages/buyer/Dashboard'
+import BrowseProperties from './pages/buyer/BrowseProperties'
 
 
 // import { currentUser } from './data/dummyData'
@@ -93,6 +95,7 @@ export default function App() {
       <Route path="/buyer" element={<DashboardLayout navItems={buyerNav} />}>
         <Route index element={<Navigate to="dashboard" replace />} />
         <Route path="dashboard" element={<BuyerDashboard />} />
+        <Route path="properties" element={<BrowseProperties />} />
       </Route>
 
       {/* Fallback */}

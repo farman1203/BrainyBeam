@@ -5,7 +5,7 @@ import './PropertyCard.css'
 
 
 export default function PropertyCard({ property, detailsPath = '/buyer/properties', onSave, onCompare, saved = false }) {
-  const { id, title, city, locality, price, bhk, area, type, agent, image } = property
+  const { _id, title, name, city, locality, price, bhk, area, type, agent, image } = property
 
   return (
     <div className="property-card">
@@ -21,7 +21,7 @@ export default function PropertyCard({ property, detailsPath = '/buyer/propertie
         <div className="property-card-actions">
           {onSave && (
             <button
-              onClick={() => onSave(id)}
+              onClick={() => onSave(_id)}
               aria-label="Save property"
               className={`property-card-icon-btn ${saved ? 'property-card-icon-btn--saved' : ''}`}
             >
@@ -30,7 +30,7 @@ export default function PropertyCard({ property, detailsPath = '/buyer/propertie
           )}
           {onCompare && (
             <button
-              onClick={() => onCompare(id)}
+              onClick={() => onCompare(_id)}
               aria-label="Add to compare"
               className="property-card-icon-btn"
             >
@@ -64,11 +64,11 @@ export default function PropertyCard({ property, detailsPath = '/buyer/propertie
 
         <div className="property-card-footer">
           <div>
-            <p className="property-card-price">{formatPrice(price)}</p>
+            <p className="property-card-price"></p>
             <p className="property-card-agent">Agent: {agent}</p>
           </div>
           <Link
-            to={`${detailsPath}/${id}`}
+            to={`${detailsPath}/${name}`}
             className="property-card-details-link"
           >
             View Details

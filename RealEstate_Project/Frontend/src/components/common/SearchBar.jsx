@@ -2,10 +2,6 @@ import React from 'react'
 import { Search } from 'lucide-react'
 import './SearchBar.css'
 
-/**
- * Simple controlled search input.
- * Props: value, onChange, placeholder
- */
 export default function SearchBar({ value, onChange, placeholder = 'Search by title, city or locality...' }) {
   return (
     <div className="search-bar-wrap">

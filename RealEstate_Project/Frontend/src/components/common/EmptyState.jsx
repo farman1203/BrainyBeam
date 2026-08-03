@@ -2,10 +2,7 @@ import React from 'react'
 import { Inbox } from 'lucide-react'
 import './EmptyState.css'
 
-/**
- * Empty state placeholder shown when a list has no data.
- * Props: icon, title, message, action (optional node, e.g. a button)
- */
+
 export default function EmptyState({ icon: Icon = Inbox, title = 'Nothing here yet', message, action }) {
   return (
     <div className="empty-state">

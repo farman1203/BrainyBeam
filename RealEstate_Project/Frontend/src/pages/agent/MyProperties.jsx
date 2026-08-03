@@ -20,6 +20,21 @@ export default function MyProperties() {
   const filtered = myProperties.filter((p) => p.title.toLowerCase().includes(query.toLowerCase()))
   const paged = filtered.slice((page - 1) * pageSize, page * pageSize)
 
+  const formatPrice = (price) => {
+    if (price >= 10000000) {
+      return `₹ ${(price / 10000000).toFixed(2)} Cr`;
+    }
+
+    if (price >= 100000) {
+      return `₹ ${(price / 100000).toFixed(2)} L`;
+    }
+
+    if (price >= 1000) {
+      return `₹ ${(price / 1000).toFixed(1)} K`;
+    }
+
+    return `₹ ${price}`;
+  };
 
   useEffect(() => {
     getProperties();
@@ -51,7 +66,7 @@ export default function MyProperties() {
       toast.success('Property deleted')
     }
     catch (err) {
-      alert(err.response.data.message);
+      toast.error(err.response.data.message);
     }
   }
 
@@ -90,7 +105,7 @@ export default function MyProperties() {
                 <span className="my-properties-status-badge">{p.status}</span>
                 <h3 className="my-properties-card-title">{p.title}</h3>
                 <p className="my-properties-card-location">{p.locality}, {p.city}</p>
-                <p className="my-properties-card-price">₹ {p.price.toLocaleString()}</p>
+                <p className="my-properties-card-price">{formatPrice(p.price)}</p>
 
                 <div className="my-properties-card-actions">
                   <Link to={`/agent/properties/${p._id}`} className="my-properties-action-link">

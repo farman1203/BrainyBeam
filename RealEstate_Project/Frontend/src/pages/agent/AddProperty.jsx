@@ -22,6 +22,7 @@ export default function AddProperty() {
       toast.error(error.response?.data?.message);
     }
   };
+
   return (
     <div className="add-property-page">
       <div className="add-property-header">

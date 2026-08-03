@@ -8,4 +8,6 @@ router.post("/create-agent", authMiddleware, roleMiddleware("admin"), adminContr
 
 router.get("/agent", authMiddleware, roleMiddleware("admin"), adminController.getAllAgents);
 
+router.get("/dashboard", authMiddleware, roleMiddleware("admin"), adminController.getDashboard);
+
 module.exports = router;

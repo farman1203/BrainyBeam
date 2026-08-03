@@ -67,6 +67,7 @@ const getAllProperties = async (req, res) => {
 const getPropertyById = async (req, res) => {
     try {
         const property = await Property.findById(req.params.id)
+            .populate("agent", "name email phone");
         agent: req.user._id
         if (!property) {
             return res.status(404).json({

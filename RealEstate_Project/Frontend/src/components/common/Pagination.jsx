@@ -2,9 +2,6 @@ import React from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import './Pagination.css'
 
-/**
- * Props: page (current, 1-indexed), totalPages, onChange(page)
- */
 export default function Pagination({ page, totalPages, onChange }) {
   if (totalPages <= 1) return null
 

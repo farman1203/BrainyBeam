@@ -12,7 +12,7 @@ export default function Footer() {
           </div>
           <span className="footer-brand-name">Estatelane</span>
         </div>
-        <p>© {new Date().getFullYear()} Estatelane. All rights reserved. Demo UI — dummy data only.</p>
+        <p>© {new Date().getFullYear()} Estatelane. All rights reserved.</p>
       </div>
     </footer>
   )

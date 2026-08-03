@@ -1,11 +1,27 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { MapPin, BedDouble, Ruler, Home, Check, Phone, Mail, MapPinned } from 'lucide-react'
 import './PropertyDetailsView.css'
 import { useAuth } from '../../context/AuthContext'
+import axios from 'axios'
 
 export default function PropertyDetailsView({ property, actions }) {
   const [activeImage, setActiveImage] = useState(0)
-  const {user} = useAuth();
+  const { user } = useAuth();
+  const [agent, setAgent] = useState([])
+
+  // useEffect(() => {
+  //   getagent()
+  // }, [])
+
+  // try {
+  //   const getagent = async () => {
+  //     const res = await axios.get('https:localhost:3000/api/admin/agent')
+  //     console.log(res.data.property);
+  //   }
+  // } catch (error) {
+  //   console.log(error);
+  // }
+
   return (
     <div className="pdv-stack">
       {/* Gallery */}
@@ -89,13 +105,13 @@ export default function PropertyDetailsView({ property, actions }) {
                 {property.agent?.name?.split(" ").map((n) => n[0]).join("")}
               </div>
               <div>
-                <p className="pdv-agent-name">{property.user?.name}</p>
+                <p className="pdv-agent-name">{property.agent?.name}</p>
                 <p className="pdv-agent-role">Real Estate Agent</p>
               </div>
             </div>
             <div className="pdv-agent-contact">
-              <p><Phone size={14} />{property.user?.phone}</p>
-              <p><Mail size={14} /> {property.user?.email}</p>
+              <p><Phone size={14} />{property.agent?.phone}</p>
+              <p><Mail size={14} /> {property.agent?.email}</p>
             </div>
           </div>
 

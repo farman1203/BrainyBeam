@@ -1,7 +1,6 @@
 import React from 'react'
 import './DashboardCard.css'
 
-
 const toneClass = {
   brand: 'dashboard-card-icon-wrap--brand',
   gold: 'dashboard-card-icon-wrap--gold',
