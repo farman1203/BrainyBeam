@@ -1,7 +1,7 @@
 import React, { use, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Building2, Menu, X, Bell, ChevronDown, LogOut, User as UserIcon } from 'lucide-react'
-import  '../common/style/Navbar.css'
+import '../common/style/Navbar.css'
 import { useAuth } from "../../context/AuthContext";
 
 export default function Navbar({ onMenuClick }) {

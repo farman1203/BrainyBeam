@@ -21,13 +21,14 @@ import MyProperties from './pages/agent/MyProperties'
 import AddProperty from './pages/agent/AddProperty'
 import EditProperty from './pages/agent/EditProperty'
 import AgentPropertyDetails from './pages/agent/PropertyDetails'
+import AgentProfile from './pages/agent/Profile'
 
 
 import BuyerDashboard from './pages/buyer/Dashboard'
 import BrowseProperties from './pages/buyer/BrowseProperties'
+import BuyerProfile from './pages/buyer/Profile'
 
 
-// import { currentUser } from './data/dummyData'
 import './App.css'
 
 const adminNav = [
@@ -76,7 +77,6 @@ export default function App() {
         <Route path="dashboard" element={<AdminDashboard />} />
         <Route path="agents/create" element={<CreateAgent />} />
         <Route path="agents" element={<AgentList />} />
-        {/* <Route path="profile" element={<AgentProfile />} /> */}
       </Route>
 
 
@@ -88,6 +88,7 @@ export default function App() {
         <Route path="properties/add" element={<AddProperty />} />
         <Route path="properties/edit/:id" element={<EditProperty />} />
         <Route path="properties/:id" element={<AgentPropertyDetails />} />
+        <Route path="profile" element={<AgentProfile />} />
 
       </Route>
 
@@ -96,6 +97,7 @@ export default function App() {
         <Route index element={<Navigate to="dashboard" replace />} />
         <Route path="dashboard" element={<BuyerDashboard />} />
         <Route path="properties" element={<BrowseProperties />} />
+        <Route path="profile" element={<BuyerProfile />} />
       </Route>
 
       {/* Fallback */}
