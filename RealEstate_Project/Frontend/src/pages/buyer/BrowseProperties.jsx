@@ -6,11 +6,12 @@ import Pagination from '../../components/common/Pagination'
 import LoadingSkeleton from '../../components/common/LoadingSkeleton'
 import EmptyState from '../../components/common/EmptyState'
 import './BrowseProperties.css'
+import { toast } from 'react-toastify'
 
 export default function BrowseProperties() {
   const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const [savedIds, setSavedIds] = useState([]);
   const [page, setPage] = useState(1);
   const pageSize = 6;
 
@@ -21,7 +22,36 @@ export default function BrowseProperties() {
 
   useEffect(() => {
     getProperties();
+    getSavedIds();
   }, []);
+
+  const toggleSave = async (id) => {
+
+    const res = await axios.post(`http://localhost:3000/api/property/save/${id}`, {},
+      {
+        withCredentials: true
+      }
+    );
+  
+    if (res.data.saved) {
+      setSavedIds(prev => [...prev, id]);
+        toast.success("Propery Saved")
+    } else {
+      setSavedIds(prev => prev.filter(x => x !== id));
+      toast.info("Propery Removed")
+    }
+  }
+
+  const getSavedIds = async () => {
+    const res = await axios.get("http://localhost:3000/api/property/save",
+      {
+        withCredentials: true
+      }
+    );
+    setSavedIds(
+      res.data.properties.map(item => item._id)
+    );
+  }
 
   const getProperties = async () => {
     try {
@@ -61,9 +91,9 @@ export default function BrowseProperties() {
               {
                 paged.map((property) => (
                   <PropertyCard
-                    key={property._id}
                     property={property}
-                    detailsPath="/buyer/properties"
+                    onSave={toggleSave}
+                    saved={savedIds.includes(property._id)}
                   />
                 ))
               }

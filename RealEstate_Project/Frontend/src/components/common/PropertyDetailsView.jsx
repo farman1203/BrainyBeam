@@ -3,12 +3,32 @@ import { MapPin, BedDouble, Ruler, Home, Check, Phone, Mail, MapPinned } from 'l
 import '../common/style/PropertyDetailsView.css'
 import { useAuth } from '../../context/AuthContext'
 import axios from 'axios'
+import { useParams } from 'react-router-dom'
 
 export default function PropertyDetailsView({ property, actions }) {
   const [activeImage, setActiveImage] = useState(0)
   const { user } = useAuth();
   const [agent, setAgent] = useState([])
+  const { id } = useParams();
 
+
+  const getProperty = async () => {
+    const res = await axios.get(`http://localhost:3000/api/property/${id}`);
+    setAgent(res.data.property)
+  }
+
+  const formatPrice = (price) => {
+    if (price >= 10000000) {
+      return `₹ ${(price / 10000000).toFixed(2)} Cr`
+    }
+    if (price >= 100000) {
+      return `₹ ${(price / 100000).toFixed(2)} L`
+    }
+    if (price >= 1000) {
+      return `₹ ${(price / 1000).toFixed(1)} K`
+    }
+    return `₹ ${price}`
+  }
 
   return (
     <div className="pdv-stack">
@@ -44,7 +64,7 @@ export default function PropertyDetailsView({ property, actions }) {
                   <MapPin size={15} /> {property.locality}, {property.city}
                 </p>
               </div>
-              <p className="pdv-price">₹ {property.price?.toLocaleString()}</p>
+              <p className="pdv-price">{formatPrice(property.price)}</p>
             </div>
 
             <div className="pdv-facts-row">

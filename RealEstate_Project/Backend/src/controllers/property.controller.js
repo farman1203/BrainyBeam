@@ -134,7 +134,6 @@ const updateProperty = async (req, res) => {
     }
 };
 
-
 // Delete Property
 const deleteProperty = async (req, res) => {
     try {

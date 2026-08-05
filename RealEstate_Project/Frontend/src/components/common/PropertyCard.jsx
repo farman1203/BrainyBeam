@@ -7,6 +7,19 @@ import '../common/style/PropertyCard.css'
 export default function PropertyCard({ property, detailsPath = '/buyer/properties', onSave, onCompare, saved = false }) {
   const { _id, title, name, city, locality, price, bhk, area, type, agent, image } = property
 
+  const formatPrice = (price) => {
+    if (price >= 10000000) {
+      return `₹ ${(price / 10000000).toFixed(2)} Cr`;
+    }
+    if (price >= 100000) {
+      return `₹ ${(price / 100000).toFixed(2)} L`;
+    }
+    if (price >= 1000) {
+      return `₹ ${(price / 1000).toFixed(1)} K`;
+    }
+    return `₹ ${price}`;
+  }
+
   return (
     <div className="property-card">
       <div className="property-card-image-wrap">
@@ -19,24 +32,24 @@ export default function PropertyCard({ property, detailsPath = '/buyer/propertie
           {type}
         </span>
         <div className="property-card-actions">
-          {onSave && (
-            <button
-              onClick={() => onSave(_id)}
-              aria-label="Save property"
-              className={`property-card-icon-btn ${saved ? 'property-card-icon-btn--saved' : ''}`}
-            >
-              <Heart size={16} fill={saved ? 'currentColor' : 'none'} />
-            </button>
-          )}
-          {onCompare && (
-            <button
-              onClick={() => onCompare(_id)}
-              aria-label="Add to compare"
-              className="property-card-icon-btn"
-            >
-              <Scale size={16} />
-            </button>
-          )}
+          <button
+            onClick={() => onSave?.(_id)}
+            className={`property-card-icon-btn ${saved ? "property-card-icon-btn--saved" : ""
+              }`}
+          >
+            <Heart
+              size={16}
+              fill={saved ? "currentColor" : "none"}
+            />
+          </button>
+
+          <button
+            onClick={() => onCompare?.(_id)}
+            className="property-card-icon-btn"
+          >
+            <Scale size={16} />
+          </button>
+
         </div>
       </div>
 
@@ -64,8 +77,10 @@ export default function PropertyCard({ property, detailsPath = '/buyer/propertie
 
         <div className="property-card-footer">
           <div>
-            <p className="property-card-price"></p>
-            <p className="property-card-agent">Agent: {name}</p>
+            <p className="property-card-price">
+              {formatPrice(price)}
+            </p>
+            <p className="property-card-agent">Agent: {property.agent?.name}</p>
           </div>
           <Link
             to={`${detailsPath}/${_id}`}

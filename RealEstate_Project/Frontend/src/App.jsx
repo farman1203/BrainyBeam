@@ -27,9 +27,12 @@ import AgentProfile from './pages/agent/Profile'
 import BuyerDashboard from './pages/buyer/Dashboard'
 import BrowseProperties from './pages/buyer/BrowseProperties'
 import BuyerProfile from './pages/buyer/Profile'
+import BuyerPropertyDetails from './pages/buyer/PropertyDetails'
+import SavedProperties from './pages/buyer/SavedProperties'
 
 
 import './App.css'
+
 
 const adminNav = [
   { label: 'Dashboard', to: '/admin/dashboard', icon: LayoutDashboard, end: true },
@@ -97,7 +100,9 @@ export default function App() {
         <Route index element={<Navigate to="dashboard" replace />} />
         <Route path="dashboard" element={<BuyerDashboard />} />
         <Route path="properties" element={<BrowseProperties />} />
+        <Route path="properties/:id" element={<BuyerPropertyDetails />} />
         <Route path="profile" element={<BuyerProfile />} />
+        <Route path="saved" element={<SavedProperties />} />
       </Route>
 
       {/* Fallback */}
