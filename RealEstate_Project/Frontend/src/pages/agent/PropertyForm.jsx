@@ -8,12 +8,18 @@ export default function PropertyForm({ initialData = {}, onSubmit, submitLabel =
     "flat",
     "villa",
     "plot",
+    "Apartment",
+    "Bungalow",
+    "commercial"
   ];
   const cities = [
     "Ahmedabad",
     "Surat",
     "Rajkot",
     "Vadodara",
+    "Nadiad",
+    "Gandhinagar",
+    "Mumbai"
   ];
   const amenitiesList = [
     "Parking",
@@ -21,6 +27,7 @@ export default function PropertyForm({ initialData = {}, onSubmit, submitLabel =
     "Garden",
     "Gym",
     "Swimming Pool",
+    "wide road",
     "Club House",
     "Security",
   ];

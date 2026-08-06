@@ -7,18 +7,22 @@ import LoadingSkeleton from '../../components/common/LoadingSkeleton'
 import EmptyState from '../../components/common/EmptyState'
 import './BrowseProperties.css'
 import { toast } from 'react-toastify'
+import SearchBar from '../../components/common/SearchBar'
+import { useAuth } from '../../context/AuthContext'
 
 export default function BrowseProperties() {
+  const user = useAuth();
   const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(true);
   const [savedIds, setSavedIds] = useState([]);
   const [page, setPage] = useState(1);
   const pageSize = 6;
+  const [query, setQuery] = useState('')
+  const myProperties = properties.filter((p) => p.buyer === user._id)
+  const filtered = myProperties.filter((p) => p.title.toLowerCase().includes(query.toLowerCase()))
+  const paged = filtered.slice((page - 1) * pageSize, page * pageSize)
 
-  const paged = properties.slice(
-    (page - 1) * pageSize,
-    page * pageSize
-  );
+  const pageess = properties.slice((page - 1) * pageSize, page * pageSize);
 
   useEffect(() => {
     getProperties();
@@ -32,10 +36,9 @@ export default function BrowseProperties() {
         withCredentials: true
       }
     );
-  
     if (res.data.saved) {
       setSavedIds(prev => [...prev, id]);
-        toast.success("Propery Saved")
+      toast.success("Propery Saved")
     } else {
       setSavedIds(prev => prev.filter(x => x !== id));
       toast.info("Propery Removed")
@@ -55,8 +58,7 @@ export default function BrowseProperties() {
 
   const getProperties = async () => {
     try {
-      const res = await axios.get(
-        "http://localhost:3000/api/property",
+      const res = await axios.get("http://localhost:3000/api/property",
         {
           withCredentials: true,
         }
@@ -77,6 +79,16 @@ export default function BrowseProperties() {
           Total {properties.length} Properties
         </p>
       </div>
+      <div className="browse-search-row">
+        <SearchBar value={query} onChange={(v) => { setQuery(v); setPage(1) }} />
+        <button
+          onClick={() => setMobileFiltersOpen(true)}
+          className="browse-filter-toggle-btn"
+        >
+          <SlidersHorizontal size={16} /> Filters
+        </button>
+      </div>
+
       {
         loading ? (
           <LoadingSkeleton count={6} />

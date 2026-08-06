@@ -1,15 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import {
-  Users,
-  Home,
-  UserCheck,
-  ListChecks,
-  Activity,
-} from "lucide-react";
+import { Users, Home, UserCheck, ListChecks, Activity, } from "lucide-react";
 
 import DashboardCard from "../../components/common/DashboardCard";
 import "./Dashboard.css";
+import { useAuth } from "../../context/AuthContext";
 
 export default function AdminDashboard() {
   const [stats, setStats] = useState({
@@ -87,11 +82,8 @@ export default function AdminDashboard() {
       </div>
 
       <div className="admin-dashboard-grid">
-
         {/* Agents */}
-
         <div className="admin-dashboard-agents-panel">
-
           <h2 className="admin-dashboard-panel-title">
             Recent Agents
           </h2>
@@ -99,22 +91,15 @@ export default function AdminDashboard() {
           <div className="admin-dashboard-agent-list">
 
             {agents.map((agent) => (
-
               <div
                 key={agent._id}
                 className="admin-dashboard-agent-row"
               >
-
                 <div className="admin-dashboard-agent-info">
-
-                  <img
-                    src=""
-                    alt={agent.name}
-                    className="admin-dashboard-agent-avatar"
-                  />
-
+                  <div className="pdv-agent-avatar">
+                    {agent?.name?.charAt(0).toUpperCase()}
+                  </div>
                   <div>
-
                     <p className="admin-dashboard-agent-name">
                       {agent.name}
                     </p>
@@ -122,66 +107,41 @@ export default function AdminDashboard() {
                     <p className="admin-dashboard-agent-meta">
                       {agent.email}
                     </p>
-
                   </div>
-
                 </div>
-
                 <span className="status-pill status-pill--success">
                   Active
                 </span>
-
               </div>
-
             ))}
-
           </div>
-
         </div>
 
         {/* Activities */}
 
         <div className="admin-dashboard-activity-panel">
-
           <h2 className="admin-dashboard-panel-title admin-dashboard-panel-title--icon">
-
             <Activity size={18} />
-
             Recent Properties
-
           </h2>
 
           <ul className="admin-dashboard-activity-list">
-
             {activities.map((property) => (
-
               <li
                 key={property._id}
                 className="admin-dashboard-activity-item"
               >
-
                 <p className="admin-dashboard-activity-text">
-
                   <strong>{property.title}</strong>
-
                   {" "}added by{" "}
-
                   {property.agent?.name}
-
                 </p>
-
                 <p className="admin-dashboard-activity-time">
-
                   {new Date(property.createdAt).toLocaleDateString()}
-
                 </p>
-
               </li>
-
             ))}
-
           </ul>
-
         </div>
 
       </div>

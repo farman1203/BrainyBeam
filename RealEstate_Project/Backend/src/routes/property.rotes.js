@@ -18,7 +18,6 @@ router.put("/:id", authMiddleware, roleMiddleware("agent", "admin"), propertyCon
 // Delete Property
 router.delete("/:id", authMiddleware, roleMiddleware("agent", "admin"), propertyController.deleteProperty);
 
-
 //saved property
 router.post("/save/:id", authMiddleware, roleMiddleware("buyer"), SaveProperty);
 

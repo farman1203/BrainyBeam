@@ -73,9 +73,8 @@ export default function AgentList() {
                 {agent.map((a) => (
                   <tr key={a._id}>
                     <td>
-                      <div className="agent-list-name-cell">
-                        <img src={a.avatar} alt={a.name} className="agent-list-avatar" />
-                        <span className="agent-list-name">{a.name}</span>
+                      <div className="pdv-agent-avatar">
+                        {a?.name?.charAt(0).toUpperCase()}
                       </div>
                     </td>
                     <td className="agent-list-contact-cell">
