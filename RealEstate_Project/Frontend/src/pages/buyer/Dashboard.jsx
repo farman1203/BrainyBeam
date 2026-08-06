@@ -76,8 +76,6 @@ export default function BuyerDashboard() {
             </>
           )
         }
-
-
       </div>
 
 
@@ -93,9 +91,8 @@ export default function BuyerDashboard() {
           <div className="property-grid-responsive">
             
               <PropertyCard key="" property="" detailsPath="/buyer/properties" />
-          
+
           </div>
-      
       </div> */}
     </div>
   )

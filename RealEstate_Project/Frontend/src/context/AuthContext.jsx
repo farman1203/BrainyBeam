@@ -9,6 +9,10 @@ export const AuthProvider = ({ children }) => {
 
     const [loading, setLoading] = useState(true);
 
+    useEffect(() => {
+        checkAuth();
+    }, []);
+
     // LOGIN
     const login = async (formData) => {
         await axios.post("http://localhost:3000/api/auth/login", formData,
@@ -25,21 +29,6 @@ export const AuthProvider = ({ children }) => {
         return res.data.user;
     };
 
-    // GET USER
-    const getUser = async () => {
-        try {
-            const res = await axios.get("http://localhost:3000/api/auth/profile",
-                {
-                    withCredentials: true,
-                }
-            );
-            setUser(res.data.user);
-        } catch (error) {
-            setUser(null);
-        } finally {
-            setLoading(false);
-        }
-    };
     // LOGOUT
     const logout = async () => {
         try {
@@ -53,12 +42,23 @@ export const AuthProvider = ({ children }) => {
         setUser(null);
     };
 
-    useEffect(() => {
-        getUser();
-    }, []);
+    //check user
+    const checkAuth = async () => {
+        try {
+            const res = await axios.get("http://localhost:3000/api/auth/profile", {
+                withCredentials: true,
+            });
+
+            setUser(res.data.user);
+        } catch (err) {
+            setUser(null);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     return (
-        <AuthContext.Provider value={{ user, loading, login, logout, getUser, }}>
+        <AuthContext.Provider value={{ user, loading, login, logout, checkAuth }}>
             {children}
         </AuthContext.Provider>
     );

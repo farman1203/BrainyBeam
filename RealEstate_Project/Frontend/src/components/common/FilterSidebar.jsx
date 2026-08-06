@@ -2,8 +2,13 @@ import React from 'react'
 import { SlidersHorizontal, RotateCcw } from 'lucide-react'
 import '../common/style/FilterSidebar.css'
 
-export default function FilterSidebar({ filters, setFilters, onReset }) {
+export default function FilterSidebar({ filters, setFilters, onReset, cities }) {
   const update = (key, value) => setFilters((prev) => ({ ...prev, [key]: value }))
+  const propertyTypes = [
+    "flat",
+    "villa",
+    "plot",
+  ];
 
   return (
     <aside className="filter-sidebar">

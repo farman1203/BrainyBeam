@@ -32,6 +32,9 @@ import SavedProperties from './pages/buyer/SavedProperties'
 
 
 import './App.css'
+import ProtectedRoute from './components/common/ProtectedRoute'
+import { useAuth } from "./context/AuthContext";
+import PublicRoute from './components/common/PublicRoute'
 
 
 const adminNav = [
@@ -60,7 +63,20 @@ const buyerNav = [
 
 
 function Landing() {
-  return <Navigate to="/login" replace />
+  const { user, loading } = useAuth();
+  if (loading) {
+    return <h2>Loading...</h2>;
+  }
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
+  if (user.role === "admin") {
+    return <Navigate to="/admin/dashboard" replace />;
+  }
+  if (user.role === "agent") {
+    return <Navigate to="/agent/dashboard" replace />;
+  }
+  return <Navigate to="/buyer/dashboard" replace />;
 }
 
 export default function App() {
@@ -69,22 +85,21 @@ export default function App() {
       <Route path="/" element={<Landing />} />
 
       {/* Auth */}
-      <Route element={<AuthLayout />}>
+      <Route element={<PublicRoute><AuthLayout /></PublicRoute>}>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Route>
 
       {/* Admin Panel */}
-      <Route path="/admin" element={<DashboardLayout navItems={adminNav} />}>
+      <Route path="/admin" element={<ProtectedRoute allowedRoles={["admin"]}>  <DashboardLayout navItems={adminNav} /> </ProtectedRoute>}>
         <Route index element={<Navigate to="dashboard" replace />} />
         <Route path="dashboard" element={<AdminDashboard />} />
         <Route path="agents/create" element={<CreateAgent />} />
         <Route path="agents" element={<AgentList />} />
       </Route>
 
-
       {/* Agent Panel */}
-      <Route path="/agent" element={<DashboardLayout navItems={agentNav} />}>
+      <Route path="/agent" element={<ProtectedRoute allowedRoles={["agent"]}><DashboardLayout navItems={agentNav} /></ProtectedRoute>}>
         <Route index element={<Navigate to="dashboard" replace />} />
         <Route path="dashboard" element={<AgentDashboard />} />
         <Route path="properties" element={<MyProperties />} />
@@ -92,11 +107,10 @@ export default function App() {
         <Route path="properties/edit/:id" element={<EditProperty />} />
         <Route path="properties/:id" element={<AgentPropertyDetails />} />
         <Route path="profile" element={<AgentProfile />} />
-
       </Route>
 
       {/* Buyer Panel */}
-      <Route path="/buyer" element={<DashboardLayout navItems={buyerNav} />}>
+      <Route path="/buyer" element={<ProtectedRoute allowedRoles={["buyer"]}><DashboardLayout navItems={buyerNav} />  </ProtectedRoute>} >
         <Route index element={<Navigate to="dashboard" replace />} />
         <Route path="dashboard" element={<BuyerDashboard />} />
         <Route path="properties" element={<BrowseProperties />} />
