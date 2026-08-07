@@ -5,6 +5,7 @@ const profile = require('./routes/user.routes')
 const cookieParser = require('cookie-parser')
 const cors = require("cors");
 const propertyRoutes = require('./routes/property.rotes');
+const inquiryRoutes = require('./routes/inquiry.routes');
 
 const app = express();
 app.use(express.json());
@@ -15,4 +16,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/property', propertyRoutes)
 app.use('/api/user', profile)
+app.use('/api/inquiry', inquiryRoutes)
+
+
 module.exports = app;

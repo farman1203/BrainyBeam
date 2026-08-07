@@ -5,7 +5,6 @@ const authMiddleware = require("../middleware/auth.middleware");
 const roleMiddleware = require("../middleware/role.middleware");
 const { SaveProperty, getSavedProperties } = require("../controllers/saveproperty.controller");
 
-
 // Add Property
 router.post("/", authMiddleware, roleMiddleware("agent"), propertyController.addProperty);
 

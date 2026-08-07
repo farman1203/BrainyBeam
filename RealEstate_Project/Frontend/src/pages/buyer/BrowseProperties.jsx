@@ -68,7 +68,6 @@ export default function BrowseProperties() {
   };
 
   const toggleSave = async (id) => {
-
     const res = await axios.post(`http://localhost:3000/api/property/save/${id}`, {},
       {
         withCredentials: true
@@ -89,9 +88,7 @@ export default function BrowseProperties() {
         withCredentials: true
       }
     );
-    setSavedIds(
-      res.data.properties.map(item => item._id)
-    );
+    setSavedIds(res.data.properties.map(item => item._id));
   }
 
   const getProperties = async () => {
