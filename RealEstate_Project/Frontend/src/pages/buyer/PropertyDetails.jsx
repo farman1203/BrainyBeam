@@ -29,6 +29,23 @@ export default function BuyerPropertyDetails() {
     }
   }
 
+  const sendInquiry = async () => {
+    try {
+      const res = await axios.post(`http://localhost:3000/api/inquiry/${id}`,
+        {
+          message: "I am intrested in this property"
+        },
+        {
+          withCredentials: true,
+        }
+      );
+      setInquired(true);
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
+
   if (!property) {
     return <EmptyState title="Property not found" message="This listing may have been removed." />
   }
@@ -44,7 +61,7 @@ export default function BuyerPropertyDetails() {
         actions={
           <>
             <button
-              onClick={() => setInquired(true)}
+              onClick={sendInquiry}
               disabled={inquired}
               className="btn-primary buyer-property-inquiry-btn"
             >

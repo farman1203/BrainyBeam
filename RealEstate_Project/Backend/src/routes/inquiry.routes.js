@@ -5,9 +5,9 @@ const auth = require('../middleware/auth.middleware')
 const role = require('../middleware/role.middleware')
 const inquiryController = require('../controllers/inquiry.controller')
 
-router.post("/",auth,role("buyer"),inquiryController.sendInquiry);
-router.get("/buyer",auth,role("buyer"),inquiryController.getBuyerInquiries);
-router.get("/agent",auth,role("agent"),inquiryController.getBuyerInquiries);
-router.put("/:id",auth,role("agent"),inquiryController.updateInquiryStatus);
+router.post("/:id", auth, role("buyer"), inquiryController.sendInquiry);
+router.get("/buyer", auth, role("buyer"), inquiryController.getBuyerInquiries);
+router.get("/agent", auth, role("agent"), inquiryController.getBuyerInquiries);
+router.put("/:id", auth, role("agent"), inquiryController.updateInquiryStatus);
 
 module.exports = router;

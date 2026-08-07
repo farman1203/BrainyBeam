@@ -1,47 +1,28 @@
 const Inquiry = require('../models/inquiry.model')
-const property = require('../models/property.model')
+const Property = require('../models/property.model')
 
 const sendInquiry = async (req, res) => {
-    try {
-        const { propertyId, message } = req.body;
-        const property = await Property.findById(propertyId);
-        if (!property) {
-            return res.status(404).json({
-                success: false,
-                message: "Property not found",
-            });
-        }
-        const already = await Inquiry.findOne({
-            buyer: req.user._id,
-            property: propertyId,
-        });
-
-        if (already) {
-            return res.status(400).json({
-                success: false,
-                message: "Inquiry already sent",
-            });
-        }
-
-        const inquiry = await Inquiry.create({
-            buyer: req.user._id,
-            property: propertyId,
-            agent: property.agent,
-            message,
-        });
-
-        res.status(201).json({
-            success: true,
-            message: "Inquiry Sent Successfully",
-            inquiry,
-        });
-
-    } catch (error) {
-        res.status(500).json({
+    const property = await Property.findById(req.params.id);
+    if (!property) {
+        return res.status(404).json({
             success: false,
-            message: error.message,
+            message: "Property not found"
         });
     }
+
+    const inquiry = await Inquiry.create({
+        buyer: req.user._id,
+        property: property._id,
+        agent: property.agent,
+        message: req.body.message,
+        status: "new"
+    });
+
+    res.status(201).json({
+        success: true,
+        message: "Inquiry Sent Successfully",
+        inquiry
+    });
 };
 
 const getAgentInquiries = async (req, res) => {
@@ -106,4 +87,4 @@ const updateInquiryStatus = async (req, res) => {
     }
 };
 
-module.exports = {sendInquiry,getAgentInquiries,getBuyerInquiries,updateInquiryStatus}
+module.exports = { sendInquiry, getAgentInquiries, getBuyerInquiries, updateInquiryStatus }
