@@ -35,6 +35,8 @@ import './App.css'
 import ProtectedRoute from './components/common/ProtectedRoute'
 import { useAuth } from "./context/AuthContext";
 import PublicRoute from './components/common/PublicRoute'
+import MyInquiries from './pages/buyer/MyInquiries'
+import Leads from './pages/agent/Leads'
 
 
 const adminNav = [
@@ -107,6 +109,7 @@ export default function App() {
         <Route path="properties/edit/:id" element={<EditProperty />} />
         <Route path="properties/:id" element={<AgentPropertyDetails />} />
         <Route path="profile" element={<AgentProfile />} />
+        <Route path="leads" element={<Leads />} />
       </Route>
 
       {/* Buyer Panel */}
@@ -117,6 +120,7 @@ export default function App() {
         <Route path="properties/:id" element={<BuyerPropertyDetails />} />
         <Route path="profile" element={<BuyerProfile />} />
         <Route path="saved" element={<SavedProperties />} />
+        <Route path="inquiries" element={<MyInquiries />} />
       </Route>
 
       {/* Fallback */}

@@ -5,6 +5,7 @@ import PropertyDetailsView from '../../components/common/PropertyDetailsView'
 import EmptyState from '../../components/common/EmptyState'
 import './PropertyDetails.css'
 import axios from 'axios'
+import { toast } from 'react-toastify'
 
 export default function BuyerPropertyDetails() {
   const { id } = useParams()
@@ -31,20 +32,26 @@ export default function BuyerPropertyDetails() {
 
   const sendInquiry = async () => {
     try {
-      const res = await axios.post(`http://localhost:3000/api/inquiry/${id}`,
+      const res = await axios.post(
+        `http://localhost:3000/api/inquiry/${id}`,
         {
-          message: "I am intrested in this property"
+          message: "I am interested in this property",
         },
         {
           withCredentials: true,
         }
       );
       setInquired(true);
-    }
-    catch (error) {
+    } catch (error) {
       console.log(error);
+      if (error.response?.status === 400) {
+        toast.info(error.response.data.message);
+        setInquired(true);
+      } else {
+        toast.error(error.response?.data?.message || "Something went wrong");
+      }
     }
-  }
+  };
 
   if (!property) {
     return <EmptyState title="Property not found" message="This listing may have been removed." />

@@ -10,6 +10,18 @@ const sendInquiry = async (req, res) => {
         });
     }
 
+    const already = await Inquiry.findOne({
+        buyer: req.user._id,
+        property: property._id,
+    });
+
+    if (already) {
+        return res.status(400).json({
+            success: false,
+            message: "Inquiry already sent",
+        });
+    }
+
     const inquiry = await Inquiry.create({
         buyer: req.user._id,
         property: property._id,
@@ -31,7 +43,8 @@ const getAgentInquiries = async (req, res) => {
             agent: req.user._id,
         })
             .populate("buyer", "name email phone")
-            .populate("property", "title city locality price");
+            .populate("property", "title city locality price")
+            .sort({ createdAt: -1 });
         res.status(200).json({
             success: true,
             inquiries,
