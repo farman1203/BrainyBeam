@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Camera, Save } from 'lucide-react'
-import './Profile.css'
+import '../agent/style/Profile.css'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 

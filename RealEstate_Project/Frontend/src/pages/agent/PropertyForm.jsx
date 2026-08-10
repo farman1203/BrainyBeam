@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { UploadCloud, Save, X } from 'lucide-react'
-import './PropertyForm.css'
+import '../agent/style/PropertyForm.css'
 
 
 export default function PropertyForm({ initialData = {}, onSubmit, submitLabel = 'Submit' }) {

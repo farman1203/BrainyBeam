@@ -24,16 +24,29 @@ const inquirySchema = new mongoose.Schema(
         status: {
             type: String,
             enum: [
-                "new",
-                "contacted",
-                "site visit scheduled",
-                "negotiation",
-                "closed",
-                "lost",
+                "New",
+                "Contacted",
+                "Site Visit Scheduled",
+                "Negotiation",
+                "Closed",
+                "Lost",
             ],
-            default: "new"
+            default: "New",
         },
+        statusHistory: [
+            {
+                status: {
+                    type: String,
+                    required: true,
+                },
+                changedAt: {
+                    type: Date,
+                    default: Date.now,
+                },
+            },
+        ],
     },
+
     {
         timestamps: true,
     }

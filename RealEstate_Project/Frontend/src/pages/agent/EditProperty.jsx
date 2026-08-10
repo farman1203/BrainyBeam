@@ -5,7 +5,7 @@ import PropertyForm from './PropertyForm'
 import EmptyState from '../../components/common/EmptyState'
 import axios from "axios";
 import { useEffect, useState } from "react";
-import './EditProperty.css'
+import '../agent/style/EditProperty.css'
 import { toast } from 'react-toastify'
 
 export default function EditProperty() {

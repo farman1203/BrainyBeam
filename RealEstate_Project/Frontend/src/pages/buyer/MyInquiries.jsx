@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { LogIn, MessageSquare } from 'lucide-react'
 import EmptyState from '../../components/common/EmptyState'
-import './MyInquiries.css'
+import '../buyer/style/MyInquiries.css'
 import axios from 'axios'
 
 export default function MyInquiries() {

@@ -27,7 +27,13 @@ const sendInquiry = async (req, res) => {
         property: property._id,
         agent: property.agent,
         message: req.body.message,
-        status: "new"
+        status: "new",
+        statusHistory: [
+            {
+                status: "New",
+                changedAt: new Date(),
+            },
+        ],
     });
 
     res.status(201).json({
@@ -78,19 +84,54 @@ const getBuyerInquiries = async (req, res) => {
 
 const updateInquiryStatus = async (req, res) => {
     try {
-        const inquiry = await Inquiry.findById(req.params.id);
+        const { id } = req.params;
+        const { status } = req.body;
+
+        const allowedStatuses = [
+            "New",
+            "Contacted",
+            "Site Visit Scheduled",
+            "Negotiation",
+            "Closed",
+            "Lost",
+        ];
+
+        if (!allowedStatuses.includes(status)) {
+            return res.status(400).json({
+                success: false,
+                message: "Invalid status",
+            });
+        }
+
+        const inquiry = await Inquiry.findOne({
+            _id: id,
+            agent: req.user._id,
+        });
+
         if (!inquiry) {
             return res.status(404).json({
                 success: false,
-                message: "Inquiry not found",
+                message: "Lead not found",
             });
         }
-        inquiry.status = req.body.status;
+
+        inquiry.status = status;
+
+        inquiry.statusHistory.push({
+            status,
+            changedAt: new Date(),
+        });
+
         await inquiry.save();
-        res.json({
+
+        const updatedInquiry = await Inquiry.findById(inquiry._id)
+            .populate("buyer", "name email phone")
+            .populate("property", "title city locality price");
+
+        res.status(200).json({
             success: true,
-            message: "Status Updated",
-            inquiry,
+            message: "Lead status updated successfully",
+            inquiry: updatedInquiry,
         });
     } catch (error) {
         res.status(500).json({

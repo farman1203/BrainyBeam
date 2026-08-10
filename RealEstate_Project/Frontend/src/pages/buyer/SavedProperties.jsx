@@ -6,7 +6,7 @@ import { Heart } from "lucide-react";
 import PropertyCard from "../../components/common/PropertyCard";
 import EmptyState from "../../components/common/EmptyState";
 
-import "./SavedProperties.css";
+import "../buyer/style/SavedProperties.css";
 import { toast } from "react-toastify";
 
 export default function SavedProperties() {

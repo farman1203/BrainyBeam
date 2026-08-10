@@ -4,7 +4,7 @@ import { Eye, Heart, MessageSquare, Search } from 'lucide-react'
 import DashboardCard from '../../components/common/DashboardCard'
 import PropertyCard from '../../components/common/PropertyCard'
 import EmptyState from '../../components/common/EmptyState'
-import './Dashboard.css'
+import '../buyer/style/Dashboard.css'
 import axios from 'axios'
 import { useAuth } from '../../context/AuthContext'
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import LeadStatusCard from '../../components/common/LeadStatusCard'
 import EmptyState from '../../components/common/EmptyState'
 import { Users } from 'lucide-react'
-import './Leads.css'
+import '../agent/style/Leads.css'
 import axios from 'axios'
 
 const statuses = [
@@ -57,20 +57,25 @@ export default function Leads() {
 
   const moveLead = async (id, newStatus) => {
     try {
+      const res = await axios.put(
+        `http://localhost:3000/api/inquiry/${id}/status`,
+        {
+          status: newStatus,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+
       setLeads((prev) =>
         prev.map((lead) =>
-          lead._id === id
-            ? {
-              ...lead,
-              status: newStatus,
-            }
-            : lead
+          lead._id === id ? res.data.inquiry : lead
         )
-      )
+      );
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   return (
     <div className="page-stack-6">
@@ -93,37 +98,32 @@ export default function Leads() {
           {statuses.map((status) => {
             const columnLeads = leads.filter(
               (lead) => lead.status === status
-            )
+            );
+
             return (
               <div
                 key={status}
                 className={`leads-column-inner ${columnToneClass[status]}`}
               >
                 <div className="leads-column-header">
-                  <h3>
-                    {columnTitle[status]}
-                  </h3>
-                  <span>
-                    {columnLeads.length}
-                  </span>
+                  <h3>{status}</h3>
+                  <span>{columnLeads.length}</span>
                 </div>
-                <div className="leads-column-body">
-                  {columnLeads.map((lead) => (
-                    <LeadStatusCard
-                      key={lead._id}
-                      lead={lead}
-                      statuses={statuses}
-                      onMove={moveLead}
-                    />
-                  ))}
-                  {columnLeads.length === 0 && (
-                    <p className="leads-empty-column">
-                      No leads
-                    </p>
-                  )}
-                </div>
+
+                {columnLeads.map((lead) => (
+                  <LeadStatusCard
+                    key={lead._id}
+                    lead={lead}
+                    statuses={statuses}
+                    onMove={moveLead}
+                  />
+                ))}
+
+                {columnLeads.length === 0 && (
+                  <p>No leads</p>
+                )}
               </div>
-            )
+            );
           })}
         </div>
       )}

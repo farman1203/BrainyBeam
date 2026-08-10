@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Home, ListChecks, CalendarCheck, Handshake, Plus } from 'lucide-react'
 import DashboardCard from '../../components/common/DashboardCard'
 // import LeadStatusCard from '../../components/common/LeadStatusCard'
-import './Dashboard.css'
+import '../agent/style/Dashboard.css'
 
 export default function AgentDashboard() {
   // const myProperties = properties.filter((p) => p.agentId === 'a1')

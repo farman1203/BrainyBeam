@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Camera, Save } from 'lucide-react'
-import './Profile.css'
+import '../buyer/style/Profile.css'
 import axios from 'axios'
 
 export default function BuyerProfile() {

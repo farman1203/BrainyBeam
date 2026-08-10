@@ -1,6 +1,6 @@
 import React from 'react'
 import PropertyForm from './PropertyForm'
-import './AddProperty.css'
+import '../agent/style/AddProperty.css'
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';

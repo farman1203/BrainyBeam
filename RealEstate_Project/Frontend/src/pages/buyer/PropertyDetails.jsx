@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom'
 import { ArrowLeft, MessageSquare, Scale, CheckCircle2 } from 'lucide-react'
 import PropertyDetailsView from '../../components/common/PropertyDetailsView'
 import EmptyState from '../../components/common/EmptyState'
-import './PropertyDetails.css'
+import '../buyer/style/PropertyDetails.css'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 

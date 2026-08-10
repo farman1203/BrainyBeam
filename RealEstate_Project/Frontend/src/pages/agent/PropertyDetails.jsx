@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom'
 import { ArrowLeft, Pencil, Users } from 'lucide-react'
 import PropertyDetailsView from '../../components/common/PropertyDetailsView'
 import EmptyState from '../../components/common/EmptyState'
-import './PropertyDetails.css'
+import '../agent/style/PropertyDetails.css'
 import axios from 'axios'
 
 export default function AgentPropertyDetails() {
