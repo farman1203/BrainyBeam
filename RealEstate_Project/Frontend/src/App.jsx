@@ -37,6 +37,7 @@ import { useAuth } from "./context/AuthContext";
 import PublicRoute from './components/common/PublicRoute'
 import MyInquiries from './pages/buyer/MyInquiries'
 import Leads from './pages/agent/Leads'
+import CompareProperties from './pages/buyer/CompareProperties'
 
 
 const adminNav = [
@@ -121,6 +122,7 @@ export default function App() {
         <Route path="profile" element={<BuyerProfile />} />
         <Route path="saved" element={<SavedProperties />} />
         <Route path="inquiries" element={<MyInquiries />} />
+        <Route path="compare" element={<CompareProperties />} />
       </Route>
 
       {/* Fallback */}

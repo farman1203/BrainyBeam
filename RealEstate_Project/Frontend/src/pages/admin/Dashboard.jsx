@@ -87,7 +87,6 @@ export default function AdminDashboard() {
           <h2 className="admin-dashboard-panel-title">
             Recent Agents
           </h2>
-
           <div className="admin-dashboard-agent-list">
 
             {agents.map((agent) => (

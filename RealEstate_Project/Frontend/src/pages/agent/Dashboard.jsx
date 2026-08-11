@@ -33,9 +33,7 @@ export default function AgentDashboard() {
       </div>
 
       <div className="stats-grid-4">
-
         <DashboardCard key="" />
-
       </div>
 
       <div className="agent-dashboard-grid">

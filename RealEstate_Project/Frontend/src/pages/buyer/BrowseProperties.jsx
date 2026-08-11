@@ -124,7 +124,6 @@ export default function BrowseProperties() {
         </button>
       </div>
 
-
       <div className="browse-layout-grid">
         <div className="browse-sidebar-desktop">
           <FilterSidebar filters={filters} setFilters={setFilters} onReset={resetFilters} cities={cities} />
