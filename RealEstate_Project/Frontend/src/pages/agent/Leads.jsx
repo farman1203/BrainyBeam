@@ -6,12 +6,12 @@ import '../agent/style/Leads.css'
 import axios from 'axios'
 
 const statuses = [
-  'new',
-  'contacted',
-  'site visit',
-  'negotiation',
-  'closed',
-  'lost',
+  'New',
+  'Contacted',
+  'Site visit',
+  'Negotiation',
+  'Closed',
+  'Lost',
 ]
 
 const columnTitle = {
@@ -46,7 +46,7 @@ export default function Leads() {
           withCredentials: true,
         }
       )
-      console.log("Inquiry response:", res.data)
+      // console.log("Inquiry response:", res.data)
       setLeads(res.data.inquiries || [])
     } catch (error) {
       console.log(

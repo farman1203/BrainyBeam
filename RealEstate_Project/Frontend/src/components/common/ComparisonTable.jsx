@@ -72,20 +72,17 @@ export default function ComparisonTable({ items, onRemove }) {
   return (
     <div className="comparison-table-wrap">
       <table className="comparison-table">
-
         <thead>
           <tr>
             <th className="comparison-table-property-header">
               Property
             </th>
-
             {items.map((p) => (
               <th
                 key={p._id}
                 className="comparison-table-col-header"
               >
                 <div className="comparison-table-col-inner">
-
                   <button
                     onClick={() => onRemove(p._id)}
                     className="comparison-table-remove-btn"
@@ -93,7 +90,6 @@ export default function ComparisonTable({ items, onRemove }) {
                   >
                     <X size={12} />
                   </button>
-
                   <img
                     src={
                       p.images?.[0] ||
@@ -102,17 +98,14 @@ export default function ComparisonTable({ items, onRemove }) {
                     alt={p.title}
                     className="comparison-table-image"
                   />
-
                   <p className="comparison-table-title">
                     {p.title}
                   </p>
-
                 </div>
               </th>
             ))}
           </tr>
         </thead>
-
         <tbody>
           {rows.map((row, i) => (
             <tr
@@ -122,7 +115,6 @@ export default function ComparisonTable({ items, onRemove }) {
               <td className="comparison-table-row-label">
                 {row.label}
               </td>
-
               {items.map((p) => (
                 <td
                   key={p._id}
@@ -134,7 +126,6 @@ export default function ComparisonTable({ items, onRemove }) {
             </tr>
           ))}
         </tbody>
-
       </table>
     </div>
   );

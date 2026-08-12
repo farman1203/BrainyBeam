@@ -2,45 +2,56 @@ const Inquiry = require('../models/inquiry.model')
 const Property = require('../models/property.model')
 
 const sendInquiry = async (req, res) => {
-    const property = await Property.findById(req.params.id);
-    if (!property) {
-        return res.status(404).json({
+    try {
+        const property = await Property.findById(req.params.id);
+
+        if (!property) {
+            return res.status(404).json({
+                success: false,
+                message: "Property not found"
+            });
+        }
+
+        const already = await Inquiry.findOne({
+            buyer: req.user._id,
+            property: property._id,
+        });
+
+        if (already) {
+            return res.status(400).json({
+                success: false,
+                message: "Inquiry already sent",
+            });
+        }
+
+        const inquiry = await Inquiry.create({
+            buyer: req.user._id,
+            property: property._id,
+            agent: property.agent,
+            message: req.body?.message || "I am interested in this property",
+            status: "New",
+            statusHistory: [
+                {
+                    status: "New",
+                    changedAt: new Date(),
+                },
+            ],
+        });
+
+        res.status(201).json({
+            success: true,
+            message: "Inquiry Sent Successfully",
+            inquiry
+        });
+
+    } catch (error) {
+        console.log("SEND INQUIRY ERROR:", error);
+
+        res.status(500).json({
             success: false,
-            message: "Property not found"
+            message: error.message
         });
     }
-
-    const already = await Inquiry.findOne({
-        buyer: req.user._id,
-        property: property._id,
-    });
-
-    if (already) {
-        return res.status(400).json({
-            success: false,
-            message: "Inquiry already sent",
-        });
-    }
-
-    const inquiry = await Inquiry.create({
-        buyer: req.user._id,
-        property: property._id,
-        agent: property.agent,
-        message: req.body.message,
-        status: "new",
-        statusHistory: [
-            {
-                status: "New",
-                changedAt: new Date(),
-            },
-        ],
-    });
-
-    res.status(201).json({
-        success: true,
-        message: "Inquiry Sent Successfully",
-        inquiry
-    });
 };
 
 const getAgentInquiries = async (req, res) => {
@@ -103,7 +114,7 @@ const updateInquiryStatus = async (req, res) => {
             });
         }
 
-        const inquiry = await Inquiry.findOne({
+        const inquiry = await Inquiry.find({
             _id: id,
             agent: req.user._id,
         });

@@ -55,7 +55,6 @@ export default function CompareProperties() {
       alert("You can compare maximum 3 properties.");
       return;
     }
-
     setCompareIds((prev) => [...prev, id]);
   };
 
@@ -108,7 +107,6 @@ export default function CompareProperties() {
           </div>
         </div>
       )}
-
     </div>
   );
 }

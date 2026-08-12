@@ -43,12 +43,12 @@ export default function PropertyCard({ property, detailsPath = '/buyer/propertie
             />
           </button>
 
-          <button
+          {/* <button
             onClick={() => onCompare?.(_id)}
             className="property-card-icon-btn"
           >
             <Scale size={16} />
-          </button>
+          </button> */}
 
         </div>
       </div>
