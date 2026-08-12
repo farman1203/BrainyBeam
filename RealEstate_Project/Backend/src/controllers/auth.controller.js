@@ -62,7 +62,6 @@ const loginuser = async (req, res) => {
         id: userdata._id,
         role: userdata.role
     }, process.env.JWT_SECRET)
-
     res.cookie("token", token)
 
     const user = await userModel.findById(userdata._id).select("-password");
