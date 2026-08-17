@@ -31,6 +31,9 @@ export default function PropertyForm({ initialData = {}, onSubmit, submitLabel =
     "Club House",
     "Security",
   ];
+
+  const [images, setImages] = useState([])
+
   const [form, setForm] = useState({
     title: initialData.title || '',
     description: initialData.description || '',
@@ -51,15 +54,42 @@ export default function PropertyForm({ initialData = {}, onSubmit, submitLabel =
     setForm((f) => ({ ...f, [name]: value }))
   }
 
+  const handleImageChange = (e) => {
+    const files = Array.from(e.target.files)
+    setImages(files)
+  }
+
   const toggleAmenity = (amenity) => {
     setForm((f) => ({ ...f, amenities: f.amenities.includes(amenity) ? f.amenities.filter((a) => a !== amenity) : [...f.amenities, amenity], }))
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    onSubmit?.(form)
-    setSubmitted(true)
-    setTimeout(() => setSubmitted(false), 2500)
+
+    const formData = new FormData()
+
+    formData.append("title", form.title)
+    formData.append("description", form.description)
+    formData.append("type", form.type)
+    formData.append("bhk", form.bhk)
+    formData.append("area", form.area)
+    formData.append("price", form.price)
+    formData.append("city", form.city)
+    formData.append("locality", form.locality)
+    formData.append("lat", form.lat)
+    formData.append("lng", form.lng)
+
+    // amenities
+    form.amenities.forEach((amenity) => {
+      formData.append("amenities", amenity)
+    })
+
+    // images
+    images.forEach((image) => {
+      formData.append("images", image)
+    })
+
+    onSubmit?.(formData)
   }
 
   return (
@@ -164,8 +194,12 @@ export default function PropertyForm({ initialData = {}, onSubmit, submitLabel =
           <div className="property-form-upload-box">
             <UploadCloud size={28} className="property-form-upload-icon" />
             <p className="property-form-upload-text">Drag & drop images here, or click to browse</p>
-            <input type="file" />
-            <input type="file" multiple className="property-form-hidden-input" />
+            <input
+              type="file"
+              multiple
+              accept="image/*"
+              onChange={handleImageChange}
+            />
           </div>
         </div>
 

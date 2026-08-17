@@ -10,11 +10,9 @@ import axios from 'axios'
 export default function AgentList() {
   const [query, setQuery] = useState('')
   const [agent, setAgent] = useState([])
-  const [page, setPage] = useState(1)
   const pageSize = 5
 
   const filtered = agent.filter((a) => a.name.toLowerCase().includes(query.toLowerCase()))
-  const paged = filtered.slice((page - 1) * pageSize, page * pageSize)
 
   useEffect(() => {
     getAgentlist()
@@ -99,7 +97,6 @@ export default function AgentList() {
         </div>
       )}
 
-      <Pagination page={page} totalPages={Math.ceil(filtered.length / pageSize)} onChange={setPage} />
     </div>
   )
 }

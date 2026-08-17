@@ -4,9 +4,10 @@ const propertyController = require("../controllers/property.controller");
 const authMiddleware = require("../middleware/auth.middleware");
 const roleMiddleware = require("../middleware/role.middleware");
 const { SaveProperty, getSavedProperties } = require("../controllers/saveproperty.controller");
+const upload = require("../middleware/upload");
 
 // Add Property
-router.post("/", authMiddleware, roleMiddleware("agent"), propertyController.addProperty);
+router.post("/", authMiddleware, roleMiddleware("agent"), upload.array("images",10), propertyController.addProperty);
 
 //get property
 router.get("/", authMiddleware, propertyController.getAllProperties);

@@ -1,4 +1,5 @@
 const Property = require("../models/property.model");
+const cloudinary = require("../config/cloudinary")
 
 // Add Property
 const addProperty = async (req, res) => {
@@ -17,18 +18,31 @@ const addProperty = async (req, res) => {
             location,
         } = req.body;
 
+        const imageUrls = [];
+
+        for (const file of req.files) {
+            const result = await new Promise((resolve, reject) => {
+                const stream = cloudinary.uploader.upload_stream(
+                    {
+                        folder: "real-estate/properties",
+                    },
+                    (error, result) => {
+                        if (error) {
+                            reject(error);
+                        } else {
+                            resolve(result);
+                        }
+                    }
+                );
+
+                stream.end(file.buffer);
+            });
+            imageUrls.push(result.secure_url);
+        }
+
         const property = await Property.create({
-            title,
-            description,
-            type,
-            bhk,
-            area,
-            price,
-            city,
-            locality,
-            amenities,
-            images,
-            location,
+            ...req.body,
+            images: imageUrls,
             agent: req.user._id,
         });
 
