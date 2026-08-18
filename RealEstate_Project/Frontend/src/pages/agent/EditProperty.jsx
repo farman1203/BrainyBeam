@@ -15,7 +15,7 @@ export default function EditProperty() {
 
   useEffect(() => {
     getProperty();
-  }, []);
+  }, [id]);
 
   const getProperty = async () => {
     try {
@@ -25,9 +25,12 @@ export default function EditProperty() {
         }
       );
       setProperty(res.data.property);
+      console.log(res.data);
+      
     }
     catch (err) {
       console.log(err);
+      
     }
   }
 
@@ -41,7 +44,8 @@ export default function EditProperty() {
       toast.success("Property Updated");
     }
     catch (err) {
-      toast.error(err.response.data.message);
+      console.log (err.response.data.message);
+     
     }
   }
 

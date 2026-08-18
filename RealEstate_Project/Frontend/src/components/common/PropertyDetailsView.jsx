@@ -35,18 +35,24 @@ export default function PropertyDetailsView({ property, actions }) {
       {/* Gallery */}
       <div>
         <div className="pdv-gallery-main">
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl8B6qoFCgTR1NZRCi4aYL5AoCz4N1UsoC7plvBDT8mg&s=10"
-          />
+
+          {property?.images?.map((image) => (
+            <img
+              key={image.public_id}
+              src={image.url}
+              alt={property.title}
+            />
+          ))}
         </div>
         <div className="pdv-thumb-row">
           {property.images.map((img, i) => (
             <button
-              key={img}
+                key={img.public_id}
+              src={img.url}
               onClick={() => setActiveImage(i)}
               className={`pdv-thumb-btn ${activeImage === i ? 'pdv-thumb-btn--active' : ''}`}
             >
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl8B6qoFCgTR1NZRCi4aYL5AoCz4N1UsoC7plvBDT8mg&s=10" alt="" />
+              <img src={img.images} alt="" />
             </button>
           ))}
         </div>

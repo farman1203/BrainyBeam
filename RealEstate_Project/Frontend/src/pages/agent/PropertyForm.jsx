@@ -32,21 +32,34 @@ export default function PropertyForm({ initialData = {}, onSubmit, submitLabel =
     "Security",
   ];
 
-  const [images, setImages] = useState([])
+  const [existingImages, setExistingImages] = useState(
+    initialData.images || []
+  );
+
+  const [images, setImages] = useState([]);
 
   const [form, setForm] = useState({
     title: initialData.title || '',
-    description: initialData.description || '',
+    description: initialData.description || "",
     type: initialData.type || propertyTypes[0],
     bhk: initialData.bhk || 1,
-    area: initialData.area || '',
-    price: initialData.price || '',
+    area: initialData.area || "",
+    price: initialData.price || "",
     city: initialData.city || cities[0],
-    locality: initialData.locality || '',
+    locality: initialData.locality || "",
     amenities: initialData.amenities || [],
-    lat: initialData.lat || '',
-    lng: initialData.lng || '',
-  })
+    lat: initialData.location?.lat || "",
+    lng: initialData.location?.lng || "",
+  });
+
+  const removeExistingImage = (publicId) => {
+    setExistingImages((prev) =>
+      prev.filter(
+        (image) => image.public_id !== publicId
+      )
+    );
+  };
+
   const [submitted, setSubmitted] = useState(false)
 
   const handleChange = (e) => {
@@ -55,42 +68,51 @@ export default function PropertyForm({ initialData = {}, onSubmit, submitLabel =
   }
 
   const handleImageChange = (e) => {
-    const files = Array.from(e.target.files)
-    setImages(files)
-  }
+    const files = Array.from(e.target.files);
+    setImages((prev) => [
+      ...prev,
+      ...files,
+    ]);
+  };
 
   const toggleAmenity = (amenity) => {
     setForm((f) => ({ ...f, amenities: f.amenities.includes(amenity) ? f.amenities.filter((a) => a !== amenity) : [...f.amenities, amenity], }))
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    const formData = new FormData()
+    const formData = new FormData();
 
-    formData.append("title", form.title)
-    formData.append("description", form.description)
-    formData.append("type", form.type)
-    formData.append("bhk", form.bhk)
-    formData.append("area", form.area)
-    formData.append("price", form.price)
-    formData.append("city", form.city)
-    formData.append("locality", form.locality)
-    formData.append("lat", form.lat)
-    formData.append("lng", form.lng)
+    formData.append("title", form.title);
+    formData.append("description", form.description);
+    formData.append("type", form.type);
+    formData.append("bhk", form.bhk);
+    formData.append("area", form.area);
+    formData.append("price", form.price);
+    formData.append("city", form.city);
+    formData.append("locality", form.locality);
+    formData.append("lat", form.lat);
+    formData.append("lng", form.lng);
 
-    // amenities
-    form.amenities.forEach((amenity) => {
-      formData.append("amenities", amenity)
-    })
+    // Amenities
+    formData.append(
+      "amenities",
+      JSON.stringify(form.amenities)
+    );
 
-    // images
+    // Existing images which user wants to KEEP
+    formData.append(
+      "existingImages",
+      JSON.stringify(existingImages)
+    );
+
+    // New images
     images.forEach((image) => {
-      formData.append("images", image)
-    })
-
-    onSubmit?.(formData)
-  }
+      formData.append("images", image);
+    });
+    onSubmit?.(formData);
+  };
 
   return (
     <div>
@@ -189,19 +211,108 @@ export default function PropertyForm({ initialData = {}, onSubmit, submitLabel =
         </div>
 
         {/* Images */}
+        {/* Existing Images */}
+        {existingImages.length > 0 && (
+          <div className="existing-images-section">
+
+            <h3
+              className="property-form-section-title"
+              style={{ marginBottom: "0.75rem" }}
+            >
+              Existing Images
+            </h3>
+
+            <div className="existing-images-grid">
+
+              {existingImages.map((image) => (
+                <div
+                  className="existing-image-card"
+                  key={image.public_id}
+                >
+
+                  <img
+                    src={image.url}
+                    alt="Property"
+                  />
+
+                  <button
+                    type="button"
+                    onClick={() =>
+                      removeExistingImage(image.public_id)
+                    }
+                    className="remove-image-btn"
+                  >
+                    <X size={16} />
+                  </button>
+
+                </div>
+              ))}
+
+            </div>
+
+          </div>
+        )}
+
+
+        {/* Upload New Images */}
         <div>
-          <h3 className="property-form-section-title" style={{ marginBottom: '0.75rem' }}>Upload Images</h3>
+
+          <h3
+            className="property-form-section-title"
+            style={{ marginBottom: "0.75rem" }}
+          >
+            Upload Images
+          </h3>
+
           <div className="property-form-upload-box">
-            <UploadCloud size={28} className="property-form-upload-icon" />
-            <p className="property-form-upload-text">Drag & drop images here, or click to browse</p>
+
+            <UploadCloud
+              size={28}
+              className="property-form-upload-icon"
+            />
+
+            <p className="property-form-upload-text">
+              Drag & drop images here, or click to browse
+            </p>
+
             <input
               type="file"
               multiple
               accept="image/*"
               onChange={handleImageChange}
             />
+
           </div>
+
         </div>
+
+
+        {/* New Images Preview */}
+        {images.length > 0 && (
+          <div className="new-images-preview">
+
+            <h4>New Images</h4>
+
+            <div className="new-images-grid">
+
+              {images.map((image, index) => (
+                <div
+                  className="new-image-card"
+                  key={`${image.name}-${index}`}
+                >
+
+                  <img
+                    src={URL.createObjectURL(image)}
+                    alt={image.name}
+                  />
+
+                </div>
+              ))}
+
+            </div>
+
+          </div>
+        )}
 
         {/* Location */}
         <div>
