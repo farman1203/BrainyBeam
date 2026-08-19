@@ -100,7 +100,7 @@ export default function MyProperties() {
         <div className="my-properties-grid">
           {paged.map((p) => (
             <div key={p._id} className="my-properties-card">
-              <img src={p.images} alt={p.title} className="my-properties-card-image" />
+              <img src={p.images[0]?.url} alt={p.title} className="my-properties-card-image" />
               <div className="my-properties-card-body">
                 <span className="my-properties-status-badge">{p.status}</span>
                 <h3 className="my-properties-card-title">{p.title}</h3>

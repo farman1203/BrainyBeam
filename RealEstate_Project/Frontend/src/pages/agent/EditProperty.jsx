@@ -25,7 +25,7 @@ export default function EditProperty() {
         }
       );
       setProperty(res.data.property);
-      console.log(res.data);
+      // console.log(res.data);
       
     }
     catch (err) {

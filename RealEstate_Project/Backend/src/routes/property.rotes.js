@@ -13,7 +13,7 @@ router.post("/", authMiddleware, roleMiddleware("agent"), upload.array("images",
 router.get("/", authMiddleware, propertyController.getAllProperties);
 
 // Update Property
-router.put("/:id", authMiddleware, roleMiddleware("agent", "admin"), propertyController.updateProperty);
+router.put("/:id", authMiddleware, roleMiddleware("agent", "admin"), upload.array("images", 10), propertyController.updateProperty);
 
 // Delete Property
 router.delete("/:id", authMiddleware, roleMiddleware("agent", "admin"), propertyController.deleteProperty);

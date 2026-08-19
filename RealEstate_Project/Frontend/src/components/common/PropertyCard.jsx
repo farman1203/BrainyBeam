@@ -5,7 +5,7 @@ import '../common/style/PropertyCard.css'
 
 
 export default function PropertyCard({ property, detailsPath = '/buyer/properties', onSave, onCompare, saved = false }) {
-  const { _id, title, name, city, locality, price, bhk, area, type, agent, image } = property
+  const { _id, title,name, city, locality, price, bhk, area, type, agent, image } = property
 
   const formatPrice = (price) => {
     if (price >= 10000000) {
@@ -24,7 +24,7 @@ export default function PropertyCard({ property, detailsPath = '/buyer/propertie
     <div className="property-card">
       <div className="property-card-image-wrap">
         <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl8B6qoFCgTR1NZRCi4aYL5AoCz4N1UsoC7plvBDT8mg&s=10"
+          src={property.images?.[0]?.url}
           alt={title}
           className="property-card-image"
         />

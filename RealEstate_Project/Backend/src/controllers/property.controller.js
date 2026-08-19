@@ -1,6 +1,6 @@
 const Property = require("../models/property.model");
 const cloudinary = require("../config/cloudinary");
-const uploadToCloudinary = require('../config/uploadtoCloudinary')
+const uploadToCloudinary = require('../config/uploadtoCloaudinary')
 
 // Add Property
 const addProperty = async (req, res) => {
@@ -26,7 +26,6 @@ const addProperty = async (req, res) => {
         if (req.files && req.files.length > 0) {
             for (const file of req.files) {
                 const image = await uploadToCloudinary(file);
-
                 images.push(image);
             }
         }
@@ -49,7 +48,6 @@ const addProperty = async (req, res) => {
             },
             status,
             images,
-            // Logged in agent
             agent: req.user._id,
         });
 
@@ -178,7 +176,6 @@ const updateProperty = async (req, res) => {
         if (req.files && req.files.length > 0) {
             for (const file of req.files) {
                 const image = await uploadToCloudinary(file);
-
                 newImages.push(image);
             }
         }

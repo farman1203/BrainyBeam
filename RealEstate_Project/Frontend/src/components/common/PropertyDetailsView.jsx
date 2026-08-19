@@ -52,7 +52,7 @@ export default function PropertyDetailsView({ property, actions }) {
               onClick={() => setActiveImage(i)}
               className={`pdv-thumb-btn ${activeImage === i ? 'pdv-thumb-btn--active' : ''}`}
             >
-              <img src={img.images} alt="" />
+              <img src={img.url} alt="" />
             </button>
           ))}
         </div>
