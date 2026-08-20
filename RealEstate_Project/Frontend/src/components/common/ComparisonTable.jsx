@@ -91,10 +91,7 @@ export default function ComparisonTable({ items, onRemove }) {
                     <X size={12} />
                   </button>
                   <img
-                    src={
-                      p.images?.[0] ||
-                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl8B6qoFCgTR1NZRCi4aYL5AoCz4N1UsoC7plvBDT8mg&s=10"
-                    }
+                    src={p.images?.[0].url}
                     alt={p.title}
                     className="comparison-table-image"
                   />

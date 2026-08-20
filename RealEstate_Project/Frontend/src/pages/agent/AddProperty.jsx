@@ -19,7 +19,7 @@ export default function AddProperty() {
       toast.success(res.data.message);
       navigate("/agent/properties");
     } catch (error) {
-      toast.error(error.response?.data?.message);
+      console.log(error.response?.data?.message);
     }
   };
 

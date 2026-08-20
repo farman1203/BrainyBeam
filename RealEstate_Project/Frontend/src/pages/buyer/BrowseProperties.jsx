@@ -53,6 +53,7 @@ export default function BrowseProperties() {
   const cities = [...new Set(properties.map((p) => p.city))];
   const pageess = properties.slice((page - 1) * pageSize, page * pageSize);
 
+   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   useEffect(() => {
     getProperties();
     getSavedIds();
@@ -121,15 +122,15 @@ export default function BrowseProperties() {
           className="browse-filter-toggle-btn"
         >
           <SlidersHorizontal size={16} /> Filters
+           {/* <FilterSidebar filters={filters} setFilters={setFilters} onReset={resetFilters} cities={cities} /> */}
         </button>
       </div>
+
 
       <div className="browse-layout-grid">
         <div className="browse-sidebar-desktop">
           <FilterSidebar filters={filters} setFilters={setFilters} onReset={resetFilters} cities={cities} />
         </div>
-
-        {/* {/* Mobile filter drawer */}
         {
           loading ? (
             <LoadingSkeleton count={6} />
