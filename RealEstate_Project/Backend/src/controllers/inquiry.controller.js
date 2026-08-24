@@ -101,53 +101,79 @@ const updateInquiryStatus = async (req, res) => {
         const allowedStatuses = [
             "New",
             "Contacted",
-            "Site Visit Scheduled",
+            "Site visit",
             "Negotiation",
             "Closed",
-            "Lost",
+            "Lost"
         ];
 
         if (!allowedStatuses.includes(status)) {
             return res.status(400).json({
                 success: false,
-                message: "Invalid status",
+                message: "Invalid status"
             });
         }
 
-        const inquiry = await Inquiry.find({
-            _id: id,
-            agent: req.user._id,
-        });
+        const inquiry = await Inquiry.findById(id);
 
         if (!inquiry) {
             return res.status(404).json({
                 success: false,
-                message: "Lead not found",
+                message: "Inquiry not found"
+            });
+        }
+
+        // Only the assigned agent can update the lead
+        if (inquiry.agent.toString() !== req.user._id.toString()) {
+            return res.status(403).json({
+                success: false,
+                message: "You are not authorized to update this lead"
             });
         }
 
         inquiry.status = status;
 
+        // Status history
+        if (!inquiry.statusHistory) {
+            inquiry.statusHistory = [];
+        }
+
         inquiry.statusHistory.push({
-            status,
-            changedAt: new Date(),
+            status: status,
+            changedAt: new Date()
         });
 
         await inquiry.save();
 
-        const updatedInquiry = await Inquiry.findById(inquiry._id)
-            .populate("buyer", "name email phone")
-            .populate("property", "title city locality price");
+        // Populate data again for frontend
+        await inquiry.populate([
+            {
+                path: "buyer",
+                select: "name email phone"
+            },
+            {
+                path: "property",
+                select: "title city locality price"
+            },
+            {
+                path: "agent",
+                select: "name email phone"
+            }
+        ]);
 
         res.status(200).json({
             success: true,
-            message: "Lead status updated successfully",
-            inquiry: updatedInquiry,
+            message: "Lead status updated",
+            inquiry
         });
+
     } catch (error) {
+
+        console.log("UPDATE INQUIRY STATUS ERROR:", error);
+
         res.status(500).json({
             success: false,
-            message: error.message,
+            message: error.message
         });
     }
 };
