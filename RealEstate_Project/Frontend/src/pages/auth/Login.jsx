@@ -37,7 +37,7 @@ export default function Login() {
     } catch (error) {
       console.log(error);
       console.log(error.response);
-      toast.error(error.response?.data?.message || error.message);
+      console.log(error.response?.data?.message || error.message);
     }
   };
 

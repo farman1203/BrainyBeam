@@ -11,23 +11,51 @@ import { useAuth } from '../../context/AuthContext'
 export default function BuyerDashboard() {
 
   const user = useAuth();
-  const [prop, setProp] = useState([])
+
   const [loading, setLoading] = useState(true);
+  const [properties, setProperty] = useState([]);
+  const [savedProperties, setSavedProperties] = useState([]);
+  const [inquiries, setInquiries] = useState([]);
+
+
 
   useEffect(() => {
-    getProperties()
-  })
+    getDashboardData()
+  },[])
 
-  const getProperties = async () => {
+  const getDashboardData = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/api/property",
+      //get all property
+      const propertyRes = await axios.get("http://localhost:3000/api/property",
         {
           withCredentials: true,
         }
       );
-      setProp(res.data.properties)
+
+      //saved property
+      const savedRes = await axios.get("http://localhost:3000/api/property/save",
+        {
+          withCredentials: true,
+        }
+      );
+
+      //get all inquiery
+      const inquiryRes = await axios.get("http://localhost:3000/api/inquiry/buyer",
+        {
+          withCredentials: true,
+        }
+      );
+
+      setProperty(propertyRes.data.properties || [])
+      setSavedProperties(savedRes.data.properties || [])
+      setInquiries(inquiryRes.data.inquiries || [])
+
     } catch (error) {
       console.log(error);
+    }
+
+    if (loading) {
+      return <h2>Loading...</h2>;
     }
   }
 
@@ -48,7 +76,23 @@ export default function BuyerDashboard() {
 
       <div className="stats-grid-3">
 
-        <DashboardCard />
+        <DashboardCard
+        label="Recently Viewed"
+        value={properties.length}
+        icon={Eye} 
+        tone='brand'/>
+
+        <DashboardCard
+        label="Saved Properties"
+        value={savedProperties.length}
+        icon={Heart} 
+        tone='gold'/>
+
+        <DashboardCard
+        label="My Inquiries"
+        value={inquiries.length}
+        icon={MessageSquare} 
+        tone='success'/>
 
       </div>
 
@@ -59,7 +103,7 @@ export default function BuyerDashboard() {
         </div>
 
         {
-          prop.length === 0 ? (
+          properties.length === 0 ? (
             <EmptyState
               title="No Properties Found"
               message="No Property Available"
@@ -68,7 +112,7 @@ export default function BuyerDashboard() {
             <>
               <div className="property-grid-responsive">
                 {
-                  prop.slice(0, 3).map((property) => (
+                  properties.slice(0, 3).map((property) => (
                     <PropertyCard property={property} />
                   ))
                 }
@@ -78,22 +122,6 @@ export default function BuyerDashboard() {
         }
       </div>
 
-
-
-      {/* <div>
-        <div className="buyer-dashboard-section-header">
-          <h2 className="buyer-dashboard-section-title">Saved Properties</h2>
-          <Link to="/buyer/saved" className="buyer-dashboard-view-link">View all</Link>
-        </div>
-        
-          <EmptyState icon={Heart} title="No saved properties" message="Tap the heart icon on any listing to save it here." />
-     
-          <div className="property-grid-responsive">
-            
-              <PropertyCard key="" property="" detailsPath="/buyer/properties" />
-
-          </div>
-      </div> */}
     </div>
   )
 }
