@@ -1,16 +1,32 @@
 import React, { useState } from "react";
 import {
-  FiMail,
-  FiPhone,
-  FiMapPin,
-  FiClock,
   FiSend,
   FiCheckCircle,
 } from "react-icons/fi";
 
 const Contact = () => {
+   const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
+  });
 
   const [submitted, setSubmitted] = useState(false);
+
+   const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Contact Form Data:", formData);
+    setSubmitted(true);
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      subject: "",
+      message: "",
+    });
+  };
 
   return (
     <div className="contact-page">
@@ -42,7 +58,7 @@ const Contact = () => {
               </div>
             )}
 
-            <form >
+            <form onSubmit={handleSubmit}>
               <div className="contact-form-row">
                 <div className="contact-form-group">
                   <label>
