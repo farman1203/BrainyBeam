@@ -1,21 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script>
-        // simple method
-        let arr = [1,2,3,4,5]
+        //reverse of array
+        const arr = [1, 2, 3, 4, 5]
         const rev = []
+        let index = 0
 
-        for(let i=arr.length-1;i>=0;i--){
-            rev.push(arr[i])
+        for (let i = arr.length - 1; i >= 0; i--) {
+            rev[index] = arr[i]
+            index++
         }
         console.log(rev);
+
+
+        // simple method with push() method
+        let arr1 = [1, 2, 3, 4, 5]
+        const rev1 = []
+
+        for (let i = arr1.length - 1; i >= 0; i--) {
+            rev1.push(arr1[i])
+        }
+        console.log(rev1);
+
         
+        //function with argument
+        function Reverse(arr) {
+            let rev = []
+            for (let i = arr.length - 1; i >= 0; i--) {
+                rev.push(arr[i])
+            }
+            return rev
+        }
+        console.log(Reverse([1, 2, 3, 4, 5]));
+
     </script>
 </body>
+
 </html>
