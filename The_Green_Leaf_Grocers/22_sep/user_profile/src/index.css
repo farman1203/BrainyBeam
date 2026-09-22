@@ -1,0 +1,105 @@
+.user-profile {
+  min-height: 100vh;
+  background: #f5f7f6;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.profile-card {
+  background: white;
+  width: 100%;
+  max-width: 600px;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.profile-avatar {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: #e8f3e9;
+  color: #2e7d4f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+}
+
+.profile-header h2 {
+  margin: 0;
+  color: #183b2b;
+}
+
+.profile-header p {
+  margin: 5px 0 0;
+  color: #777;
+  font-size: 14px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 7px;
+  font-weight: 600;
+  color: #444;
+}
+
+.input-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #ddd;
+  border-radius: 7px;
+  padding: 0 12px;
+}
+
+.input-box svg {
+  color: #2e7d4f;
+}
+
+.input-box input {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 13px 5px;
+  font-size: 14px;
+}
+
+.update-btn {
+  width: 100%;
+  border: none;
+  background: #2e7d4f;
+  color: white;
+  padding: 13px;
+  border-radius: 7px;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+.update-btn:hover {
+  background: #24643f;
+}
+
+@media (max-width: 500px) {
+  .user-profile {
+    padding: 20px 15px;
+  }
+
+  .profile-card {
+    padding: 20px;
+  }
+}
