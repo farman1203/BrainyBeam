@@ -1,0 +1,20 @@
+.navbar {
+  padding: 12px 0;
+}
+
+.navbar-brand {
+  font-size: 22px;
+}
+
+.nav-link {
+  margin: 0 5px;
+  color: #333 !important;
+}
+
+.nav-link:hover {
+  color: #198754 !important;
+}
+
+.btn-success {
+  padding: 7px 18px;
+}
