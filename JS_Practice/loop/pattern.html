@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // *
+        // **
+        // ***
+        // ****
+        // *****
+        for (let i = 1; i <= 5; i++) {
+            let pattern = ""
+            for (let j = 1; j <= i; j++) {
+                pattern += "*";
+            }
+            console.log(pattern);
+        }
+
+        // *****
+        // ****
+        // ***
+        // **
+        // *
+        for (let i = 5; i >= 1; i--) {
+            let ptr = "";
+            for (let j = 1; j <= i; j++) {
+                ptr += "*"
+            }
+            console.log(ptr);
+        }
+
+        //  1
+        //  12
+        //  123
+        //  1234
+        //  12345
+        for (let i = 1; i <= 5; i++) {
+            let print = "";
+            for (let j = 1; j <= i; j++) {
+                print += j
+            }
+            console.log(print);
+        }
+
+        //  12345
+        //  1234
+        //  123
+        //  12
+        //  1
+        for (let i = 5; i >= 1; i--) {
+            let pattern1 = "";
+            for (let j = 1; j <= i; j++) {
+                pattern1 += j
+            }
+            console.log(pattern1);
+        }
+    </script>
+</body>
+
+</html>
