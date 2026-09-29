@@ -1,0 +1,149 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.checkout-page {
+  min-height: 100vh;
+  background: #f5f7f6;
+  padding: 40px 20px;
+}
+
+.checkout-container {
+  max-width: 700px;
+  margin: auto;
+}
+
+.checkout-container h2 {
+  margin: 0;
+  color: #183b2b;
+  font-size: 28px;
+}
+
+.checkout-subtitle {
+  color: #777;
+  margin-bottom: 25px;
+}
+
+/* Common Box */
+
+.checkout-box,
+.price-box {
+  background: white;
+  padding: 22px;
+  border-radius: 10px;
+  margin-bottom: 18px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+}
+
+.box-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #2e7d4f;
+  margin-bottom: 18px;
+}
+
+.box-title h3 {
+  margin: 0;
+  color: #333;
+  font-size: 18px;
+}
+
+/* Items */
+
+.checkout-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding: 12px 0;
+}
+
+.checkout-item:last-child {
+  border-bottom: none;
+}
+
+.checkout-item h4 {
+  margin: 0 0 5px;
+  color: #333;
+}
+
+.checkout-item p {
+  margin: 0;
+  color: #888;
+  font-size: 13px;
+}
+
+.checkout-item strong {
+  color: #2e7d4f;
+}
+
+/* Address */
+
+.address {
+  color: #555;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Payment */
+
+.payment-method {
+  margin: 0;
+  color: #555;
+}
+
+/* Price */
+
+.price-box>div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  color: #555;
+}
+
+.price-box hr {
+  border: none;
+  border-top: 1px solid #eee;
+  margin: 15px 0;
+}
+
+.price-box .total {
+  color: #183b2b;
+  font-size: 18px;
+}
+
+.place-order-btn {
+  width: 100%;
+  border: none;
+  background: #2e7d4f;
+  color: white;
+  padding: 13px;
+  border-radius: 7px;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.place-order-btn:hover {
+  background: #24643f;
+}
+
+/* Mobile */
+
+@media (max-width: 500px) {
+  .checkout-page {
+    padding: 20px 15px;
+  }
+
+  .checkout-container h2 {
+    font-size: 24px;
+  }
+
+  .checkout-box,
+  .price-box {
+    padding: 18px;
+  }
+}
