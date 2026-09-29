@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //print array with fol loop
+        let number = [10, 20, 30, 40, 50];
+        for (let i = 0; i < number.length; i++) {
+            console.log(number[i]);
+        }
+
+        //sum array with for loop
+        let arr = [10, 20, 30, 40, 50];
+        let sum = 0
+        for (let i = 0; i < arr.length; i++) {
+            sum = sum + arr[i]
+        }
+        console.log(sum);
+
+        //print even number with for loop
+        let numbers = [];
+        for (let i = 1; i <= 10; i++) {
+            if (i % 2 == 0) {
+                numbers.push(i)
+            }
+        }
+        console.log(numbers);
+
+        //reverse of array
+        let fruits = ["Apple", "Banana", "Mango", "Orange"];
+        let rev = []
+        for (let i = fruits.length - 1; i >= 0; i--) {
+            rev.push(fruits[i])
+        }
+        console.log(rev);
+
+        //print array with foreach()
+        let num = [10, 20, 30, 40, 50];
+        num.forEach(function arr(num) {
+            console.log(num);
+        })
+
+        //forEach() se har number ka double print karo
+        let a = [10, 20, 30, 40, 50]
+        a.forEach((elem) => {
+            console.log(elem * 2);
+        })
+
+        //print student
+        let students = ["Rahul", "Amit", "Neha", "Shahrukh"];
+        students.forEach((elem)=>{
+            console.log(elem);
+        })
+    </script>
+</body>
+
+</html>
