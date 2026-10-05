@@ -48,15 +48,26 @@
 
         //forEach() se har number ka double print karo
         let a = [10, 20, 30, 40, 50]
-        a.forEach((elem) => {
-            console.log(elem * 2);
+        a.forEach((elem, ind) => {
+            console.log(ind, elem * 2);
         })
 
         //print student
         let students = ["Rahul", "Amit", "Neha", "Shahrukh"];
-        students.forEach((elem)=>{
-            console.log(elem);
+        students.forEach((elem, ind) => {
+            console.log(ind, elem);
         })
+
+        //print even number
+        let num1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        let even = []
+        num1.forEach((elem, index) => {
+            if (elem % 2 == 0) {
+                even.push(elem)
+            }
+        })
+        console.log(even);
+
     </script>
 </body>
 
