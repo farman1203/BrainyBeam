@@ -120,6 +120,7 @@ const Wishlist = () => {
                                     <img
                                         src={product.image}
                                         alt={product.name}
+                                        loading="lazy"
                                     />
                                 </div>
                                 <div className="wishlist-details">

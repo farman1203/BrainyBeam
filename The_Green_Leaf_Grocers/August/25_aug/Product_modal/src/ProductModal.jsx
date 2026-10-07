@@ -97,6 +97,7 @@ const ProductModal = () => {
                                 src={product.image}
                                 alt={product.name}
                                 className="product-image"
+                                loading="lazy"
                             />
 
                         </div>
