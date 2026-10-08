@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'motion/react';
 import {
   ShieldCheck,
   Zap,
@@ -14,7 +15,20 @@ export default function HeroVisual() {
   return (
     <div className="hero-visual-container" aria-label="TechNova Cloud Architecture Console Preview">
       {/* Floating Card Top-Right: Uptime & SLA */}
-      <div className="floating-card-1">
+      <motion.div
+        className="floating-card-1"
+        initial={{ opacity: 0, x: 20 }}
+        animate={{
+          opacity: 1,
+          x: 0,
+          y: [0, -7, 0]
+        }}
+        transition={{
+          opacity: { duration: 0.5, delay: 0.4 },
+          x: { duration: 0.5, delay: 0.4 },
+          y: { repeat: Infinity, duration: 4.8, ease: 'easeInOut' }
+        }}
+      >
         <div className="floating-icon-wrap" style={{ backgroundColor: '#ECFDF5', color: '#10B981' }}>
           <ShieldCheck size={20} strokeWidth={2.2} />
         </div>
@@ -22,10 +36,19 @@ export default function HeroVisual() {
           <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 500 }}>High Availability</div>
           <div style={{ fontSize: '0.9375rem', fontWeight: 700, color: '#111111' }}>99.98% Uptime SLA</div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Main Center Console Card */}
-      <div className="hero-visual-card-main">
+      <motion.div
+        className="hero-visual-card-main"
+        initial={{ opacity: 0, y: 30, scale: 0.96 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.7, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+        whileHover={{
+          y: -4,
+          transition: { duration: 0.25, ease: 'easeOut' }
+        }}
+      >
         <div className="hero-card-header">
           <div className="hero-card-dots">
             <span className="hero-card-dot" style={{ backgroundColor: '#EF4444' }} />
@@ -133,10 +156,23 @@ export default function HeroVisual() {
             </span>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Floating Card Bottom-Left: Live Deployments */}
-      <div className="floating-card-2">
+      <motion.div
+        className="floating-card-2"
+        initial={{ opacity: 0, x: -20 }}
+        animate={{
+          opacity: 1,
+          x: 0,
+          y: [0, -8, 0]
+        }}
+        transition={{
+          opacity: { duration: 0.5, delay: 0.5 },
+          x: { duration: 0.5, delay: 0.5 },
+          y: { repeat: Infinity, duration: 5.2, ease: 'easeInOut', delay: 0.8 }
+        }}
+      >
         <div className="floating-icon-wrap" style={{ backgroundColor: 'var(--accent-light)', color: 'var(--accent-primary)' }}>
           <Zap size={20} strokeWidth={2.2} />
         </div>
@@ -144,7 +180,7 @@ export default function HeroVisual() {
           <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 500 }}>Active Deployments</div>
           <div style={{ fontSize: '0.9375rem', fontWeight: 700, color: '#111111' }}>42 Global Clusters</div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

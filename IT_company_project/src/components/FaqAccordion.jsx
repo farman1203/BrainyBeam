@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown } from 'lucide-react';
 import { faqData } from '../data/faqData';
 import '../styles/components.css';
@@ -24,20 +25,31 @@ export default function FaqAccordion({ items = faqData, initialOpen = 0 }) {
               aria-controls={`faq-answer-${index}`}
             >
               <span>{item.question}</span>
-              <span className="faq-icon-wrapper">
+              <motion.span
+                className="faq-icon-wrapper"
+                animate={{ rotate: isOpen ? 180 : 0 }}
+                transition={{ duration: 0.25, ease: 'easeOut' }}
+              >
                 <ChevronDown size={20} />
-              </span>
+              </motion.span>
             </button>
 
-            {isOpen && (
-              <div
-                id={`faq-answer-${index}`}
-                className="faq-answer-content"
-                role="region"
-              >
-                <p>{item.answer}</p>
-              </div>
-            )}
+            <AnimatePresence initial={false}>
+              {isOpen && (
+                <motion.div
+                  id={`faq-answer-${index}`}
+                  className="faq-answer-content"
+                  role="region"
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  style={{ overflow: 'hidden' }}
+                >
+                  <p>{item.answer}</p>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         );
       })}

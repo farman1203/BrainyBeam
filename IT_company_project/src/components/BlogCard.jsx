@@ -1,11 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'motion/react';
 import { ArrowRight, Clock } from 'lucide-react';
+import { itemFadeUp } from '../utils/motionVariants';
 import '../styles/components.css';
 
 export default function BlogCard({ post }) {
   return (
-    <article className="blog-card">
+    <motion.article
+      className="blog-card"
+      variants={itemFadeUp}
+      whileHover={{
+        y: -6,
+        scale: 1.01,
+        transition: { duration: 0.25, ease: 'easeOut' }
+      }}
+    >
       <div className="blog-card-header">
         <span className="badge badge-blue">{post.category}</span>
         <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.8125rem', color: 'var(--text-muted)' }}>
@@ -45,9 +55,15 @@ export default function BlogCard({ post }) {
           aria-label={`Read article: ${post.title}`}
         >
           <span>Read</span>
-          <ArrowRight size={14} />
+          <motion.span
+            style={{ display: 'inline-flex', alignItems: 'center' }}
+            whileHover={{ x: 4 }}
+            transition={{ duration: 0.2 }}
+          >
+            <ArrowRight size={14} />
+          </motion.span>
         </Link>
       </div>
-    </article>
+    </motion.article>
   );
 }

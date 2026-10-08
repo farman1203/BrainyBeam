@@ -1,4 +1,6 @@
 import React from 'react';
+import { motion } from 'motion/react';
+import { containerVariants, itemFadeUp } from '../utils/motionVariants';
 import '../styles/components.css';
 
 const steps = [
@@ -36,14 +38,28 @@ const steps = [
 
 export default function ProcessTimeline() {
   return (
-    <div className="process-grid">
+    <motion.div
+      className="process-grid"
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.15 }}
+    >
       {steps.map((item, idx) => (
-        <div key={idx} className="process-card">
+        <motion.div
+          key={idx}
+          className="process-card"
+          variants={itemFadeUp}
+          whileHover={{
+            y: -6,
+            transition: { duration: 0.25, ease: 'easeOut' }
+          }}
+        >
           <div className="process-number">{item.step}</div>
           <h3 className="process-title">{item.title}</h3>
           <p className="process-desc">{item.desc}</p>
-        </div>
+        </motion.div>
       ))}
-    </div>
+    </motion.div>
   );
 }

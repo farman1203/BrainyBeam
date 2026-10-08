@@ -1,4 +1,6 @@
 import React from 'react';
+import { motion } from 'motion/react';
+import { fadeUp } from '../utils/motionVariants';
 
 export default function SectionHeading({
   badge,
@@ -11,7 +13,13 @@ export default function SectionHeading({
   const isDark = theme === 'dark';
 
   return (
-    <div className={`section-header text-${align} ${className}`}>
+    <motion.div
+      className={`section-header text-${align} ${className}`}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      variants={fadeUp}
+    >
       {badge && (
         <span className={`badge ${isDark ? 'badge-dark' : 'badge-blue'}`} style={{ marginBottom: '0.875rem' }}>
           {badge}
@@ -28,6 +36,6 @@ export default function SectionHeading({
           {subtitle}
         </p>
       )}
-    </div>
+    </motion.div>
   );
 }

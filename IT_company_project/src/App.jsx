@@ -1,5 +1,6 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence, motion } from 'motion/react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
@@ -17,14 +18,34 @@ import BlogDetails from './pages/BlogDetails';
 import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
 
-export default function App() {
-  return (
-    <div className="app-container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      <ScrollToTop />
-      <Navbar />
+const pageVariants = {
+  initial: { opacity: 0, y: 18, scale: 0.993 },
+  animate: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.42, ease: [0.22, 1, 0.36, 1] }
+  },
+  exit: {
+    opacity: 0,
+    y: -10,
+    transition: { duration: 0.22, ease: [0.22, 1, 0.36, 1] }
+  }
+};
 
-      <main style={{ flexGrow: 1 }}>
-        <Routes>
+function AnimatedRoutes() {
+  const location = useLocation();
+  return (
+    <AnimatePresence mode="wait" initial={false}>
+      <motion.div
+        key={location.pathname}
+        variants={pageVariants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        style={{ minHeight: '100%' }}
+      >
+        <Routes location={location}>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
@@ -37,8 +58,20 @@ export default function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </main>
+      </motion.div>
+    </AnimatePresence>
+  );
+}
 
+export default function App() {
+  return (
+    <div className="app-container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <ScrollToTop />
+      <Navbar />
+
+      <main style={{ flexGrow: 1 }}>
+        <AnimatedRoutes />
+      </main>
       <Footer />
       <BackToTopButton />
     </div>

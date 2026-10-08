@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'motion/react';
 import {
   ArrowRight,
   Check,
@@ -24,6 +25,14 @@ import ProcessTimeline from '../components/ProcessTimeline';
 import TechnologyGrid from '../components/TechnologyGrid';
 import HeroVisual from '../components/HeroVisual';
 import FaqAccordion from '../components/FaqAccordion';
+import {
+  containerVariants,
+  itemFadeUp,
+  fadeUp,
+  fadeDown,
+  fadeLeft,
+  fadeRight
+} from '../utils/motionVariants';
 
 import { servicesData } from '../data/servicesData';
 import { projectsData } from '../data/projectsData';
@@ -31,6 +40,16 @@ import { testimonialsData } from '../data/testimonialsData';
 import { industriesData } from '../data/industriesData';
 
 import '../styles/pages.css';
+
+// Hero stagger variants
+const heroContainer = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.11, delayChildren: 0.05 }
+  }
+};
+const heroBadge  = { hidden: { opacity: 0, y: -16 }, show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } } };
+const heroItem   = { hidden: { opacity: 0, y: 28  }, show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } } };
 
 const clientLogos = [
   { name: 'NEXORA', desc: 'Enterprise Cloud' },
