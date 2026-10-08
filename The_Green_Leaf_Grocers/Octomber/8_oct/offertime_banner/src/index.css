@@ -1,0 +1,156 @@
+.offers-section {
+  padding: 30px 40px;
+  background: #f4f8f3;
+}
+
+.offers-content {
+  max-width: 1100px;
+  margin: auto;
+
+  display: flex;
+  align-items: center;
+  gap: 25px;
+
+  padding: 30px;
+
+  border-radius: 15px;
+
+  background: #183b2b;
+  color: white;
+}
+
+.offers-icon {
+  width: 70px;
+  height: 70px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #2e7d32;
+  font-size: 30px;
+}
+
+.offers-text {
+  flex: 1;
+}
+
+.limited-text {
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #9ccc65;
+}
+
+.offers-text h2 {
+  margin: 7px 0;
+  font-size: 26px;
+}
+
+.offers-text p {
+  margin: 0 0 15px;
+  color: #d5ded8;
+}
+
+.offers-timer {
+  display: flex;
+  gap: 8px;
+}
+
+.timer-box {
+  min-width: 55px;
+  padding: 7px;
+
+  text-align: center;
+
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.timer-box strong {
+  display: block;
+  font-size: 18px;
+}
+
+.timer-box span {
+  font-size: 10px;
+  color: #d5ded8;
+}
+
+.offers-action {
+  text-align: center;
+}
+
+.offers-action button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 12px 20px;
+
+  border: none;
+  border-radius: 7px;
+
+  background: white;
+  color: #183b2b;
+
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.offers-action button:hover {
+  background: #e8f5e9;
+}
+
+.offers-action span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+
+  margin-top: 10px;
+
+  font-size: 12px;
+  color: #b8c8bd;
+}
+
+@media (max-width: 800px) {
+  .offers-section {
+    padding: 25px 15px;
+  }
+
+  .offers-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .offers-timer {
+    justify-content: center;
+  }
+
+  .offers-action {
+    width: 100%;
+  }
+
+  .offers-action button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 400px) {
+  .offers-content {
+    padding: 25px 15px;
+  }
+
+  .offers-text h2 {
+    font-size: 21px;
+  }
+
+  .timer-box {
+    min-width: 48px;
+  }
+}
