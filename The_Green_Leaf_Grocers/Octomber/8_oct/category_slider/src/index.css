@@ -1,0 +1,140 @@
+.category-section {
+  padding: 40px;
+  background: #f4f8f3;
+}
+
+.category-heading {
+  max-width: 1100px;
+  margin: 0 auto 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.category-heading h2 {
+  margin: 0;
+  color: #183b2b;
+}
+
+.category-heading p {
+  margin-top: 7px;
+  color: #777;
+}
+
+.category-arrows {
+  display: flex;
+  gap: 8px;
+}
+
+.category-arrows button {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #2e7d32;
+  border-radius: 50%;
+
+  background: white;
+  color: #2e7d32;
+
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.category-arrows button:hover {
+  background: #2e7d32;
+  color: white;
+}
+
+.category-slider {
+  max-width: 1100px;
+  margin: auto;
+
+  display: flex;
+  gap: 18px;
+
+  overflow-x: auto;
+  scroll-behavior: smooth;
+
+  scrollbar-width: none;
+}
+
+.category-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.category-card {
+  min-width: 145px;
+  height: 145px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background: white;
+  border-radius: 12px;
+
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.category-icon {
+  width: 55px;
+  height: 55px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #e8f5e9;
+  color: #2e7d32;
+
+  font-size: 27px;
+}
+
+.category-card h3 {
+  margin-top: 12px;
+  color: #183b2b;
+  font-size: 16px;
+}
+
+@media (max-width: 600px) {
+  .category-section {
+    padding: 30px 15px;
+  }
+
+  .category-heading {
+    align-items: flex-start;
+  }
+
+  .category-heading h2 {
+    font-size: 22px;
+  }
+
+  .category-heading p {
+    font-size: 13px;
+  }
+
+  .category-arrows {
+    display: none;
+  }
+
+  .category-card {
+    min-width: 125px;
+    height: 125px;
+  }
+}
