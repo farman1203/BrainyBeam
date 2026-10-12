@@ -9,6 +9,7 @@ import Services from './pages/Services';
 import Projects from './pages/Projects';
 import Contact from './pages/Contact';
 import ScrollToTop from './components/ScrollToTop';
+import NotFound from './pages/Pnf404';
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
         <Route path="/services" element={<Services />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/contact" element={<Contact />} />
+        
+        <Route path="*" element={<NotFound />} />
       </Routes>
 
       <Footer />

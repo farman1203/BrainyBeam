@@ -906,30 +906,31 @@ h2 {
     margin-top: 5px;
     width: 100%
 }
+
 .contact-form button:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-  transform: none;
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
 }
 
 .form-status {
-  padding: 12px 14px;
-  border-radius: 10px;
-  font-size: 13px;
-  line-height: 1.6;
-  overflow-wrap: anywhere;
+    padding: 12px 14px;
+    border-radius: 10px;
+    font-size: 13px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
 }
 
 .form-status.success {
-  color: #17663a;
-  background: #eaf8ef;
-  border: 1px solid #bde7ca;
+    color: #17663a;
+    background: #eaf8ef;
+    border: 1px solid #bde7ca;
 }
 
 .form-status.error {
-  color: #a52c20;
-  background: #fff0ed;
-  border: 1px solid #f4c5bd;
+    color: #a52c20;
+    background: #fff0ed;
+    border: 1px solid #f4c5bd;
 }
 
 
@@ -1589,6 +1590,83 @@ footer {
 
 .technology-card:hover .technology-tags span {
     border-color: #f2c9b1;
+}
+
+/* 404 PAGE */
+
+.not-found-page {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 72vh;
+    padding: 90px 24px;
+    overflow: hidden;
+    text-align: center;
+    background:
+        radial-gradient(circle at 50% 35%, #fff0e7 0, transparent 40%),
+        #fff;
+}
+
+.not-found-content {
+    position: relative;
+    z-index: 1;
+    width: min(760px, 100%);
+    margin: auto;
+}
+
+.not-found-number {
+    margin-bottom: 8px;
+    color: var(--orange);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(100px, 23vw, 220px);
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -0.09em;
+    opacity: 0.95;
+}
+
+.not-found-content h1 {
+    max-width: 700px;
+    margin: 20px auto;
+    font-size: clamp(38px, 6vw, 65px);
+    line-height: 1.05;
+}
+
+.not-found-content>p {
+    max-width: 510px;
+    margin: 0 auto;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.not-found-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-top: 30px;
+}
+
+.not-found-actions .text-link {
+    display: inline-flex;
+}
+
+@media (max-width: 500px) {
+    .not-found-page {
+        min-height: 65vh;
+        padding: 70px 20px;
+    }
+
+    .not-found-actions {
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    .not-found-actions .btn {
+        width: 100%;
+    }
 }
 
 
