@@ -39,7 +39,6 @@ function Contact() {
         try {
             setSending(true);
             setStatus({ type: '', message: '' });
-
             await emailjs.sendForm(
                 import.meta.env.VITE_EMAILJS_SERVICE_ID,
                 import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
@@ -48,16 +47,14 @@ function Contact() {
                     publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
                 }
             );
-
             setStatus({
                 type: 'success',
                 message: 'Your project inquiry has been sent successfully!',
             });
-
             form.reset();
+
         } catch (error) {
             console.error('EmailJS error:', error);
-
             setStatus({
                 type: 'error',
                 message: 'Message could not be sent. Please try again.',
