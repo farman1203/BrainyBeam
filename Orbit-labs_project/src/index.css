@@ -1,0 +1,97 @@
+/*
+ * Tailwind CSS v4 + shadcn/ui tokens.
+ *
+ * Tailwind is deliberately scoped so it cannot disturb the site styles in styles.css:
+ *  - Preflight (Tailwind's global reset) is NOT imported.
+ *  - `source(none)` + `@source` restrict class scanning to src/components/ui,
+ *    so utilities exist only for the shadcn/ui primitives. Pages use styles.css.
+ * Imported BEFORE styles.css in main.jsx.
+ */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities) source(none);
+@source "./components/ui";
+
+/* shadcn/ui design tokens, mapped to the Orbit Labs white + orange brand. */
+:root {
+  --radius: 0.75rem;
+  --background: #ffffff;
+  --foreground: #1a1816;
+  --card: #ffffff;
+  --card-foreground: #1a1816;
+  --popover: #ffffff;
+  --popover-foreground: #1a1816;
+  /* Brand orange is #f05a28. Filled buttons use a slightly deeper tone so white text reaches WCAG AA (4.5:1). */
+  --primary: #d4420f;
+  --primary-hover: #bd3a0b;
+  --primary-foreground: #ffffff;
+  --brand: #f05a28;
+  --primary-ink: #c2410c; /* small orange text on white */
+  --secondary: #fff4ed;
+  --secondary-foreground: #1a1816;
+  --muted: #f7f5f3;
+  --muted-foreground: #686868;
+  --accent: #fff0e7;
+  --accent-foreground: #1a1816;
+  --destructive: #b42318;
+  --border: #e8e5e2;
+  --input: #ddd8d4;
+  --ring: #f05a28;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-ink: var(--primary-ink);
+  --color-brand: var(--brand);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Minimal form-control normalisation (what Preflight would do, limited to the controls shadcn uses). */
+@layer base {
+  button,
+  input,
+  select,
+  textarea {
+    margin: 0;
+    font: inherit;
+    letter-spacing: inherit;
+    color: inherit;
+  }
+  button {
+    padding: 0;
+    border: 0 solid;
+    background-color: transparent;
+  }
+  input,
+  select,
+  textarea {
+    border: 0 solid;
+    border-radius: 0;
+    background-color: transparent;
+  }
+  textarea {
+    resize: vertical;
+  }
+}
