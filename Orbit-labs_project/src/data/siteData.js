@@ -3,6 +3,7 @@ import {
     Server,
     Layers,
 } from 'lucide-react';
+import { image } from 'motion/react-client';
 
 export const services = [
     { icon: Code2, title: 'Web Engineering', text: 'High-performance websites and web apps built for speed, scale and conversion.', tags: ['React', 'Node.js', 'APIs'], details: { overview: 'We build fast, reliable websites and web applications, from marketing sites to complex platforms, with a focus on performance, clean code and results you can measure.', deliver: ['Custom websites and web apps in React and Node.js','API design and third-party integrations','Performance, SEO and accessibility built in','Admin panels and dashboards that are easy to use'] } },
@@ -15,9 +16,9 @@ export const services = [
 // `art` picks the built-in illustration. To use a real screenshot instead, add `image: '/projects/name.jpg'`
 // (put the file in a /public/projects folder) and it replaces the illustration automatically.
 export const projects = [
-    { title: 'E-Commerce Platform', text: 'A fast, conversion-focused online store with smooth product discovery, secure checkout and an easy-to-manage catalog.', category: 'E-COMMERCE', art: 'ecommerce' },
-    { title: 'MediNest', text: 'A patient-first healthcare platform that brings appointment booking, doctor discovery and follow-ups into one simple place.', category: 'HEALTHCARE', art: 'healthcare' },
-    { title: 'Real Estate Portal', text: 'A modern property platform to browse listings, filter by what matters and connect buyers, sellers and agents quickly.', category: 'REAL ESTATE', art: 'realestate' },
+    { title: 'E-Commerce Platform', image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsteJhATjM1mbIz7ZrWT9eOJmczREVJhluYikhwd9Z_Q&s=10", text: 'A fast, conversion-focused online store with smooth product discovery, secure checkout and an easy-to-manage catalog.', category: 'E-COMMERCE', art: 'ecommerce' },
+    { title: 'MediNest', image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSY_WaX9oWijoCmqWV68YV-BgG7Fj5UOgwaQbVzabiQgQ&s=10", text: 'A patient-first healthcare platform that brings appointment booking, doctor discovery and follow-ups into one simple place.', category: 'HEALTHCARE', art: 'healthcare' },
+    { title: 'Real Estate Portal', image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRx8OXdpbeBglSHKIWhD7PSY92G3LmON_DpFbDyIfOu7g&s=10", text: 'A modern property platform to browse listings, filter by what matters and connect buyers, sellers and agents quickly.', category: 'REAL ESTATE', art: 'realestate' },
 ];
 
 export const technologyGroups = [

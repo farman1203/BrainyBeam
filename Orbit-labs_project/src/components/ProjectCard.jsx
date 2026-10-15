@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import { ArrowUpRight, Sparkles } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import ProjectArt from './ProjectArt';
 
 /**
  * Project card. The art panel shows `project.image` if set, otherwise a built-in illustration,
@@ -17,11 +16,9 @@ function ProjectCard({ project, index, tone = 'dark', cta, showLabel = false }) 
       <article>
         <div className={`project-art art-${index % 3}`}>
           <div className="project-art-bg">
-            {project.image ? (
+            
               <img src={project.image} alt={`${project.title} preview`} loading="lazy" decoding="async" />
-            ) : (
-              <ProjectArt kind={project.art} />
-            )}
+      
           </div>
           <span className="project-art-index" aria-hidden="true">{number}</span>
           {showLabel && (

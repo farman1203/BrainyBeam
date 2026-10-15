@@ -1531,7 +1531,7 @@ footer {
 
 .footer-grid nav a:hover {
     color: #fff;
-    transform: translateX(3px);
+    transform: translateX(5px);
 }
 
 .footer-contact:hover {
