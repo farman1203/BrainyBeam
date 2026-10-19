@@ -3,10 +3,6 @@ import { ArrowUpRight, Sparkles } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 
-/**
- * Project card. The art panel shows `project.image` if set, otherwise a built-in illustration,
- * with a subtle zoom on hover. `tone` is 'dark' (Home) or 'light' (Projects page). `cta` = { to, label }.
- */
 function ProjectCard({ project, index, tone = 'dark', cta, showLabel = false }) {
   const number = String(index + 1).padStart(2, '0');
   const tagVariant = tone === 'dark' ? 'dark' : 'light';
