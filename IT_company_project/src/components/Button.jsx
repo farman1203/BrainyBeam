@@ -2,74 +2,61 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 
-const MotionLink = motion.create(Link);
-
-export default function Button({
-  children,
+const Button = ({
   to,
-  variant = 'primary', // primary | secondary | dark | outline-white
-  size = 'md',        // sm | md | lg
+  variant = 'primary',
+  size = 'md',
   icon: Icon,
   iconPosition = 'right',
-  className = '',
   onClick,
+  children,
+  style,
+  className = '',
   type = 'button',
   disabled = false,
-  ...props
-}) {
-  const classes = `btn btn-${variant} ${size !== 'md' ? `btn-${size}` : ''} ${className}`.trim();
+}) => {
+  const classes = `btn btn-${variant} btn-${size} ${className}`.trim();
 
   const content = (
     <>
       {Icon && iconPosition === 'left' && (
-        <span style={{ display: 'inline-flex', alignItems: 'center' }}>
-          <Icon size={size === 'sm' ? 16 : 18} />
-        </span>
+        <Icon size={size === 'sm' ? 14 : size === 'lg' ? 20 : 16} className="btn-icon btn-icon-left" />
       )}
       <span>{children}</span>
       {Icon && iconPosition === 'right' && (
-        <motion.span
-          style={{ display: 'inline-flex', alignItems: 'center' }}
-          variants={{
-            hover: { x: 4 }
-          }}
-          transition={{ duration: 0.2, ease: 'easeOut' }}
-        >
-          <Icon size={size === 'sm' ? 16 : 18} />
-        </motion.span>
+        <Icon size={size === 'sm' ? 14 : size === 'lg' ? 20 : 16} className="btn-icon btn-icon-right" />
       )}
     </>
   );
 
   const motionProps = {
-    whileHover: disabled ? {} : 'hover',
+    whileHover: disabled ? {} : { scale: 1.03, y: -1 },
     whileTap: disabled ? {} : { scale: 0.97 },
-    transition: { duration: 0.2, ease: 'easeOut' }
+    transition: { type: 'spring', stiffness: 400, damping: 20 },
   };
 
   if (to) {
     return (
-      <MotionLink
-        to={to}
-        className={classes}
-        {...motionProps}
-        {...props}
-      >
-        {content}
-      </MotionLink>
+      <motion.div {...motionProps} style={{ display: 'inline-block' }}>
+        <Link to={to} className={classes} style={style} onClick={onClick}>
+          {content}
+        </Link>
+      </motion.div>
     );
   }
 
   return (
     <motion.button
+      {...motionProps}
       type={type}
       className={classes}
+      style={style}
       onClick={onClick}
       disabled={disabled}
-      {...motionProps}
-      {...props}
     >
       {content}
     </motion.button>
   );
-}
+};
+
+export default Button;

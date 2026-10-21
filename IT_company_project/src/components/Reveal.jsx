@@ -1,34 +1,50 @@
-import React from 'react';
-import { motion } from 'motion/react';
+import React, { useRef } from 'react';
+import { motion, useInView } from 'motion/react';
 
-const variants = {
-  up: { hidden: { opacity: 0, y: 35 }, visible: { opacity: 1, y: 0 } },
-  left: { hidden: { opacity: 0, x: -35 }, visible: { opacity: 1, x: 0 } },
-  right: { hidden: { opacity: 0, x: 35 }, visible: { opacity: 1, x: 0 } },
-  scale: { hidden: { opacity: 0, scale: 0.94 }, visible: { opacity: 1, scale: 1 } }
+const directionMap = {
+  up:    { y: 40, x: 0 },
+  left:  { y: 0,  x: -40 },
+  right: { y: 0,  x: 40 },
+  none:  { y: 0,  x: 0 },
 };
 
-export default function Reveal({
+const Reveal = ({
   children,
-  direction = 'up',
   delay = 0,
-  duration = 0.65,
+  direction = 'up',
   className = '',
-  once = true,
-  amount = 0.15
-}) {
-  const selected = variants[direction] || variants.up;
+  duration = 0.6,
+}) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-60px 0px' });
+
+  const { x, y } = directionMap[direction] ?? directionMap.up;
+
+  const variants = {
+    hidden: { opacity: 0, x, y },
+    visible: {
+      opacity: 1,
+      x: 0,
+      y: 0,
+      transition: {
+        duration,
+        delay,
+        ease: [0.25, 0.1, 0.25, 1],
+      },
+    },
+  };
 
   return (
     <motion.div
+      ref={ref}
       className={className}
-      variants={selected}
+      variants={variants}
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once, amount }}
-      transition={{ duration, delay, ease: [0.22, 1, 0.36, 1] }}
+      animate={isInView ? 'visible' : 'hidden'}
     >
       {children}
     </motion.div>
   );
-}
+};
+
+export default Reveal;

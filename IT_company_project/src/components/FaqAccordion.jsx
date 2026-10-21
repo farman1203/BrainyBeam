@@ -1,52 +1,53 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown } from 'lucide-react';
-import { faqData } from '../data/faqData';
-import '../styles/components.css';
+// import faqData from '../data/faqData';
 
-export default function FaqAccordion({ items = faqData, initialOpen = 0 }) {
-  const [openIndex, setOpenIndex] = useState(initialOpen);
+const FaqAccordion = () => {
+  const [openId, setOpenId] = useState(null);
 
-  const toggleItem = (index) => {
-    setOpenIndex(openIndex === index ? -1 : index);
-  };
+  const toggle = (id) => setOpenId((prev) => (prev === id ? null : id));
 
   return (
-    <div className="faq-accordion-container" role="region" aria-label="Frequently Asked Questions">
-      {items.map((item, index) => {
-        const isOpen = openIndex === index;
+    <div className="faq-accordion">
+      {faqData.map((item) => {
+        const isOpen = openId === item.id;
         return (
-          <div key={index} className={`faq-item ${isOpen ? 'open' : ''}`}>
+          <div
+            key={item.id}
+            className={`faq-item${isOpen ? ' faq-item--open' : ''}`}
+          >
+            {/* Question row / trigger */}
             <button
-              type="button"
-              className="faq-question-btn"
-              onClick={() => toggleItem(index)}
+              className="faq-item__trigger"
+              onClick={() => toggle(item.id)}
               aria-expanded={isOpen}
-              aria-controls={`faq-answer-${index}`}
             >
-              <span>{item.question}</span>
+              <span className="faq-item__question">{item.question}</span>
               <motion.span
-                className="faq-icon-wrapper"
+                className="faq-item__chevron"
                 animate={{ rotate: isOpen ? 180 : 0 }}
-                transition={{ duration: 0.25, ease: 'easeOut' }}
+                transition={{ duration: 0.3, ease: 'easeInOut' }}
               >
-                <ChevronDown size={20} />
+                <ChevronDown size={20} strokeWidth={2} />
               </motion.span>
             </button>
 
+            {/* Answer panel — AnimatePresence for mount/unmount animation */}
             <AnimatePresence initial={false}>
               {isOpen && (
                 <motion.div
-                  id={`faq-answer-${index}`}
-                  className="faq-answer-content"
-                  role="region"
+                  key="answer"
+                  className="faq-item__answer-wrapper"
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: 'auto', opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
                   style={{ overflow: 'hidden' }}
                 >
-                  <p>{item.answer}</p>
+                  <div className="faq-item__answer">
+                    <p>{item.answer}</p>
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -55,4 +56,6 @@ export default function FaqAccordion({ items = faqData, initialOpen = 0 }) {
       })}
     </div>
   );
-}
+};
+
+export default FaqAccordion;

@@ -1,94 +1,105 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { ArrowRight } from 'lucide-react';
-import { itemFadeUp } from '../utils/motionVariants';
-import '../styles/components.css';
+import { ArrowUpRight, BarChart2, Users, Clock } from 'lucide-react';
 
-export default function ProjectCard({ project }) {
-  // Extract key metric to display on preview card
-  const primaryMetric = project.metrics && project.metrics[0];
-  const secondaryMetric = project.metrics && project.metrics[1];
+const ProjectCard = ({ project }) => {
+  const {
+    title,
+    description,
+    category,
+    year,
+    tags = [],
+    featured,
+    stats = {},
+    link,
+  } = project;
+
+  const statEntries = Object.entries(stats).slice(0, 3);
+  const statIcons = [BarChart2, Users, Clock];
 
   return (
-    <motion.article
-      className="project-card"
-      variants={itemFadeUp}
-      whileHover={{
-        y: -8,
-        transition: { duration: 0.25, ease: 'easeOut' }
-      }}
-      initial="initial"
+    <motion.div
+      className={`project-card${featured ? ' project-card--featured' : ''}`}
+      whileHover={{ y: -5 }}
+      transition={{ type: 'spring', stiffness: 280, damping: 22 }}
     >
-      <div className="project-visual-wrapper">
-        <motion.div
-          className="project-mockup-frame"
-          whileHover={{ scale: 1.02 }}
-          transition={{ duration: 0.2 }}
-        >
-          <div className="mockup-header-bar">
-            <div className="mockup-dots">
-              <div className="mockup-dot" />
-              <div className="mockup-dot" />
-              <div className="mockup-dot" />
-            </div>
-            <span className="mockup-badge">{project.type}</span>
-          </div>
+      {/* Visual mockup wrapper */}
+      <div className="project-card__visual">
+        {/* Decorative green gradient background */}
+        <div className="project-card__gradient-bg" />
 
-          <div className="mockup-body">
-            <div style={{ fontSize: '0.8125rem', fontWeight: 700, color: '#111111', marginBottom: '2px' }}>
-              {project.title} Console
-            </div>
-            {primaryMetric && (
-              <div className="mockup-stat-row">
-                <span style={{ color: 'var(--text-secondary)' }}>{primaryMetric.label}</span>
-                <span className="mockup-stat-val">{primaryMetric.value}</span>
-              </div>
-            )}
-            {secondaryMetric && (
-              <div className="mockup-stat-row">
-                <span style={{ color: 'var(--text-secondary)' }}>{secondaryMetric.label}</span>
-                <span className="mockup-stat-val">{secondaryMetric.value}</span>
-              </div>
-            )}
+        {/* Browser-style mockup frame */}
+        <div className="project-card__mockup">
+          <div className="project-card__mockup-bar">
+            <span className="project-card__dot" style={{ background: '#ef4444' }} />
+            <span className="project-card__dot" style={{ background: '#f59e0b' }} />
+            <span className="project-card__dot" style={{ background: '#22c55e' }} />
+            <div className="project-card__url-bar" />
           </div>
-        </motion.div>
-      </div>
+          <div className="project-card__mockup-body">
+            {/* Mini stat cards inside mockup */}
+            {statEntries.map(([key, val], i) => {
+              const Icon = statIcons[i] ?? BarChart2;
+              return (
+                <div key={key} className="project-card__stat-chip">
+                  <Icon size={12} style={{ color: 'var(--bright-green)', flexShrink: 0 }} />
+                  <span className="project-card__stat-val">{val}</span>
+                  <span className="project-card__stat-key">{key}</span>
+                </div>
+              );
+            })}
 
-      <div className="project-content">
-        <div className="project-category-meta">
-          <span className="project-category-tag">{project.category}</span>
-          <span className="project-year">{project.year}</span>
+            {/* Decorative bars */}
+            <div className="project-card__bars">
+              {[80, 55, 70, 45, 90].map((w, i) => (
+                <div key={i} className="project-card__bar-row">
+                  <div
+                    className="project-card__bar"
+                    style={{ width: `${w}%`, opacity: 0.6 + i * 0.06 }}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
-        <h3 className="project-card-title">{project.title}</h3>
+        {/* Year badge */}
+        <div className="project-card__year-badge">{year}</div>
+      </div>
 
-        <p className="project-card-desc">{project.subtitle || project.summary}</p>
+      {/* Content */}
+      <div className="project-card__content">
+        <span className="project-card__category">{category}</span>
+        <h3 className="project-card__title">{title}</h3>
+        <p className="project-card__desc">{description}</p>
 
-        <div className="project-tags-list">
-          {project.technologies.slice(0, 4).map((tech, idx) => (
-            <span key={idx} className="project-tag">
-              {tech}
+        {/* Tags */}
+        {tags.length > 0 && (
+          <div className="project-card__tags">
+            {tags.map((tag) => (
+              <span key={tag} className="tag">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+
+        {/* CTA */}
+        <div className="project-card__footer">
+          {link ? (
+            <Link to={link} className="project-card__cta">
+              View Case Study <ArrowUpRight size={15} strokeWidth={2} />
+            </Link>
+          ) : (
+            <span className="project-card__cta project-card__cta--disabled">
+              View Case Study <ArrowUpRight size={15} strokeWidth={2} />
             </span>
-          ))}
-        </div>
-
-        <div className="project-card-footer">
-          <Link to={`/projects/${project.id}`} className="service-link">
-            <span>View Case Study</span>
-            <motion.span
-              style={{ display: 'inline-flex', alignItems: 'center' }}
-              whileHover={{ x: 4 }}
-              transition={{ duration: 0.2 }}
-            >
-              <ArrowRight size={16} />
-            </motion.span>
-          </Link>
-          <span style={{ fontSize: '0.8125rem', color: 'var(--text-muted)' }}>
-            {project.timeline}
-          </span>
+          )}
         </div>
       </div>
-    </motion.article>
+    </motion.div>
   );
-}
+};
+
+export default ProjectCard;

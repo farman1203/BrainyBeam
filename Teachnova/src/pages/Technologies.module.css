@@ -1,0 +1,202 @@
+.hero {
+  position: relative;
+  padding: calc(var(--nav-height) + var(--space-16)) 0 var(--space-16);
+  background: var(--background-soft);
+  overflow: hidden;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 60% at 85% 20%, rgba(34, 197, 94, 0.08) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 40% at 10% 80%, rgba(21, 128, 61, 0.05) 0%, transparent 65%);
+}
+
+.heroInner {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+}
+
+.heroTitle {
+  font-family: var(--font-heading);
+  font-size: clamp(2.2rem, 5vw, 3.75rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--text-primary);
+  margin: var(--space-4) 0 var(--space-5);
+}
+
+.heroSub {
+  font-size: clamp(1rem, 1.3vw, 1.1rem);
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 540px;
+}
+
+/* Category grid */
+.techSection {}
+
+.categoryGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+
+.category {
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition-base);
+}
+
+.category:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.catHeader {
+  padding: var(--space-6);
+  border-bottom: 1px solid;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+
+.catIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.catLabel {
+  font-family: var(--font-heading);
+  font-size: 0.975rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.catDesc {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.techList {
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+}
+
+.techItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-3);
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-fast);
+}
+
+.techItem:hover {
+  background: var(--background-soft);
+}
+
+.techName {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.techLevel {
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+/* Philosophy */
+.philosophy {
+  background: var(--background-soft);
+}
+
+.philHeader {
+  text-align: center;
+  margin-bottom: var(--space-12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.philGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-5);
+}
+
+.philCard {
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--space-7);
+  position: relative;
+  transition: all var(--transition-base);
+}
+
+.philCard:hover {
+  border-color: var(--border-green);
+  box-shadow: var(--shadow-green);
+}
+
+.philDot {
+  width: 32px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-green), var(--bright-green));
+  border-radius: 2px;
+  margin-bottom: var(--space-5);
+}
+
+.philTitle {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-3);
+  letter-spacing: -0.01em;
+}
+
+.philDesc {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .categoryGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .philGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .categoryGrid {
+    grid-template-columns: 1fr;
+  }
+  .philGrid {
+    grid-template-columns: 1fr;
+  }
+}

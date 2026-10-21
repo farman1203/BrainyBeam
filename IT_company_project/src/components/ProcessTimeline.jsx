@@ -1,65 +1,97 @@
-import React from 'react';
-import { motion } from 'motion/react';
-import { containerVariants, itemFadeUp } from '../utils/motionVariants';
-import '../styles/components.css';
+import React, { useRef } from 'react';
+import { motion, useInView } from 'motion/react';
+import { Search, Layers, Palette, Code2, FlaskConical, Rocket } from 'lucide-react';
 
-const steps = [
+const STEPS = [
   {
-    step: '01',
-    title: 'Discover',
-    desc: 'Understand business goals, audience expectations, technical constraints, and measurable ROI benchmarks.'
+    number: '01',
+    title: 'Discovery',
+    icon: Search,
+    description:
+      'We deep-dive into your business goals, audience, and competitive landscape to build a crystal-clear project brief.',
   },
   {
-    step: '02',
-    title: 'Plan',
-    desc: 'Define cloud architecture, database models, technical stack selection, and agile two-week sprint milestones.'
+    number: '02',
+    title: 'Architecture',
+    icon: Layers,
+    description:
+      'Our architects craft a robust technical blueprint — choosing the right stack, infrastructure, and integration patterns.',
   },
   {
-    step: '03',
+    number: '03',
     title: 'Design',
-    desc: 'Create intuitive UI/UX design systems, user journey wireframes, and interactive Figma prototypes.'
+    icon: Palette,
+    description:
+      'UX designers translate requirements into pixel-perfect wireframes and interactive prototypes you can click through.',
   },
   {
-    step: '04',
-    title: 'Develop',
-    desc: 'Build scalable and secure software with clean code standards, strict type checking, and automated test coverage.'
+    number: '04',
+    title: 'Development',
+    icon: Code2,
+    description:
+      'Agile sprints power iterative development with daily standups, code reviews, and continuous integration pipelines.',
   },
   {
-    step: '05',
-    title: 'Test',
-    desc: 'Ensure performance, security compliance, cross-browser compatibility, and rigorous QA automated regression.'
+    number: '05',
+    title: 'Testing',
+    icon: FlaskConical,
+    description:
+      'Rigorous QA — unit, integration, performance, and security testing — ensures a defect-free, production-ready release.',
   },
   {
-    step: '06',
+    number: '06',
     title: 'Launch',
-    desc: 'Deploy with zero downtime, configure real-time telemetry monitoring, and execute post-launch knowledge transfer.'
-  }
+    icon: Rocket,
+    description:
+      'We deploy with zero-downtime strategies, monitor post-launch health, and provide hands-on hypercare support.',
+  },
 ];
 
-export default function ProcessTimeline() {
+const cardVariants = {
+  hidden: { opacity: 0, y: 36 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.55,
+      delay: i * 0.1,
+      ease: [0.25, 0.1, 0.25, 1],
+    },
+  }),
+};
+
+const ProcessTimeline = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-80px 0px' });
+
   return (
-    <motion.div
-      className="process-grid"
-      variants={containerVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.15 }}
-    >
-      {steps.map((item, idx) => (
-        <motion.div
-          key={idx}
-          className="process-card"
-          variants={itemFadeUp}
-          whileHover={{
-            y: -6,
-            transition: { duration: 0.25, ease: 'easeOut' }
-          }}
-        >
-          <div className="process-number">{item.step}</div>
-          <h3 className="process-title">{item.title}</h3>
-          <p className="process-desc">{item.desc}</p>
-        </motion.div>
-      ))}
-    </motion.div>
+    <div ref={ref} className="process-grid">
+      {STEPS.map((step, i) => {
+        const Icon = step.icon;
+        return (
+          <motion.div
+            key={step.number}
+            className="process-card"
+            custom={i}
+            variants={cardVariants}
+            initial="hidden"
+            animate={isInView ? 'visible' : 'hidden'}
+          >
+            {/* Step number + icon row */}
+            <div className="process-card__header">
+              <span className="process-card__number">{step.number}</span>
+              <div className="process-card__icon">
+                <Icon size={20} strokeWidth={1.75} />
+              </div>
+            </div>
+
+            <h3 className="process-card__title">{step.title}</h3>
+            <p className="process-card__desc">{step.description}</p>
+          </motion.div>
+        );
+      })}
+    </div>
   );
-}
+};
+
+export default ProcessTimeline;

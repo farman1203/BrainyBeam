@@ -1,41 +1,75 @@
-import React from 'react';
-import { motion } from 'motion/react';
-import { fadeUp } from '../utils/motionVariants';
+import React, { useRef } from 'react';
+import { motion, useInView } from 'motion/react';
 
-export default function SectionHeading({
+const SectionHeading = ({
   badge,
   title,
   subtitle,
-  align = 'center', // 'center' | 'left'
-  theme = 'light',  // 'light' | 'dark'
-  className = ''
-}) {
+  theme = 'light',
+  align = 'center',
+}) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-80px 0px' });
+
   const isDark = theme === 'dark';
+  const textAlign = align === 'center' ? 'center' : 'left';
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15, ease: 'easeOut' },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 28 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+  };
 
   return (
     <motion.div
-      className={`section-header text-${align} ${className}`}
+      ref={ref}
+      className="section-heading"
+      style={{ textAlign, maxWidth: align === 'center' ? 720 : '100%', margin: align === 'center' ? '0 auto' : '0' }}
+      variants={containerVariants}
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
-      variants={fadeUp}
+      animate={isInView ? 'visible' : 'hidden'}
     >
       {badge && (
-        <span className={`badge ${isDark ? 'badge-dark' : 'badge-blue'}`} style={{ marginBottom: '0.875rem' }}>
-          {badge}
-        </span>
+        <motion.div variants={itemVariants} style={{ marginBottom: '1rem' }}>
+          <span className={isDark ? 'badge badge-dark' : 'badge badge-green'}>
+            {badge}
+          </span>
+        </motion.div>
       )}
-      <h2 style={{ color: isDark ? '#FFFFFF' : 'var(--text-primary)' }}>
-        {title}
-      </h2>
+
+      {title && (
+        <motion.h2
+          variants={itemVariants}
+          className="section-title"
+          style={{
+            color: isDark ? '#FFFFFF' : 'var(--text-primary)',
+            marginBottom: subtitle ? '1rem' : 0,
+          }}
+        >
+          {title}
+        </motion.h2>
+      )}
+
       {subtitle && (
-        <p
+        <motion.p
+          variants={itemVariants}
           className="section-subtitle"
-          style={{ color: isDark ? 'var(--dark-navy-muted)' : 'var(--text-secondary)' }}
+          style={{
+            color: isDark ? 'rgba(255,255,255,0.72)' : 'var(--text-secondary)',
+          }}
         >
           {subtitle}
-        </p>
+        </motion.p>
       )}
     </motion.div>
   );
-}
+};
+
+export default SectionHeading;

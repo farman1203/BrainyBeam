@@ -5,56 +5,44 @@ import { Menu, X, ArrowRight, ChevronRight, Layers } from 'lucide-react';
 import Button from './Button';
 import '../styles/navbar.css';
 
+const navLinks = [
+  { name: 'Home',       path: '/' },
+  { name: 'About',      path: '/about' },
+  { name: 'Services',   path: '/services' },
+  { name: 'Projects',   path: '/projects' },
+  { name: 'Industries', path: '/industries' },
+  { name: 'Contact',    path: '/contact' },
+];
+
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [isScrolled,    setIsScrolled]    = useState(false);
+  const [isMobileOpen,  setIsMobileOpen]  = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Initial check
-
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => setIsScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
-    if (isMobileOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
+    document.body.style.overflow = isMobileOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
   }, [isMobileOpen]);
 
-  const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'About', path: '/about' },
-    { name: 'Services', path: '/services' },
-    { name: 'Solutions', path: '/solutions' },
-    { name: 'Projects', path: '/projects' },
-    { name: 'Industries', path: '/industries' },
-    { name: 'Blog', path: '/blog' },
-    { name: 'Contact', path: '/contact' }
-  ];
+  const closeMenu = () => setIsMobileOpen(false);
 
   return (
     <>
-      <header className={`navbar-wrapper ${isScrolled ? 'scrolled' : ''}`}>
+      <header className={`navbar-wrapper${isScrolled ? ' scrolled' : ''}`}>
         <div className="container">
           <div className="navbar-inner">
-            {/* Brand Logo */}
+            {/* Brand */}
             <Link to="/" className="brand-logo" aria-label="TechNova Solutions Home">
               <motion.div
                 className="brand-icon-box"
-                whileHover={{ rotate: 10, scale: 1.05 }}
-                transition={{ duration: 0.2 }}
+                whileHover={{ rotate: 8, scale: 1.06 }}
+                transition={{ duration: 0.25 }}
               >
                 <Layers size={22} strokeWidth={2.2} />
               </motion.div>
@@ -64,51 +52,45 @@ export default function Navbar() {
               </div>
             </Link>
 
-            {/* Desktop Navigation Links */}
+            {/* Desktop Nav */}
             <nav className="nav-links-desktop" aria-label="Primary Navigation">
               {navLinks.map((link) => (
                 <NavLink
                   key={link.name}
                   to={link.path}
-                  className={({ isActive }) =>
-                    `nav-link-item ${isActive ? 'active' : ''}`
-                  }
                   end={link.path === '/'}
+                  className={({ isActive }) =>
+                    `nav-link-item${isActive ? ' active' : ''}`
+                  }
                 >
                   {link.name}
                 </NavLink>
               ))}
             </nav>
 
-            {/* Desktop CTA Button */}
+            {/* Desktop CTA */}
             <div className="nav-actions-desktop">
-              <Button
-                to="/contact"
-                variant="primary"
-                size="sm"
-                icon={ArrowRight}
-                iconPosition="right"
-              >
+              <Button to="/contact" variant="primary" size="sm" icon={ArrowRight} iconPosition="right">
                 Let's Talk
               </Button>
             </div>
 
-            {/* Mobile Menu Hamburger Button */}
+            {/* Mobile Toggle */}
             <motion.button
               type="button"
               className="mobile-toggle-btn"
               onClick={() => setIsMobileOpen(true)}
-              aria-label="Open mobile navigation menu"
+              aria-label="Open navigation menu"
               aria-expanded={isMobileOpen}
               whileTap={{ scale: 0.92 }}
             >
-              <Menu size={24} />
+              <Menu size={22} />
             </motion.button>
           </div>
         </div>
       </header>
 
-      {/* Mobile Drawer Overlay and Drawer with AnimatePresence */}
+      {/* Mobile Drawer */}
       <AnimatePresence>
         {isMobileOpen && (
           <>
@@ -117,37 +99,36 @@ export default function Navbar() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
-              onClick={() => setIsMobileOpen(false)}
+              transition={{ duration: 0.22 }}
+              onClick={closeMenu}
               aria-hidden="true"
             />
-
             <motion.aside
               className="mobile-drawer"
-              aria-label="Mobile Navigation Drawer"
+              aria-label="Mobile Navigation"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 26, stiffness: 240 }}
+              transition={{ type: 'spring', damping: 28, stiffness: 260 }}
             >
               <div className="mobile-drawer-header">
-                <Link to="/" className="brand-logo" onClick={() => setIsMobileOpen(false)}>
-                  <div className="brand-icon-box" style={{ width: 34, height: 34 }}>
+                <Link to="/" className="brand-logo" onClick={closeMenu}>
+                  <div className="brand-icon-box" style={{ width: 36, height: 36 }}>
                     <Layers size={18} />
                   </div>
                   <div className="brand-text">
                     <span className="brand-name" style={{ fontSize: '1.1rem' }}>TechNova</span>
-                    <span className="brand-sub" style={{ fontSize: '0.7rem' }}>Solutions</span>
+                    <span className="brand-sub" style={{ fontSize: '0.65rem' }}>Solutions</span>
                   </div>
                 </Link>
                 <motion.button
                   type="button"
                   className="mobile-close-btn"
-                  onClick={() => setIsMobileOpen(false)}
-                  aria-label="Close mobile menu"
+                  onClick={closeMenu}
+                  aria-label="Close navigation menu"
                   whileTap={{ scale: 0.9 }}
                 >
-                  <X size={20} />
+                  <X size={18} />
                 </motion.button>
               </div>
 
@@ -155,20 +136,20 @@ export default function Navbar() {
                 {navLinks.map((link, idx) => (
                   <motion.div
                     key={link.name}
-                    initial={{ opacity: 0, x: 20 }}
+                    initial={{ opacity: 0, x: 24 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.05 * idx, duration: 0.3 }}
+                    transition={{ delay: 0.04 * idx, duration: 0.28 }}
                   >
                     <NavLink
                       to={link.path}
-                      className={({ isActive }) =>
-                        `mobile-nav-item ${isActive ? 'active' : ''}`
-                      }
                       end={link.path === '/'}
-                      onClick={() => setIsMobileOpen(false)}
+                      className={({ isActive }) =>
+                        `mobile-nav-item${isActive ? ' active' : ''}`
+                      }
+                      onClick={closeMenu}
                     >
                       <span>{link.name}</span>
-                      <ChevronRight size={16} opacity={0.6} />
+                      <ChevronRight size={16} opacity={0.5} />
                     </NavLink>
                   </motion.div>
                 ))}
@@ -178,10 +159,9 @@ export default function Navbar() {
                 <Button
                   to="/contact"
                   variant="primary"
-                  size="md"
                   icon={ArrowRight}
-                  style={{ width: '100%' }}
-                  onClick={() => setIsMobileOpen(false)}
+                  onClick={closeMenu}
+                  style={{ width: '100%', justifyContent: 'center' }}
                 >
                   Let's Talk
                 </Button>
