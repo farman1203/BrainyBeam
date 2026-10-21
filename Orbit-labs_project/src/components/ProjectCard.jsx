@@ -12,9 +12,9 @@ function ProjectCard({ project, index, tone = 'dark', cta, showLabel = false }) 
       <article>
         <div className={`project-art art-${index % 3}`}>
           <div className="project-art-bg">
-            
-              <img src={project.image} alt={`${project.title} preview`} loading="lazy" decoding="async" />
-      
+
+            <img src={project.image} alt={`${project.title} preview`} loading="lazy" decoding="async" />
+
           </div>
           <span className="project-art-index" aria-hidden="true">{number}</span>
           {showLabel && (
