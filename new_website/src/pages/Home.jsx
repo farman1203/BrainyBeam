@@ -142,9 +142,12 @@ function ProjectsSection() {
             <span className="dot" />Featured Work
           </motion.div>
           <motion.h2 className="text-h2" variants={fadeUp}>
-            Products We've{' '}
-            <span className="text-green-gradient">Shipped</span>
+            Our Featured{' '}
+            <span className="text-green-gradient">Projects</span>
           </motion.h2>
+          <motion.p className="text-body-lg" variants={fadeUp} style={{ maxWidth: 560 }}>
+            Explore digital experiences and technology solutions crafted to solve real business challenges.
+          </motion.p>
         </motion.div>
 
         <motion.div
@@ -160,14 +163,27 @@ function ProjectsSection() {
               variants={fadeUp}
               whileHover={{ y: -4, transition: { duration: 0.25 } }}
             >
-              <div className={styles.projectThumb} style={{ background: `linear-gradient(135deg, ${p.color}22, ${p.color}44)` }}>
-                <div className={styles.projectIcon} style={{ background: p.color }}>
-                  <Layers size={20} color="white" />
+              <div className={styles.projectThumb}>
+                <img
+                  src={p.image}
+                  alt={p.imageAlt || p.title}
+                  className={styles.projectThumbImg}
+                  loading="lazy"
+                  onError={(e) => {
+                    e.target.style.display = 'none'
+                    e.target.nextSibling.style.display = 'flex'
+                  }}
+                />
+                <div
+                  className={styles.projectThumbFallback}
+                  style={{ background: `linear-gradient(135deg, ${p.color}22, ${p.color}44)`, display: 'none' }}
+                >
+                  <Layers size={24} style={{ color: p.color }} />
                 </div>
                 <span className={styles.projectYear}>{p.year}</span>
+                <span className={styles.projectCatBadge}>{p.category}</span>
               </div>
               <div className={styles.projectBody}>
-                <span className={styles.projectCat}>{p.category}</span>
                 <h3 className={styles.projectTitle}>{p.title}</h3>
                 <p className={styles.projectDesc}>{p.description.slice(0, 100)}…</p>
                 <div className={styles.tagRow}>

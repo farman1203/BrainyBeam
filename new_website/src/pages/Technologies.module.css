@@ -149,7 +149,7 @@
   background: white;
   border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
-  padding: var(--space-7);
+  padding: 22px;
   position: relative;
   transition: all var(--transition-base);
 }

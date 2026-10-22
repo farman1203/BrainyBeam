@@ -7,6 +7,7 @@ import About from './pages/About'
 import Services from './pages/Services'
 import Projects from './pages/Projects'
 import Technologies from './pages/Technologies'
+import Team from './pages/Team'
 import Contact from './pages/Contact'
 import NotFound from './pages/NotFound'
 
@@ -20,6 +21,7 @@ function AnimatedRoutes() {
         <Route path="/services" element={<Services />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/technologies" element={<Technologies />} />
+        <Route path="/team" element={<Team />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

@@ -4,6 +4,7 @@ import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle, Clock } from 'luci
 import { pageTransition } from '../hooks/useAnimations'
 import { siteConfig } from '../data/siteData'
 import styles from './Contact.module.css'
+import emailjs from '@emailjs/browser'
 
 export default function Contact() {
   return (
@@ -121,7 +122,9 @@ function ContactForm() {
     const e = {}
     if (!form.name.trim()) e.name = 'Name is required'
     if (!form.email.trim()) e.email = 'Email is required'
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = 'Invalid email address'
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+      e.email = 'Invalid email address'
+    }
     if (!form.subject.trim()) e.subject = 'Subject is required'
     if (!form.message.trim()) e.message = 'Message is required'
     else if (form.message.trim().length < 20) e.message = 'Message must be at least 20 characters'
@@ -136,14 +139,47 @@ function ContactForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const e2 = validate()
-    if (Object.keys(e2).length > 0) { setErrors(e2); return }
+
+    const validationErrors = validate()
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors)
+      return
+    }
+
     setStatus('loading')
-    // Simulate API call
-    await new Promise(r => setTimeout(r, 1800))
-    setStatus('success')
-    setForm({ name: '', email: '', subject: '', message: '' })
+
+    try {
+      const response = await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          name: form.name.trim(),
+          email: form.email.trim(),
+          subject: form.subject.trim(),
+          message: form.message.trim(),
+        },
+        {
+          publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+        }
+      )
+
+      console.log('Email sent successfully:', response.status)
+
+      setStatus('success')
+      setForm({
+        name: '',
+        email: '',
+        subject: '',
+        message: '',
+      })
+      setErrors({})
+    } catch (error) {
+      console.error('EmailJS error:', error)
+      setStatus('error')
+    }
   }
+
 
   if (status === 'success') {
     return (
@@ -238,7 +274,12 @@ function ContactForm() {
           />
           {errors.message && <span className={styles.errorMsg}><AlertCircle size={12} />{errors.message}</span>}
         </div>
-
+        {status === 'error' && (
+          <p role="alert" className={styles.errorMsg}>
+            <AlertCircle size={14} />
+            Message could not be sent. Please try again.
+          </p>
+        )}
         <button
           type="submit"
           className={`btn btn-primary btn-lg ${styles.submitBtn}`}

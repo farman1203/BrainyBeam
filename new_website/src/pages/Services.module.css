@@ -53,6 +53,7 @@
   transition: all var(--transition-base);
   cursor: pointer;
   box-shadow: var(--shadow-sm);
+  padding: 19px;
 }
 
 .serviceItem:hover,
