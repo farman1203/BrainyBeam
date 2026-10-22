@@ -39,8 +39,6 @@
 }
 
 /* ─── Filters ───────────────────────────────────────────── */
-.gallery {}
-
 .filters {
   display: flex;
   gap: var(--space-2);
