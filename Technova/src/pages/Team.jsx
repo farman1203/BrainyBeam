@@ -54,7 +54,6 @@ export default function Team() {
       <TeamHero />
       <TeamGrid />
       <ValuesSection />
-      <JoinCta />
     </motion.div>
   )
 }
@@ -222,36 +221,3 @@ function ValuesSection() {
   )
 }
 
-/* ─── Join CTA ──────────────────────────────────────────── */
-function JoinCta() {
-  const ref = useRef(null)
-  const inView = useInView(ref, viewportOnce)
-
-  return (
-    <section className={styles.joinCta} ref={ref}>
-      <div className="container">
-        <motion.div
-          className={styles.ctaBox}
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.65 }}
-        >
-          <div className={styles.ctaContent}>
-            <div className="section-label" style={{ justifyContent: 'center', marginBottom: 'var(--space-4)' }}>
-              <span className="dot" />We're Hiring
-            </div>
-            <h2 className={styles.ctaTitle}>
-              Want to Join the Team?
-            </h2>
-            <p className={styles.ctaSub}>
-              We're always looking for talented engineers, designers, and problem-solvers who share our passion for building technology that matters.
-            </p>
-            <Link to="/contact" className="btn btn-primary btn-lg">
-              Get In Touch <ArrowRight size={18} />
-            </Link>
-          </div>
-        </motion.div>
-      </div>
-    </section>
-  )
-}
