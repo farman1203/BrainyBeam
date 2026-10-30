@@ -5,6 +5,7 @@ import Button from '../components/Button'
 export default function ComingSoon() {
   const { pathname } = useLocation()
   const name = pathname.replace('/', '').replace(/-/g, ' ') || 'This'
+  
   return (
     <section className="soon container">
       <motion.span className="eyebrow" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>Phase 2</motion.span>
