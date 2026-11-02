@@ -1,0 +1,15 @@
+@keyframes marquee { to { transform: translateX(-50%); } }
+@keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(255,106,31,.6); } 50% { box-shadow: 0 0 0 8px rgba(255,106,31,0); } }
+@keyframes mouse { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(14px); opacity: 0; } }
+@keyframes spin { to { transform: rotate(360deg); } }
+.mq-track { animation: marquee var(--d,40s) linear infinite; }
+.mq-track.rev { animation-direction: reverse; }
+.mq:hover .mq-track { animation-play-state: paused; }
+.dot { animation: pulse 2s infinite; }
+.mouse i { animation: mouse 1.6s ease-in-out infinite; }
+.spin-slow { animation: spin 60s linear infinite; }
+.spin-rev { animation: spin 45s linear infinite reverse; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+  html { scroll-behavior: auto; }
+}

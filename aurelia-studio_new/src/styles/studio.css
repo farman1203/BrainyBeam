@@ -1,0 +1,124 @@
+/* STUDIO (ABOUT) */
+.st-hero {
+    height: min(85svh, 880px);
+    margin-top: 2.5rem;
+    background: var(--box);
+}
+
+.st-intro {
+    padding-block: clamp(5rem, 10vw, 9rem);
+}
+
+.st-vals {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    padding-block: 3rem clamp(5rem, 9vw, 8rem);
+    border-top: 1px solid var(--line);
+}
+
+.st-vals span {
+    font: 500 .85rem var(--fb);
+    color: var(--ac);
+}
+
+.st-vals h3 {
+    font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+    margin: .8rem 0 .6rem;
+}
+
+.st-vals p {
+    color: var(--mut);
+    max-width: 34ch;
+}
+
+.st-team {
+    padding-bottom: clamp(5rem, 9vw, 8rem);
+}
+
+.st-team>.mk,
+.st-time>.mk {
+    font-size: clamp(2.4rem, 6.5vw, 6.5rem);
+    line-height: .95;
+    letter-spacing: -.055em;
+    margin-bottom: 3rem;
+}
+
+.tg {
+    border-top: 1px solid var(--line);
+}
+
+.tm {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 1.4rem 0;
+    border-bottom: 1px solid var(--line);
+    transition: padding .5s var(--ease);
+}
+
+.tm:hover {
+    padding-inline: 1rem;
+}
+
+.tm strong {
+    font: 500 clamp(1.6rem, 3.2vw, 3rem) var(--fh);
+    letter-spacing: -.05em;
+}
+
+.tm span {
+    color: var(--mut);
+}
+
+.st-time {
+    padding-bottom: clamp(5rem, 9vw, 8rem);
+}
+
+.st-time li {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    gap: 1.5rem;
+    padding-block: 1.8rem;
+    border-top: 1px solid var(--line);
+}
+
+.st-time li:last-child {
+    border-bottom: 1px solid var(--line);
+}
+
+.st-time b {
+    font: 500 clamp(1.8rem, 3vw, 2.8rem) var(--fh);
+    letter-spacing: -.05em;
+}
+
+.st-time h3 {
+    font-size: 1.5rem;
+    margin-bottom: .3rem;
+}
+
+.st-time p {
+    color: var(--mut);
+}
+
+.st-time>p {
+    margin-top: 3rem;
+}
+
+@media (max-width: 900px) {
+    .st-vals {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 560px) {
+    .tm {
+        flex-direction: column;
+        gap: .2rem;
+    }
+
+    .st-time li {
+        grid-template-columns: 1fr;
+        gap: .4rem;
+    }
+}

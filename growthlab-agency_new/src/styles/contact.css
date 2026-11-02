@@ -1,0 +1,19 @@
+/* CONTACT PAGE styles */
+.ct-info-sec { padding-bottom: clamp(3rem, 6vw, 5rem); }
+.ct-info { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; }
+.ct-card { padding: 1.6rem; border-radius: 24px; background: var(--card); border: 1px solid var(--line); transition: border-color .3s; min-width: 0; }
+.ct-card:hover { border-color: rgba(255, 106, 31, .5); }
+.ct-ic { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 14px; background: rgba(255, 106, 31, .12); color: var(--ac2); border: 1px solid rgba(255, 106, 31, .25); margin-bottom: 1.2rem; }
+.ct-card small { display: block; color: var(--mut); font-size: .78rem; text-transform: uppercase; letter-spacing: .1em; }
+.ct-card strong { display: block; margin: .3rem 0; font: 700 1.05rem/1.35 var(--fh); overflow-wrap: anywhere; }
+.ct-card em { font-style: normal; color: var(--mut); font-size: .82rem; }
+.ct-photo { aspect-ratio: 16/10; border-radius: 26px; margin: 2rem 0; }
+.ct-photo-in { position: absolute; inset: 0; overflow: hidden; }
+.ct-h { font-size: 1.4rem; margin-bottom: 1rem; }
+.ct-steps { display: grid; gap: 1rem; margin-bottom: 1.8rem; }
+.ct-steps li { display: flex; gap: 1rem; padding-top: 1rem; border-top: 1px solid var(--line); }
+.ct-steps b { font: 800 1rem var(--fh); color: var(--ac); padding-top: .15rem; }
+.ct-steps strong { display: block; font: 700 1.05rem var(--fh); }
+.ct-steps p { color: var(--mut); font-size: .92rem; margin-top: .15rem; }
+@media (max-width: 1000px) { .ct-info { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .ct-info { grid-template-columns: 1fr; } .ct-photo { margin: 1.4rem 0; } }
