@@ -1,9 +1,4 @@
-// ONE place for every picture on the site.
-// By default the photos load straight from the reference template's CDN so the site looks right immediately.
-// For production: run `npm run images` once (downloads them into /public/images), then set USE_LOCAL = true.
-// To use your own photos later, drop files in /public/images with the same names (e.g. hero-facade.webp).
-export const USE_LOCAL = false
-export const REMOTE = 'https://nivara-architecture-template.vercel.app/_next/static/immutable/media/'
+
 
 // key → [remote file name, alt text]
 export const files = {
@@ -34,7 +29,7 @@ export const files = {
 
 export const imgUrl = key => {
   if (!files[key]) { console.warn(`[images] unknown key "${key}"`); return '' }
-  return USE_LOCAL ? `/images/${key}.webp` : REMOTE + files[key][0]
+  return  `/images/${key}.webp` 
 }
 
 // <Img {...pic('hero-facade')} />   or   <Img {...pic('hero-facade', '')} />  (empty alt = decorative)

@@ -1,40 +1,52 @@
 // SAMPLE projects with dummy clients and numbers — replace with real case studies.
 // cover / gallery are keys from src/lib/images.js
 export const projects = [
-  { slug: 'lumen-dental', cat: 'Brand', title: 'Lumen Dental', type: 'Brand & Website', year: '2025', place: 'Ahmedabad', cover: 'library-cover', gallery: ['library-brick-detail', 'studio-model-section'],
+  {
+    slug: 'lumen-dental', cat: 'Brand', title: 'Lumen Dental', type: 'Brand & Website', year: '2025', place: 'Ahmedabad', cover: 'library-cover', gallery: ['library-brick-detail', 'studio-model-section'],
     intro: 'A calm, trustworthy identity and booking-first website for a neighbourhood dental clinic.',
     challenge: 'The clinic was excellent but looked like every other clinic online, and most enquiries came by phone only.',
     approach: 'We built a warm visual identity, rewrote the service pages in plain language and designed a three-tap booking flow.',
     result: 'Online bookings became the clinic’s main source of new patients within a quarter.',
-    services: ['Brand identity', 'Website design', 'Local SEO'], metrics: [['+64%', 'Online bookings'], ['1.2s', 'Page load'], ['4.9', 'Review average']] },
-  { slug: 'fieldnote-books', cat: 'Web', title: 'Fieldnote Books', type: 'E-commerce & SEO', year: '2025', place: 'Mumbai', cover: 'stone-corner', gallery: ['life-gallery', 'studio-model-site'],
+    services: ['Brand identity', 'Website design', 'Local SEO'], metrics: [['+64%', 'Online bookings'], ['1.2s', 'Page load'], ['4.9', 'Review average']]
+  },
+  {
+    slug: 'fieldnote-books', cat: 'Web', title: 'Fieldnote Books', type: 'E-commerce & SEO', year: '2025', place: 'Mumbai', cover: 'stone-corner', gallery: ['life-gallery', 'studio-model-site'],
     intro: 'A fast online bookshop with an editorial feel and search-led growth.',
     challenge: 'Great catalogue, almost no organic traffic, and a checkout that lost mobile shoppers.',
     approach: 'We restructured the catalogue for search, rebuilt the store mobile-first and launched a reading-list content hub.',
     result: 'Organic search became the largest sales channel and basket size grew steadily.',
-    services: ['E-commerce build', 'SEO', 'Content strategy'], metrics: [['+212%', 'Organic traffic'], ['+23%', 'Order value'], ['2.2s', 'Mobile load']] },
-  { slug: 'saffron-and-co', cat: 'Marketing', title: 'Saffron & Co.', type: 'Social & Content', year: '2024', place: 'Vadodara', cover: 'saltvaerket-commons', gallery: ['life-courtyard', 'life-balcony'],
+    services: ['E-commerce build', 'SEO', 'Content strategy'], metrics: [['+212%', 'Organic traffic'], ['+23%', 'Order value'], ['2.2s', 'Mobile load']]
+  },
+  {
+    slug: 'saffron-and-co', cat: 'Marketing', title: 'Saffron & Co.', type: 'Social & Content', year: '2024', place: 'Vadodara', cover: 'saltvaerket-commons', gallery: ['life-courtyard', 'life-balcony'],
     intro: 'A reels-first content system for a modern Indian kitchen.',
     challenge: 'Posting was irregular and the feed did not reflect the quality of the food.',
     approach: 'A weekly shoot day, a repeatable reel format and a community routine that rewarded replies.',
     result: 'Reach and reservations grew together, with the feed becoming a reason to visit.',
-    services: ['Social strategy', 'Video production', 'Community'], metrics: [['3.2x', 'Reach'], ['+48%', 'Engagement'], ['12K', 'New followers']] },
-  { slug: 'orbit-fitness', cat: 'Marketing', title: 'Orbit Fitness', type: 'Performance Marketing', year: '2024', place: 'Surat', cover: 'school-corridor', gallery: ['life-entrance', 'material-brick'],
+    services: ['Social strategy', 'Video production', 'Community'], metrics: [['3.2x', 'Reach'], ['+48%', 'Engagement'], ['12K', 'New followers']]
+  },
+  {
+    slug: 'orbit-fitness', cat: 'Marketing', title: 'Orbit Fitness', type: 'Performance Marketing', year: '2024', place: 'Surat', cover: 'school-corridor', gallery: ['life-entrance', 'material-brick'],
     intro: 'Lead-generation campaigns for a growing chain of studios.',
     challenge: 'Ad spend was rising while the cost per membership kept climbing.',
     approach: 'A margin-based account structure, weekly creative tests and landing pages built for one action.',
     result: 'A steadier, cheaper stream of qualified trial sign-ups across all locations.',
-    services: ['Google Ads', 'Meta Ads', 'Landing pages'], metrics: [['-27%', 'Cost per lead'], ['4.1x', 'Return on spend'], ['+55%', 'Trial sign-ups']] },
-  { slug: 'terrace-homes', cat: 'Marketing', title: 'Terrace Homes', type: 'Lead Generation', year: '2024', place: 'Gandhinagar', cover: 'fjordhus-waterfront', gallery: ['life-window', 'copper-house'],
+    services: ['Google Ads', 'Meta Ads', 'Landing pages'], metrics: [['-27%', 'Cost per lead'], ['4.1x', 'Return on spend'], ['+55%', 'Trial sign-ups']]
+  },
+  {
+    slug: 'terrace-homes', cat: 'Marketing', title: 'Terrace Homes', type: 'Lead Generation', year: '2024', place: 'Gandhinagar', cover: 'fjordhus-waterfront', gallery: ['life-window', 'copper-house'],
     intro: 'A property-led funnel for a residential developer.',
     challenge: 'Enquiries were plentiful but unqualified, wasting the sales team’s time.',
     approach: 'We rebuilt the funnel around budget and location filters and nurtured leads with WhatsApp and email.',
     result: 'Fewer, better leads and a shorter path from enquiry to site visit.',
-    services: ['Funnel design', 'Paid media', 'CRM automation'], metrics: [['2.4x', 'Qualified leads'], ['-38%', 'Wasted enquiries'], ['9 days', 'Faster follow-up']] },
-  { slug: 'mono-studio', cat: 'Brand', title: 'Mono Studio', type: 'Brand Identity', year: '2023', place: 'Remote', cover: 'kyst-cover', gallery: ['kyst-dusk', 'kyst-porch'],
+    services: ['Funnel design', 'Paid media', 'CRM automation'], metrics: [['2.4x', 'Qualified leads'], ['-38%', 'Wasted enquiries'], ['9 days', 'Faster follow-up']]
+  },
+  {
+    slug: 'mono-studio', cat: 'Brand', title: 'Mono Studio', type: 'Brand Identity', year: '2023', place: 'Remote', cover: 'kyst-cover', gallery: ['kyst-dusk', 'kyst-porch'],
     intro: 'A confident, typographic identity for a boutique design collective.',
     challenge: 'A talented team with a brand that said nothing about them.',
     approach: 'We distilled their point of view into a wordmark, a type system and a flexible set of templates.',
     result: 'A consistent identity across web, print and social — and a team proud to share it.',
-    services: ['Naming', 'Identity system', 'Guidelines'], metrics: [['60+', 'Templates'], ['1', 'Brand book'], ['3', 'Weeks to launch']] },
+    services: ['Naming', 'Identity system', 'Guidelines'], metrics: [['60+', 'Templates'], ['1', 'Brand book'], ['3', 'Weeks to launch']]
+  },
 ]
