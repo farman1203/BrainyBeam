@@ -287,7 +287,7 @@ function Stats() {
       <div className="stats-bg" data-zoom><Img {...pic('fjordhus-waterfront', '')} /></div>
       <div className="stats-in wrap">
         <Split text={`Since ${site.year}`} className="stats-h" />
-        <p className="rv lead">Years of work, counted. Every figure covers launched and in-progress projects together (dummy numbers).</p>
+        <p className="rv lead">Years of work, counted. Every figure covers launched and in-progress projects together.</p>
         <dl className="stat-grid">
           {stats.map(([n, s, l]) => (
             <div className="rv" key={l}><dt>{l}</dt><dd><Counter to={n} suffix={s} /></dd></div>

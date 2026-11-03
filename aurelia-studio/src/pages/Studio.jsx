@@ -1,4 +1,4 @@
-// STUDIO (ABOUT) PAGE (styles: ../styles/studio.css)
+
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useReveals } from '../lib/reveal'
@@ -9,7 +9,6 @@ import Arrow from '../components/Arrow'
 import { site } from '../data/site'
 import '../styles/studio.css'
 
-/* DUMMY content — replace with your own */
 const intro = ['We are a small, senior studio of strategists, designers, developers and marketers. We believe good digital work is quiet, careful and measurable — and that the best results come when everyone sits at the same table.']
 const values = [
   ['Careful by default', 'We sweat the small things: copy, spacing, load time, tracking. They are where trust is won.'],
