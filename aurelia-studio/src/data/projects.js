@@ -1,5 +1,4 @@
 // SAMPLE projects with dummy clients and numbers — replace with real case studies.
-// cover / gallery are keys from src/lib/images.js
 export const projects = [
   {
     slug: 'lumen-dental', cat: 'Brand', title: 'Lumen Dental', type: 'Brand & Website', year: '2025', place: 'Ahmedabad', cover: 'library-cover', gallery: ['library-brick-detail', 'studio-model-section'],
