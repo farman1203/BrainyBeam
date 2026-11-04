@@ -16,11 +16,11 @@ const values = [
   ['One team', 'Strategy, design, build and growth under one roof, so nothing is lost between handoffs.'],
 ]
 const team = [
-  ['Aarav Shah', 'Founder & Strategy'], ['Meera Patel', 'Creative Director'], ['Kabir Desai', 'Head of Performance'],
+  ['Aaqib', 'Founder'], ['Meera Patel', 'Creative Director'], ['Kabir Desai', 'Head of Performance'],
   ['Isha Trivedi', 'SEO & Content Lead'], ['Rohan Mehta', 'Lead Developer'], ['Anaya Joshi', 'Motion Designer'],
 ]
 const timeline = [
-  [site.year, 'The first spark', 'Two people, one desk and a handful of local clients.'],
+  [2018, 'The first spark', 'Two people, one desk and a handful of local clients.'],
   [2020, 'Going full-service', 'SEO, performance and content joined design and development.'],
   [2022, 'A proper studio', 'A multi-disciplinary team and a process we could repeat.'],
   [2024, 'Data at the core', 'Dashboards and monthly reviews for every client.'],

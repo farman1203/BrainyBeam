@@ -6,6 +6,5 @@ export const site = {
   email: 'studio610.co@gmail.com',
   phone: '+00 000 000 0000',
   address: ['Ahmedabad, India'],
-  year: 2018,
+  year: 2026,
 }
-  
