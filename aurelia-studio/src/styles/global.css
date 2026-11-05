@@ -1,10 +1,15 @@
 :root {
-  --bg: #f6f4f0;
-  --ink: #0e0e0e;
-  --mut: #6f6b64;
-  --line: rgba(14, 14, 14, .13);
-  --ac: #ff4d1c;
-  --box: #e2ded6;
+  color-scheme: dark;
+  --bg: #0a1b2f;                      /* page background */
+  --ink: #d9c9a8;                     /* text */
+  --mut: rgba(217, 201, 168, .68);    
+  --line: rgba(217, 201, 168, .18); 
+  --line-strong: rgba(217, 201, 168, .4);
+  --ac: #d6d2d1;                   
+  --box: #13293f;                    
+  --deep: #040f19;                  
+  --err: #ff8f7e;                    
+  --blend: #e3e4d7;                  
   --pad: clamp(1.25rem, 4vw, 3.5rem);
   --fh: 'Inter Tight', 'Helvetica Neue', Arial, sans-serif;
   --fs: 'Instrument Serif', Georgia, serif;
@@ -22,6 +27,7 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  background: var(--bg);
 }
 
 body {
@@ -76,7 +82,7 @@ h4 {
 
 ::selection {
   background: var(--ac);
-  color: #fff;
+  color: var(--bg);
 }
 
 :focus-visible {
@@ -96,7 +102,7 @@ h4 {
   top: 8px;
   z-index: 5000;
   background: var(--ink);
-  color: #fff;
+  color: var(--bg);
   padding: .6rem 1rem;
 }
 
@@ -235,8 +241,8 @@ html.lenis body {
   gap: .8rem;
   padding: 1.3rem 2.2rem;
   border-radius: 999px;
-  background: #fff;
-  color: var(--ink);
+  background: var(--ink);
+  color: var(--bg);
   font: 500 1.05rem var(--fh);
   letter-spacing: -.01em;
   transition: background .4s, color .4s;
@@ -244,12 +250,12 @@ html.lenis body {
 
 .cta-btn:hover {
   background: var(--ac);
-  color: #fff;
+  color: var(--bg);
 }
 
 .cta-btn.dark {
   background: var(--ink);
-  color: #fff;
+  color: var(--bg);
 }
 
 .cta-btn.dark:hover {
@@ -293,7 +299,7 @@ html.lenis body {
   grid-template-columns: 1fr auto 1fr;
   align-items: start;
   padding: 1.25rem var(--pad);
-  color: #fff;
+  color: var(--blend);
   mix-blend-mode: difference;
   transition: transform .7s var(--ease);
 }
@@ -338,8 +344,8 @@ html.lenis body {
   position: fixed;
   inset: 0;
   z-index: 90;
-  background: var(--ink);
-  color: #fff;
+  background: var(--deep);
+  color: var(--ink);
   padding: 7rem var(--pad) 2rem;
   display: flex;
   flex-direction: column;
@@ -348,7 +354,7 @@ html.lenis body {
 
 .menu-row {
   overflow: hidden;
-  border-bottom: 1px solid rgba(255, 255, 255, .15);
+  border-bottom: 1px solid var(--line);
 }
 
 .menu a {
@@ -358,14 +364,14 @@ html.lenis body {
 }
 
 .menu-foot {
-  color: #9a968e;
+  color: var(--mut);
   font-size: .95rem;
 }
 
 /* footer */
 .ftr {
-  background: var(--ink);
-  color: #f3f1ec;
+  background: var(--deep);
+  color: var(--ink);
   padding: clamp(4rem, 8vw, 7rem) var(--pad) 1.5rem;
   overflow: hidden;
 }
@@ -394,7 +400,7 @@ html.lenis body {
   font: 500 .78rem var(--fb);
   letter-spacing: .14em;
   text-transform: uppercase;
-  color: #8b877f;
+  color: var(--mut);
   margin-bottom: 1rem;
 }
 
@@ -405,13 +411,13 @@ html.lenis body {
 }
 
 .ftr p {
-  color: #cfcbc2;
+  color: var(--ink);
   margin-bottom: .4rem;
 }
 
 .ftr-soft {
   display: block;
-  color: #8b877f;
+  color: var(--mut);
   font-size: .9rem;
   margin-bottom: .4rem;
 }
@@ -422,7 +428,7 @@ html.lenis body {
   font: 500 clamp(5rem, 25vw, 28rem)/.8 var(--fh);
   letter-spacing: -.08em;
   white-space: nowrap;
-  color: #f3f1ec;
+  color: var(--ink);
 }
 
 .ftr-word i {
@@ -436,9 +442,9 @@ html.lenis body {
   justify-content: space-between;
   gap: 1rem;
   flex-wrap: wrap;
-  color: #8b877f;
+  color: var(--mut);
   font-size: .85rem;
-  border-top: 1px solid rgba(255, 255, 255, .12);
+  border-top: 1px solid var(--line);
   padding-top: 1.2rem;
   max-width: 1700px;
   margin-inline: auto;
@@ -455,7 +461,7 @@ html.lenis body {
   height: 14px;
   margin: -7px 0 0 -7px;
   border-radius: 50%;
-  background: #fff;
+  background: var(--blend);
   mix-blend-mode: difference;
   opacity: 0;
   display: grid;
@@ -485,8 +491,8 @@ html.lenis body {
   position: fixed;
   inset: 0;
   z-index: 3000;
-  background: var(--ink);
-  color: #fff;
+  background: var(--deep);
+  color: var(--ink);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -512,7 +518,7 @@ html.lenis body {
 .pt-num {
   align-self: flex-end;
   font: 500 clamp(1.4rem, 3vw, 2.4rem) var(--fh);
-  color: #8b877f;
+  color: var(--mut);
   font-variant-numeric: tabular-nums;
 }
 
@@ -529,7 +535,7 @@ html.lenis body {
 }
 
 .scene3d.no-webgl {
-  background: radial-gradient(circle at 50% 60%, rgba(255, 77, 28, .25), transparent 60%);
+  background: radial-gradient(circle at 50% 60%, color-mix(in srgb, var(--ac) 25%, transparent), transparent 60%);
 }
 
 @media (max-width: 800px) {

@@ -65,11 +65,11 @@
 }
 
 .fld [aria-invalid="true"] {
-    border-color: #c8321a;
+    border-color: var(--err);
 }
 
 .ferr {
-    color: #c8321a;
+    color: var(--err);
     font-size: .82rem;
 }
 
@@ -90,4 +90,21 @@
     .ct {
         grid-template-columns: 1fr;
     }
+}
+
+.fld ::placeholder {
+    color: var(--mut);
+    opacity: 1;
+}
+
+.fld select option {
+    background: var(--bg);
+    color: var(--ink);
+}
+
+.fld input:-webkit-autofill,
+.fld textarea:-webkit-autofill {
+    -webkit-text-fill-color: var(--ink);
+    caret-color: var(--ink);
+    box-shadow: 0 0 0 100px var(--bg) inset;
 }

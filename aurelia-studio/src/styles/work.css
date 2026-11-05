@@ -21,7 +21,7 @@
 
 .chips button.on {
   background: var(--ink);
-  color: #fff;
+  color: var(--bg);
   border-color: var(--ink);
 }
 
@@ -186,8 +186,8 @@
   position: relative;
   display: block;
   overflow: hidden;
-  color: #fff;
-  background: #111;
+  color: var(--ink);
+  background: var(--deep);
   padding: clamp(6rem, 14vw, 12rem) 0;
 }
 
@@ -200,12 +200,12 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(10, 10, 10, .6);
+  background: color-mix(in srgb, var(--deep) 68%, transparent);
   transition: background .5s;
 }
 
 .pj-next:hover .pj-next-bg::after {
-  background: rgba(10, 10, 10, .4);
+  background: color-mix(in srgb, var(--deep) 45%, transparent);
 }
 
 .pj-next .wrap {
@@ -214,7 +214,7 @@
 }
 
 .pj-next .lbl {
-  color: #cfcbc2;
+  color: var(--ink);
 }
 
 .pj-next h2 {

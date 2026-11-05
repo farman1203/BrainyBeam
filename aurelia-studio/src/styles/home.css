@@ -5,7 +5,7 @@
   min-height: 640px;
   overflow: hidden;
   background: var(--bg);
-  color: #fff;
+  color: var(--ink);
 }
 
 /* the photo sits in a centred box; the intro animates the box from small to full size */
@@ -38,7 +38,7 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, .28), rgba(0, 0, 0, .05) 35%, rgba(0, 0, 0, .55));
+  background: linear-gradient(to bottom, color-mix(in srgb, var(--deep) 40%, transparent), color-mix(in srgb, var(--deep) 5%, transparent) 35%, color-mix(in srgb, var(--deep) 72%, transparent));
   pointer-events: none;
 }
 
@@ -81,7 +81,7 @@
 
 .hero-sub p {
   max-width: 36ch;
-  color: #fff;
+  color: var(--ink);
   font-size: clamp(1rem, 1.3vw, 1.2rem);
 }
 
@@ -235,8 +235,8 @@
 
 /* selected work slider */
 .work {
-  background: var(--ink);
-  color: #fff;
+  background: var(--deep);
+  color: var(--ink);
   padding-top: clamp(4rem, 8vw, 7rem);
 }
 
@@ -259,7 +259,7 @@
   height: min(92svh, 980px);
   min-height: 520px;
   overflow: hidden;
-  background: #000;
+  background: var(--deep);
 }
 
 .slide {
@@ -271,7 +271,7 @@
   position: absolute;
   inset: 0;
   z-index: 4;
-  background: linear-gradient(to top, rgba(0, 0, 0, .7), transparent 55%);
+  background: linear-gradient(to top, color-mix(in srgb, var(--deep) 85%, transparent), transparent 55%);
   pointer-events: none;
 }
 
@@ -313,7 +313,7 @@
 }
 
 .sl-info p {
-  color: #d6d2c9;
+  color: var(--ink);
   margin-bottom: .8rem;
 }
 
@@ -330,7 +330,7 @@
 
 .sl-ctrl>button:first-child {
   padding: .7rem 1.2rem;
-  border: 1px solid rgba(255, 255, 255, .4);
+  border: 1px solid var(--line-strong);
   border-radius: 999px;
   font-size: .85rem;
   min-height: 44px;
@@ -338,8 +338,8 @@
 }
 
 .sl-ctrl>button:first-child:hover {
-  background: #fff;
-  color: var(--ink);
+  background: var(--ink);
+  color: var(--bg);
 }
 
 .sl-thumb {
@@ -348,8 +348,8 @@
   aspect-ratio: 3/2;
   overflow: hidden;
   border-radius: 4px;
-  border: 1px solid rgba(255, 255, 255, .3);
-  background: #222;
+  border: 1px solid var(--line-strong);
+  background: var(--box);
 }
 
 .sl-bar {
@@ -359,7 +359,7 @@
   bottom: 0;
   height: 3px;
   z-index: 7;
-  background: rgba(255, 255, 255, .2);
+  background: var(--line-strong);
 }
 
 .sl-bar i {
@@ -422,8 +422,8 @@
 /* stats */
 .stats {
   position: relative;
-  color: #fff;
-  background: #111;
+  color: var(--ink);
+  background: var(--deep);
   overflow: hidden;
 }
 
@@ -436,7 +436,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(10, 10, 10, .65);
+  background: color-mix(in srgb, var(--deep) 72%, transparent);
   z-index: 1;
 }
 
@@ -454,7 +454,7 @@
 }
 
 .stats .lead {
-  color: #cfcbc2;
+  color: var(--ink);
 }
 
 .stat-grid {
@@ -463,11 +463,11 @@
   gap: 2rem;
   margin-top: clamp(3rem, 6vw, 5rem);
   padding-top: 2rem;
-  border-top: 1px solid rgba(255, 255, 255, .25);
+  border-top: 1px solid var(--line-strong);
 }
 
 .stat-grid dt {
-  color: #cfcbc2;
+  color: var(--ink);
   font-size: .95rem;
 }
 
@@ -642,9 +642,9 @@
   min-height: 100svh;
   display: grid;
   align-items: end;
-  color: #fff;
+  color: var(--ink);
   overflow: hidden;
-  background: #0b0b0b;
+  background: var(--deep);
 }
 
 .cta-bg {
@@ -655,7 +655,7 @@
 .cta-ov {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, .78), rgba(0, 0, 0, .35));
+  background: linear-gradient(to top, color-mix(in srgb, var(--deep) 85%, transparent), color-mix(in srgb, var(--deep) 40%, transparent));
 }
 
 .cta .scene3d {
@@ -689,7 +689,7 @@
 .cta-links {
   display: grid;
   gap: .3rem;
-  color: #d6d2c9;
+  color: var(--ink);
 }
 
 @media (max-width: 900px) {
