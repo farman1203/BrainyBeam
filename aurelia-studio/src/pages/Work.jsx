@@ -30,7 +30,7 @@ export default function Work() {
       <section className="pg-head wrap">
         <span className="lbl rv">Work ({String(projects.length).padStart(2, '0')})</span>
         <Split text="Selected projects" as="h1" className="pg-h" />
-        <p className="rv lead">Sample projects with dummy clients and numbers — real case studies will replace them.</p>
+       
         <div className="chips rv" role="tablist" aria-label="Filter projects">
           {cats.map(c => <button key={c} role="tab" aria-selected={f === c} className={f === c ? 'on' : ''} onClick={() => setF(c)}>{c}</button>)}
         </div>

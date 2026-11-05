@@ -28,7 +28,7 @@ export default function Project() {
           <div><dt>Year</dt><dd>{p.year}</dd></div>
           <div><dt>Location</dt><dd>{p.place}</dd></div>
           <div><dt>Services</dt><dd>{p.services.join(', ')}</dd></div>
-          <div><dt>Client</dt><dd>{p.title} (sample)</dd></div>
+          <div><dt>Client</dt><dd>{p.title}</dd></div>
         </dl>
       </section>
       <div className="pj-hero wipe" data-zoom><Img {...pic(p.cover, `${p.title} — sample hero image`)} eager /></div>
@@ -42,7 +42,6 @@ export default function Project() {
         <dl className="pj-nums">
           {p.metrics.map(([v, l]) => <div className="rv" key={l}><dd>{v}</dd><dt>{l}</dt></div>)}
         </dl>
-        <small className="rv note">Illustrative sample results — not a real client.</small>
       </section>
       <section className="pj-gal wrap">
         <div className="wipe" data-speed="0.3"><Img {...pic(p.gallery[0])} /></div>

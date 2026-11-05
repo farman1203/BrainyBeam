@@ -21,7 +21,7 @@ export default function Footer() {
           <div><h4>Contact</h4><a className="ul-link" href={`mailto:${site.email}`}>{site.email}</a><p>{site.phone}</p></div>
           <div><h4>Studio</h4><p>{site.address[0]}<br />{site.address[1]}</p></div>
           <div><h4>Index</h4><Link className="ul-link" to="/project">Work</Link><Link className="ul-link" to="/studio">Studio</Link><Link className="ul-link" to="/contact">Contact</Link></div>
-          <div><h4>Elsewhere</h4><span className="ftr-soft">Instagram</span><span className="ftr-soft">LinkedIn</span></div>
+          <div><h4>Elsewhere</h4><span className="ftr-soft"><a href='https://www.instagram.com/studio610.co/'>Instagram</a></span><span className="ftr-soft">LinkedIn</span></div>
         </div>
       </div>
       <div className="ftr-word" aria-hidden="true">{[...site.name].map((ch, k) => <i key={k}>{ch}</i>)}</div>

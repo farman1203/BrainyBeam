@@ -14,7 +14,6 @@ import { site } from '../data/site'
 import '../styles/home.css'
 
 const pad = n => String(n).padStart(2, '0')
-// The reference site uses photography only. Flip to true to bring the Three.js scenes back (hero + CTA).
 const SHOW_3D = false
 
 /* ═════════ 1. HERO — a small photo grows from the centre to fill the screen, then the headline rises ═════════ */
