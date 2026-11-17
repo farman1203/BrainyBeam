@@ -1,15 +1,31 @@
-import React from "react";
+
+import React, { useState } from "react";
+import { FiSearch, FiX } from "react-icons/fi";
+
 const Navbar = () => {
+    const [search, setSearch] = useState("");
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+
+        if (!search.trim()) {
+            alert("Please enter something to search");
+            return;
+        }
+
+        alert(`Searching for: ${search}`);
+    };
+
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
             <div className="container">
 
                 {/* Logo */}
-                <a className="navbar-brand fw-bold text-success" href="#">
+                <a className="navbar-brand fw-bold text-success" href="/">
                     Green Leaf
                 </a>
 
-                {/* Mobile Button */}
+                {/* Mobile Toggle */}
                 <button
                     className="navbar-toggler"
                     type="button"
@@ -19,49 +35,64 @@ const Navbar = () => {
                     <span className="navbar-toggler-icon"></span>
                 </button>
 
-                {/* Menu */}
                 <div className="collapse navbar-collapse" id="navbarMenu">
-                    <ul className="navbar-nav ms-auto">
 
-                        <li className="nav-item">
-                            <a className="nav-link active" href="/">
-                                Home
-                            </a>
-                        </li>
+                    {/* Center Search Bar */}
+                    <form className="navbar-search mx-auto" onSubmit={handleSearch}>
+                        <FiSearch className="search-icon" />
 
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">
-                                Products
-                            </a>
-                        </li>
+                        <input
+                            type="text"
+                            placeholder="Search for products..."
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                        />
 
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">
-                                Orders
-                            </a>
-                        </li>
-
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">
-                                About
-                            </a>
-                        </li>
-
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">
-                                Contact
-                            </a>
-                        </li>
-
-                        <li className="nav-item ms-lg-3">
-                            <button className="btn btn-success">
-                                Login
+                        {search && (
+                            <button
+                                type="button"
+                                className="clear-search"
+                                onClick={() => setSearch("")}
+                            >
+                                <FiX />
                             </button>
+                        )}
+
+                        <button type="submit" className="search-button">
+                            Search
+                        </button>
+                    </form>
+
+                    {/* Right Navigation */}
+                    <ul className="navbar-nav ms-auto align-items-lg-center">
+                        <li className="nav-item">
+                            <a className="nav-link active" href="/">Home</a>
                         </li>
 
-                    </ul>
-                </div>
+                        <li className="nav-item">
+                            <a className="nav-link" href="/products">Products</a>
+                        </li>
 
+                        <li className="nav-item">
+                            <a className="nav-link" href="/orders">Orders</a>
+                        </li>
+
+                        <li className="nav-item">
+                            <a className="nav-link" href="/about">About</a>
+                        </li>
+
+                        <li className="nav-item">
+                            <a className="nav-link" href="/contact">Contact</a>
+                        </li>
+
+                        <li className="nav-item ms-lg-2">
+                            <a href="/login" className="btn btn-success login-btn">
+                                Login
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
             </div>
         </nav>
     );
