@@ -1,0 +1,19 @@
+start a backend
+
+how to create
+ npm i init -y  ==> nodejs application initiate
+ npn i express ==> install express packages
+
+
+
+how to run
+    npx nodemone server.js(file name)
+
+ req => jo bhi frontend se data aa raha hai voh req se access kar sakte hai
+ res => or jo bhi data backend se frontend mai bhejna hai uske liye res ka use karenge
+
+
+get => server se data fetch karvana ho tab use karte hai
+post => server par data send karna ho 
+patch => server par data already hai usko update karna ho
+delete => server par data hai usko delete karna ho
