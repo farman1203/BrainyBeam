@@ -1,0 +1,23 @@
+/* HERO VIDEO — loaded after home.css, so these rules win */
+
+/* the video fills the hero box (which animates from a small box to full screen) and is cropped like a photo */
+.hero-video {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit:fill;
+  object-position: 50% 50%;
+  background: #000;
+  pointer-events: none;
+}
+
+/* The reel flashes between black and white frames, so the dark tint is stronger than for a photo.
+   It keeps the sand-coloured headline readable on every frame. */
+.hero .hero-veil {
+  background: linear-gradient(to bottom,
+      color-mix(in srgb, var(--deep) 58%, transparent),
+      color-mix(in srgb, var(--deep) 62%, transparent) 40%,
+      color-mix(in srgb, var(--deep) 88%, transparent));
+}

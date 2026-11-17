@@ -13,31 +13,114 @@ import Magnetic from '../components/Magnetic'
 import { projects } from '../data/projects'
 import { site } from '../data/site'
 import '../styles/home.css'
+import '../styles/hero-video.css'
 
 const pad = n => String(n).padStart(2, '0')
+// Flip to true to bring the Three.js scenes back (hero + CTA).
 const SHOW_3D = false
-const VIDEO_SRC = "/Video/Scene.mp4";
 
-/* ═════════ 1. HERO — a small photo grows from the centre to fill the screen, then the headline rises ═════════ */
+/* ═════════ 1. HERO — a small video grows from the centre to fill the screen, then the headline rises ═════════ */
+// Two renditions of the same reel (files in /public/video): landscape for laptops/desktops, portrait for phones.
+// Posters (first frame) show instantly while the video loads, and stay if motion is reduced or data-saver is on.
+const VIDEO = {
+  land: { src: '/video/reel-portrait.mp4', poster: '/video/reel-landscape-poster.jpg' },
+  port: { src: '/video/reel-portrait.mp4', poster: '/video/reel-portrait-poster.jpg' },
+}
+const PORTRAIT_QUERY = '(max-aspect-ratio: 1/1)'
+
+// true while the screen is taller than it is wide (phones, tablets held upright); follows rotation/resizing
+function useIsPortrait() {
+  const [portrait, setPortrait] = useState(() => typeof window !== 'undefined' && window.matchMedia(PORTRAIT_QUERY).matches)
+  useEffect(() => {
+    const mq = window.matchMedia(PORTRAIT_QUERY)
+    const on = () => setPortrait(mq.matches)
+    on()
+    mq.addEventListener('change', on)
+    return () => mq.removeEventListener('change', on)
+  }, [])
+  return portrait
+}
+
+function HeroVideo({ portrait }) {
+  const ref = useRef(null)
+  const { src, poster } = portrait ? VIDEO.port : VIDEO.land
+  // no autoplay when the visitor prefers reduced motion or has data-saver on: they just see the poster
+  const still = reduceMotion() || !!(navigator.connection && navigator.connection.saveData)
+
+  useEffect(() => {
+    const v = ref.current
+    if (!v) return
+    // React does not reliably set the muted *attribute*; browsers only autoplay if the video is really muted
+    v.muted = true
+    v.defaultMuted = true
+    v.playsInline = true
+    if (still) { v.pause(); return }
+
+    let visible = true
+    const play = () => {
+      if (!visible || document.hidden) return
+      const p = v.play()
+      if (p && p.catch) p.catch(() => { }) // blocked (e.g. iOS Low Power Mode) → retried on first touch below
+    }
+    const onEnded = () => { v.currentTime = 0; play() } // safety net: some browsers stop at the end even with `loop`
+    const onVisibility = () => (document.hidden ? v.pause() : play())
+    // pause when scrolled out of view → saves battery and data, restarts when you come back
+    const io = new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) play(); else v.pause() }, { threshold: 0.05 })
+    io.observe(v)
+    v.addEventListener('ended', onEnded)
+    v.addEventListener('canplay', play)
+    document.addEventListener('visibilitychange', onVisibility)
+    window.addEventListener('touchstart', play, { once: true, passive: true })
+    window.addEventListener('pointerdown', play, { once: true })
+    play()
+    return () => {
+      io.disconnect()
+      v.removeEventListener('ended', onEnded)
+      v.removeEventListener('canplay', play)
+      document.removeEventListener('visibilitychange', onVisibility)
+      window.removeEventListener('touchstart', play)
+      window.removeEventListener('pointerdown', play)
+    }
+  }, [src, still])
+
+  return (
+    <video
+      ref={ref}
+      className="hero-video"
+      src={src}
+      poster={poster}
+      autoPlay={!still}
+      loop={!still}
+      muted
+      playsInline
+      preload="auto"
+      disablePictureInPicture
+      aria-hidden="true"
+      tabIndex={-1}
+    />
+  )
+}
+
 const heroLines = [['Marketing', 'that'], ['makes', 'an', 'impact.']]
 let introPlayed = false // first page load starts straight away; coming back to Home later waits for the page wipe
 
 function Hero() {
   const ref = useRef(null)
+  const portrait = useIsPortrait()
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const box = ref.current.querySelector('.hero-box')
       if (reduceMotion()) return
       const W = ref.current.offsetWidth, H = ref.current.offsetHeight
-      const sw = Math.max(W * 0.26, 170) // size of the small photo at the start
+      const sw = Math.max(W * 0.26, 170) // size of the small video at the start
       const delay = introPlayed ? 0.6 : 0.25
       introPlayed = true
       gsap.timeline({ delay, defaults: { ease: 'power4.out' } })
         .fromTo(box, { width: sw, height: sw / 1.75 }, { width: W, height: H, duration: 2, ease: 'power3.inOut', onComplete: () => gsap.set(box, { width: '100%', height: '100%' }) }, 0)
-        .from('.hero-veil', { opacity: 0, duration: 1, ease: 'none' }, 1.2)
+        .from('.hero-veil', { opacity: 0, duration: 1.2, ease: 'power1.out' }, 0.2)
         .from('.hero h1 .wi', { yPercent: 120, rotate: 4, duration: 1.3, stagger: 0.09 }, 1.6)
         .from('.hero-sub > *', { y: 30, opacity: 0, duration: 1, stagger: 0.12 }, 2.1)
-      // scroll: photo drifts slower than the page, copy lifts and fades
+      // scroll: video drifts slower than the page, copy lifts and fades
       gsap.to('.hero-bg', { yPercent: 9, ease: 'none', scrollTrigger: { trigger: ref.current, start: 'top top', end: 'bottom top', scrub: true } })
       gsap.to('.hero-copy', { yPercent: -16, opacity: 0, ease: 'none', scrollTrigger: { trigger: ref.current, start: 'top top', end: '75% top', scrub: true } })
     }, ref)
@@ -47,17 +130,7 @@ function Hero() {
     <section className="hero" ref={ref}>
       <div className="hero-frame">
         <div className="hero-box">
-          <div className="hero-bg"> 
-            <video
-            src={VIDEO_SRC}
-            autoPlay
-            loop
-            muted
-            width="100%"
-            playsInline
-            preload="auto"
-            aria-hidden="true"
-          /></div>
+          <div className="hero-bg"><HeroVideo key={portrait ? 'p' : 'l'} portrait={portrait} /></div>
           <div className="hero-veil" />
         </div>
       </div>
