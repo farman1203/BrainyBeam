@@ -449,7 +449,7 @@
 .stats-h {
   font-size: clamp(4rem, 15vw, 15rem);
   line-height: .9;
-  letter-spacing: -.07em;
+  letter-spacing: -.03em;
   margin-bottom: 1.5rem;
 }
 
@@ -575,7 +575,7 @@
 .cta-h {
   font-size: clamp(3rem, 10.5vw, 10.5rem);
   line-height: .9;
-  letter-spacing: -.065em;
+  letter-spacing: -.020em;
   max-width: 11ch;
 }
 

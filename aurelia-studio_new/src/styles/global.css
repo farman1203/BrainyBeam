@@ -269,9 +269,9 @@ html.lenis body {
 }
 
 .pg-h {
-  font-size: clamp(3rem, 10vw, 10rem);
-  line-height: .92;
-  letter-spacing: -.06em;
+  font-size: clamp(3rem, 9vw, 10rem);
+  line-height: .95;
+  letter-spacing: -.02em;
   margin: 1rem 0 1.5rem;
 }
 
@@ -426,7 +426,7 @@ html.lenis body {
   margin: 3rem 0 1rem;
   text-align: center;
   font: 500 clamp(3.4rem, 21vw, 26rem)/.8 var(--fh);
-  letter-spacing: -.08em;
+  letter-spacing: -.04em;
   white-space: nowrap;
   color: var(--ink);
 }
