@@ -159,8 +159,8 @@ function Hero() {
 /* ═════════ 2. STATEMENT ═════════ */
 const statement = [
   'We craft smart marketing solutions:',
-  { img: 'aeriq-desert' }, 'brands people remember,',
-  { img: 'thicc-burger' }, 'content people share, and campaigns that create measurable success.',
+  { img: 'aeriq-hero' }, 'brands people remember,',
+  { img: 'aeriq-copper' }, 'content people share, and campaigns that create measurable success.',
 ]
 
 function Statement() {
