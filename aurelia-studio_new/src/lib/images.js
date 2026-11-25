@@ -20,10 +20,12 @@ export const files = {
   'thicc-logo': ['thicc-burger/logo.webp', 'Thicc Burgers logo'],
   //hero section
   'aeriq-hero': ['aeriq/hero.webp'],
-  'aeriq-material': ['/aeriq/material-brick.1ujaaaocc75x0.webp', 'Brick laid in a projecting pattern, catching low sun'],
-  'studio-model-white': ['studio-model-white.0xoha0kv3nasp.webp', 'White card model of a small pavilion on a plinth'],
+  'aeriq-material': ['/aeriq/material.webp', 'Brick laid in a projecting pattern, catching low sun'],
+  
+  //other
+  'other-studio': ['other/studio.webp', 'White card model of a small pavilion on a plinth'],
+  'other-library': ['other/library.webp', 'A brick wall crossed by a dark steel handrail'],
   'library-cover': ['library-cover.3gaa3hyg9nfqb.webp', 'Two pale brick volumes against a clear sky'],
-  'library-brick-detail': ['library-brick-detail.0u4fqruhtyo5j.webp', 'A brick wall crossed by a dark steel handrail'],
   'studio-drafting': ['studio-drafting.319dm00xsef3y.webp', 'An architect drawing at a timber desk under a lamp'],
   'studio-model-desk': ['studio-model-desk.2b_iz3y4ca4v1.webp', 'Architect working on a white model at a desk covered in tools'],
   'studio-model-section': ['studio-model-section.3lowrpjmvfscx.webp', 'A sectional card model showing a stair and a deep window'],

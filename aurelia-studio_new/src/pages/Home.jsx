@@ -160,7 +160,7 @@ function Hero() {
 const statement = [
   'We craft smart marketing solutions:',
   { img: 'aeriq-hero' }, 'brands people remember,',
-  { img: 'aeriq-copper' }, 'content people share, and campaigns that create measurable success.',
+  { img: 'aeriq-material' }, 'content people share, and campaigns that create measurable success.',
 ]
 
 function Statement() {
@@ -349,11 +349,11 @@ function Process() {
       <ScrubText as="h2" parts={processText} className="proc-t" />
       <div className="proc-grid">
         <figure className="pf pf-a" data-speed="0.5">
-          <div className="pf-img wipe" data-zoom><Img {...pic('labanista-shop')} /></div>
+          <div className="pf-img wipe" data-zoom><Img {...pic('other-studio')} /></div>
           <figcaption className="rv"><h3>Ideas that inspire, planned with care.</h3><p>Every project starts with the brand: its audience, its goals and its tone. We plan the content, the shoot and the channels together, so what goes live is exactly what was agreed.</p></figcaption>
         </figure>
         <figure className="pf pf-b" data-speed="-0.35">
-          <div className="pf-img wipe" data-zoom><Img {...pic('thicc-creative')} pos="50% 30%" /></div>
+          <div className="pf-img wipe" data-zoom><Img {...pic('other-library')} pos="50% 30%" /></div>
           <figcaption className="rv"><h3>Shot, edited and posted with the same care.</h3></figcaption>
         </figure>
       </div>
